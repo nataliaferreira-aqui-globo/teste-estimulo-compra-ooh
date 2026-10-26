@@ -43,31 +43,6 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-    .progress-fill {
-      transition: width 350ms cubic-bezier(0.22, 1, 0.36, 1), background-color 250ms ease;
-    }
-    @keyframes shimmerSlide {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-    .progress-shimmer {
-      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
-      background-size: 200% 100%;
-      animation: shimmerSlide 2.2s infinite linear;
-    }
-    .voucher-notch-left, .voucher-notch-right {
-      position: absolute;
-      top: 50%;
-      width: 14px;
-      height: 14px;
-      background-color: #FFFFFF;
-      border-radius: 9999px;
-      transform: translateY(-50%);
-      z-index: 10;
-    }
-    .voucher-notch-left { left: -8px; }
-    .voucher-notch-right { right: -8px; }
-
     .map-bg {
       background-color: #E5E7EB;
       background-image: 
@@ -139,7 +114,7 @@
               Versão 2: Chamativo (Vibrante)
             </button>
             <button onclick="setVisualStyle('dark-ticket')" id="style-btn-dark-ticket" class="px-2.5 py-1 rounded-md font-semibold transition text-slate-300 hover:text-white">
-              Versão 3: Chamativo (Dark Ticket)
+              Versão 3: Chamativo (Dark)
             </button>
           </div>
 
@@ -315,32 +290,10 @@
       </header>
 
       <!-- ================================================================= -->
-      <!-- TELA 1: VITRINE OOH                                               -->
+      <!-- TELA 1: VITRINE OOH (SEM BANNER REPETIDO NO TOPO — SÓ EMBAIXO)    -->
       <!-- ================================================================= -->
       <main id="screen-vitrine" class="hidden max-w-[1380px] w-full mx-auto px-3.5 pt-3.5 pb-8 flex-1">
         
-        <!-- Banner Hero de Topo na Vitrine OOH (Exibido nas versões Chamativas!) -->
-        <div id="vitrine-top-hero-banner" class="hidden mb-3.5 rounded-2xl p-3 shadow-md transition-all">
-          <div class="flex items-center justify-between gap-2.5 flex-wrap">
-            <div class="flex items-center gap-2.5 min-w-0">
-              <span id="vitrine-hero-badge" class="px-2.5 py-1 rounded-lg font-black text-xs tracking-tight shrink-0 shadow-sm">
-                R$ 500 OFF
-              </span>
-              <div class="min-w-0">
-                <p id="vitrine-hero-title" class="text-xs font-extrabold leading-snug">
-                  Faltam R$ 600,00 em OOH para R$ 500 OFF
-                </p>
-                <p id="vitrine-hero-sub" class="text-[11px] opacity-90 leading-snug">
-                  Aplicado apenas em OOH · Válido até 31/10 · Uso único por conta
-                </p>
-              </div>
-            </div>
-            <div id="vitrine-hero-pill-right" class="text-[11px] font-extrabold px-2.5 py-1 rounded-full shrink-0">
-              40% atingido
-            </div>
-          </div>
-        </div>
-
         <div id="search-bar-desktop" class="max-w-2xl mx-auto mb-4">
           <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-slate-200/90 p-2 flex items-center justify-between gap-2">
             <div class="flex-1 px-3 py-1 border-r border-slate-200 flex items-center justify-between gap-2">
@@ -613,7 +566,7 @@
               </div>
 
               <!-- ========================================================= -->
-              <!-- 3. SEÇÃO "VALOR"                                          -->
+              <!-- 3. SEÇÃO "VALOR" (ESTÍMULO APENAS EMBAIXO, SEM %)         -->
               <!-- ========================================================= -->
               <div id="secao-valor-anchor">
                 
@@ -638,45 +591,17 @@
                 </div>
 
                 <!-- ===================================================== -->
-                <!-- BOX DE ESTÍMULO (SUPORTA VERSÃO SUTIL & CHAMATIVA)    -->
+                <!-- BOX DE ESTÍMULO (SEM BARRA DE %, SEM REPETIÇÃO ACIMA) -->
                 <!-- ===================================================== -->
-                <div id="valor-opt-compact" class="relative overflow-hidden rounded-xl p-3 mb-3.5 border transition-all">
-                  
-                  <!-- Entalhes laterais de Voucher (visíveis nos modos Chamativos) -->
-                  <div id="voucher-notch-l" class="voucher-notch-left hidden"></div>
-                  <div id="voucher-notch-r" class="voucher-notch-right hidden"></div>
-
-                  <!-- Topo de Destaque (Selo R$ 500 OFF - visível nos modos Chamativos) -->
-                  <div id="vcompact-loud-top" class="hidden items-center justify-between gap-2 mb-2 pb-2 border-b">
-                    <div class="flex items-center gap-1.5">
-                      <span id="vcompact-loud-badge" class="px-2 py-0.5 rounded-md font-black text-xs tracking-tight shadow-sm">
-                        R$ 500 OFF
-                      </span>
-                      <span id="vcompact-loud-tag" class="text-[11px] font-bold uppercase tracking-wider">
-                        Bônus OOH
-                      </span>
+                <div id="valor-opt-compact" class="rounded-xl p-3.5 mb-3.5 border transition-all">
+                  <div class="flex items-start gap-2.5">
+                    <span id="vcompact-icon" class="shrink-0 mt-0.5"></span>
+                    <div class="min-w-0 flex-1">
+                      <div id="vcompact-title" class="text-xs font-bold leading-snug"></div>
+                      <div id="vcompact-rule" class="text-[11px] leading-snug mt-1">
+                        Aplicado apenas em OOH · Válido até 31/10 · Uso único por conta
+                      </div>
                     </div>
-                    <span id="vcompact-loud-status" class="text-[10px] font-extrabold px-2 py-0.5 rounded-full">
-                      40% atingido
-                    </span>
-                  </div>
-
-                  <!-- Linha 1: Ícone SVG + Título enxuto (1 linha no mobile) -->
-                  <div class="flex items-center gap-2 mb-1.5">
-                    <span id="vcompact-icon" class="shrink-0"></span>
-                    <div id="vcompact-title" class="text-xs font-bold leading-snug"></div>
-                  </div>
-
-                  <!-- Linha 2: Barra de Progresso -->
-                  <div id="vcompact-bar-wrap" class="w-full rounded-full overflow-hidden mb-1.5">
-                    <div id="vcompact-bar" class="progress-fill h-full rounded-full relative overflow-hidden" style="width: 40%">
-                      <div id="vcompact-bar-shimmer" class="progress-shimmer absolute inset-0 hidden"></div>
-                    </div>
-                  </div>
-
-                  <!-- Linha 3: Subtexto conciso -->
-                  <div id="vcompact-rule" class="text-[11px] leading-snug">
-                    Aplicado apenas em OOH · Válido até 31/10 · Uso único por conta
                   </div>
                 </div>
 
@@ -738,33 +663,18 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- STICKY FOOTER NA VITRINE OOH                                        -->
+    <!-- STICKY FOOTER NA VITRINE OOH (APENAS EMBAIXO, SEM PROGRESSÃO/%)     -->
     <!-- =================================================================== -->
     <footer id="sticky-footer" class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] shrink-0 hidden">
       
-      <!-- Faixa de Benefício / Progresso (SOMENTE na Vitrine OOH!) -->
+      <!-- Faixa de Estímulo embaixo (SOMENTE na Vitrine OOH!) -->
       <div id="footer-promo-strip" class="w-full transition-all duration-300">
         <div class="max-w-[1380px] mx-auto px-3.5 py-2.5">
-          <div class="flex items-center justify-between gap-2">
-            <div class="flex items-center gap-2 min-w-0">
-              <!-- Badge Chamativo no Footer (visível nas versões Chamativas) -->
-              <span id="footer-loud-badge" class="hidden px-2 py-0.5 rounded-md font-black text-[11px] tracking-tight shrink-0 shadow-sm">
-                R$ 500 OFF
-              </span>
-              <span id="footer-strip-icon" class="shrink-0"></span>
-              <div class="min-w-0">
-                <p id="footer-strip-text" class="text-xs font-bold leading-snug"></p>
-                <p id="footer-strip-subtext" class="text-[11px] leading-snug mt-0.5"></p>
-              </div>
-            </div>
-            <span id="footer-strip-percent" class="hidden text-[11px] font-extrabold px-2 py-0.5 rounded-full shrink-0">
-              40%
-            </span>
-          </div>
-
-          <div id="footer-strip-progress-wrap" class="hidden w-full rounded-full overflow-hidden mt-1.5">
-            <div id="footer-strip-progress" class="progress-fill h-full rounded-full relative overflow-hidden" style="width: 40%">
-              <div class="progress-shimmer absolute inset-0"></div>
+          <div class="flex items-start gap-2.5 min-w-0">
+            <span id="footer-strip-icon" class="shrink-0 mt-0.5"></span>
+            <div class="min-w-0 flex-1">
+              <p id="footer-strip-text" class="text-xs font-bold leading-snug"></p>
+              <p id="footer-strip-subtext" class="text-[11px] leading-snug mt-0.5"></p>
             </div>
           </div>
         </div>
@@ -953,19 +863,16 @@
 
       let oohUnlocked = false;
       let missingOOH = 0;
-      let percentOOH = 0;
       let rawOohPromoVal = 0;
       let isCappedByOoh = false;
 
       if (hybridRuleMode === 'strict-ooh') {
         oohUnlocked = oohSum >= PROMO_RULES.minSpend;
         missingOOH = oohUnlocked ? 0 : +(PROMO_RULES.minSpend - oohSum).toFixed(2);
-        percentOOH = Math.min(100, Math.round((oohSum / PROMO_RULES.minSpend) * 100));
         rawOohPromoVal = oohUnlocked ? Math.min(oohSum, PROMO_RULES.discountOOH) : 0;
       } else {
         oohUnlocked = hasOOH && (subtotal >= PROMO_RULES.minSpend);
         missingOOH = oohUnlocked ? 0 : +(PROMO_RULES.minSpend - subtotal).toFixed(2);
-        percentOOH = Math.min(100, Math.round((subtotal / PROMO_RULES.minSpend) * 100));
         if (oohUnlocked) {
           rawOohPromoVal = Math.min(oohSum, PROMO_RULES.discountOOH);
           isCappedByOoh = oohSum < PROMO_RULES.discountOOH;
@@ -1006,7 +913,6 @@
         subtotal,
         oohUnlocked,
         missingOOH,
-        percentOOH,
         activeCoupon,
         appliedType,
         appliedDiscount,
@@ -1251,153 +1157,73 @@
       cartBadge.classList.toggle('hidden', summary.isEmpty);
 
       // =====================================================================
-      // 1. VITRINE OOH: BANNER DE TOPO + RODAPÉ STICKY
+      // 1. VITRINE OOH: APENAS STICKY FOOTER EMBAIXO (SEM BANNER REPETIDO ACIMA E SEM %)
       // =====================================================================
-      const topHeroBanner = document.getElementById('vitrine-top-hero-banner');
-      const heroBadge = document.getElementById('vitrine-hero-badge');
-      const heroTitle = document.getElementById('vitrine-hero-title');
-      const heroSub = document.getElementById('vitrine-hero-sub');
-      const heroPillRight = document.getElementById('vitrine-hero-pill-right');
-
       const footerPromoStrip = document.getElementById('footer-promo-strip');
       const footerCheckoutBar = document.getElementById('footer-checkout-bar');
-      const footerLoudBadge = document.getElementById('footer-loud-badge');
       const footerStripIcon = document.getElementById('footer-strip-icon');
       const footerStripText = document.getElementById('footer-strip-text');
       const footerStripSubtext = document.getElementById('footer-strip-subtext');
-      const footerStripPercent = document.getElementById('footer-strip-percent');
-      const footerStripProgressWrap = document.getElementById('footer-strip-progress-wrap');
-      const footerStripProgress = document.getElementById('footer-strip-progress');
 
       if (currentScreen === 'globo') {
-        topHeroBanner.classList.add('hidden');
         footerPromoStrip.classList.add('hidden');
         footerCheckoutBar.classList.toggle('hidden', summary.isEmpty);
       } else if (currentScreen === 'vitrine') {
         footerPromoStrip.classList.remove('hidden');
 
-        // Banner de topo na Vitrine aparece nas versões Chamativas
-        if (isLoud) {
-          topHeroBanner.classList.remove('hidden');
-          if (summary.oohUnlocked) {
-            topHeroBanner.className = isDarkTicket
-              ? 'mb-3.5 rounded-2xl p-3 shadow-lg bg-slate-900 text-white border border-emerald-500/50 transition-all'
-              : 'mb-3.5 rounded-2xl p-3 shadow-lg bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-white transition-all';
-            heroBadge.className = isDarkTicket
-              ? 'px-2.5 py-1 rounded-lg font-black text-xs tracking-tight shrink-0 bg-emerald-500 text-slate-950 shadow-sm'
-              : 'px-2.5 py-1 rounded-lg font-black text-xs tracking-tight shrink-0 bg-white text-emerald-700 shadow-sm';
-            heroBadge.textContent = 'R$ 500 OFF';
-            heroTitle.textContent = 'Você ganhou R$ 500 OFF em OOH';
-            heroSub.textContent = PROMO_RULES.disclaimer;
-            heroPillRight.textContent = 'LIBERADO';
-            heroPillRight.className = 'text-[10px] font-black px-2.5 py-1 rounded-full shrink-0 bg-white/20 text-white';
-          } else {
-            topHeroBanner.className = isDarkTicket
-              ? 'mb-3.5 rounded-2xl p-3 shadow-lg bg-slate-900 text-white border border-orange-500/50 transition-all'
-              : 'mb-3.5 rounded-2xl p-3 shadow-lg bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white transition-all';
-            heroBadge.className = isDarkTicket
-              ? 'px-2.5 py-1 rounded-lg font-black text-xs tracking-tight shrink-0 bg-orange-500 text-white shadow-sm'
-              : 'px-2.5 py-1 rounded-lg font-black text-xs tracking-tight shrink-0 bg-white text-orange-600 shadow-sm';
-            heroBadge.textContent = 'R$ 500 OFF';
-            heroTitle.textContent = !summary.hasOOH
-              ? 'Ganhe R$ 500 OFF acima de R$ 1.000 em OOH'
-              : `Faltam ${formatBRL(summary.missingOOH)} em OOH para R$ 500 OFF`;
-            heroSub.textContent = PROMO_RULES.disclaimer;
-            heroPillRight.textContent = !summary.hasOOH ? 'ACIMA DE R$ 1.000' : `${summary.percentOOH}%`;
-            heroPillRight.className = 'text-[10px] font-black px-2.5 py-1 rounded-full shrink-0 bg-black/20 text-white';
-          }
-        } else {
-          topHeroBanner.classList.add('hidden');
-        }
-
-        // Sticky Footer na Vitrine OOH
         if (!summary.hasOOH) {
           if (isLoud) {
             footerPromoStrip.className = isDarkTicket
               ? 'w-full transition-all duration-300 bg-slate-900 text-white border-b border-slate-700'
               : 'w-full transition-all duration-300 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white';
-            footerLoudBadge.classList.remove('hidden');
-            footerLoudBadge.className = isDarkTicket
-              ? 'px-2 py-0.5 rounded-md font-black text-[11px] tracking-tight shrink-0 bg-orange-500 text-white shadow-sm'
-              : 'px-2 py-0.5 rounded-md font-black text-[11px] tracking-tight shrink-0 bg-white text-orange-600 shadow-sm';
-            footerLoudBadge.textContent = 'R$ 500 OFF';
-            footerStripIcon.classList.add('hidden');
+            footerStripIcon.className = isDarkTicket ? 'text-orange-400 shrink-0 mt-0.5' : 'text-white shrink-0 mt-0.5';
+            footerStripIcon.innerHTML = SVG_TAG_ICON;
             footerStripText.innerHTML = `<span class="text-white font-extrabold">Ganhe R$ 500 OFF acima de R$ 1.000 em OOH</span>`;
             footerStripSubtext.className = 'text-[11px] text-white/90 leading-snug mt-0.5';
           } else {
             footerPromoStrip.className = 'w-full transition-all duration-300 bg-orange-50/95 border-b border-orange-200/80';
-            footerLoudBadge.classList.add('hidden');
-            footerStripIcon.className = 'text-orange-600 shrink-0';
+            footerStripIcon.className = 'text-orange-600 shrink-0 mt-0.5';
             footerStripIcon.innerHTML = SVG_TAG_ICON;
             footerStripText.innerHTML = `Ganhe <span class="text-emerald-700 font-extrabold">R$ 500 OFF</span> acima de R$ 1.000 em OOH`;
             footerStripSubtext.className = 'text-[11px] text-slate-600 leading-snug mt-0.5';
           }
           footerStripSubtext.textContent = PROMO_RULES.disclaimer;
-          footerStripPercent.classList.add('hidden');
-          footerStripProgressWrap.classList.add('hidden');
           footerCheckoutBar.classList.toggle('hidden', summary.isEmpty);
         } else if (summary.oohUnlocked) {
           if (isLoud) {
             footerPromoStrip.className = isDarkTicket
               ? 'w-full transition-all duration-300 bg-slate-900 text-white border-b border-emerald-500/40'
               : 'w-full transition-all duration-300 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-white';
-            footerLoudBadge.classList.remove('hidden');
-            footerLoudBadge.className = isDarkTicket
-              ? 'px-2 py-0.5 rounded-md font-black text-[11px] tracking-tight shrink-0 bg-emerald-500 text-slate-950 shadow-sm'
-              : 'px-2 py-0.5 rounded-md font-black text-[11px] tracking-tight shrink-0 bg-white text-emerald-700 shadow-sm';
-            footerLoudBadge.textContent = 'R$ 500 OFF';
-            footerStripIcon.classList.add('hidden');
+            footerStripIcon.className = isDarkTicket ? 'text-emerald-400 shrink-0 mt-0.5' : 'text-white shrink-0 mt-0.5';
+            footerStripIcon.innerHTML = SVG_CHECK_ICON;
             footerStripText.innerHTML = `<span class="text-white font-extrabold">Você ganhou R$ 500 OFF em OOH</span>`;
             footerStripSubtext.className = 'text-[11px] text-white/90 leading-snug mt-0.5';
-            footerStripProgressWrap.className = 'w-full h-2 bg-black/20 rounded-full overflow-hidden mt-1.5';
-            footerStripProgress.className = 'progress-fill h-full bg-white rounded-full relative overflow-hidden';
           } else {
             footerPromoStrip.className = 'w-full transition-all duration-300 bg-emerald-50 border-b border-emerald-200';
-            footerLoudBadge.classList.add('hidden');
-            footerStripIcon.className = 'text-emerald-600 shrink-0';
+            footerStripIcon.className = 'text-emerald-600 shrink-0 mt-0.5';
             footerStripIcon.innerHTML = SVG_CHECK_ICON;
             footerStripText.innerHTML = `<span class="text-emerald-950 font-bold">Você ganhou R$ 500 OFF em OOH</span>`;
             footerStripSubtext.className = 'text-[11px] text-slate-600 leading-snug mt-0.5';
-            footerStripProgressWrap.className = 'w-full h-1.5 bg-white/90 rounded-full overflow-hidden border border-emerald-200 mt-1.5';
-            footerStripProgress.className = 'progress-fill h-full bg-emerald-600 rounded-full relative overflow-hidden';
           }
           footerStripSubtext.textContent = PROMO_RULES.disclaimer;
-          footerStripPercent.classList.add('hidden');
-          footerStripProgress.style.width = '100%';
           footerCheckoutBar.classList.remove('hidden');
         } else {
           if (isLoud) {
             footerPromoStrip.className = isDarkTicket
               ? 'w-full transition-all duration-300 bg-slate-900 text-white border-b border-orange-500/40'
               : 'w-full transition-all duration-300 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white';
-            footerLoudBadge.classList.remove('hidden');
-            footerLoudBadge.className = isDarkTicket
-              ? 'px-2 py-0.5 rounded-md font-black text-[11px] tracking-tight shrink-0 bg-orange-500 text-white shadow-sm'
-              : 'px-2 py-0.5 rounded-md font-black text-[11px] tracking-tight shrink-0 bg-white text-orange-600 shadow-sm';
-            footerLoudBadge.textContent = 'R$ 500 OFF';
-            footerStripIcon.classList.add('hidden');
+            footerStripIcon.className = isDarkTicket ? 'text-orange-400 shrink-0 mt-0.5' : 'text-white shrink-0 mt-0.5';
+            footerStripIcon.innerHTML = SVG_TAG_ICON;
             footerStripText.innerHTML = `<span class="text-white font-extrabold">Faltam ${formatBRL(summary.missingOOH)} em OOH para R$ 500 OFF</span>`;
             footerStripSubtext.className = 'text-[11px] text-white/90 leading-snug mt-0.5';
-            footerStripPercent.className = 'text-[11px] font-black text-white bg-black/25 px-2 py-0.5 rounded-full shrink-0';
-            footerStripProgressWrap.className = 'w-full h-2 bg-black/20 rounded-full overflow-hidden mt-1.5';
-            footerStripProgress.className = isDarkTicket
-              ? 'progress-fill h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full relative overflow-hidden'
-              : 'progress-fill h-full bg-white rounded-full relative overflow-hidden';
           } else {
             footerPromoStrip.className = 'w-full transition-all duration-300 bg-orange-50/95 border-b border-orange-200/80';
-            footerLoudBadge.classList.add('hidden');
-            footerStripIcon.className = 'text-orange-600 shrink-0';
+            footerStripIcon.className = 'text-orange-600 shrink-0 mt-0.5';
             footerStripIcon.innerHTML = SVG_TAG_ICON;
             footerStripText.innerHTML = `Faltam <span class="text-orange-700 font-extrabold">${formatBRL(summary.missingOOH)}</span> em OOH para <span class="text-emerald-700 font-extrabold">R$ 500 OFF</span>`;
             footerStripSubtext.className = 'text-[11px] text-slate-600 leading-snug mt-0.5';
-            footerStripPercent.className = 'text-[11px] font-bold text-orange-800 bg-orange-100 px-2 py-0.5 rounded-full shrink-0';
-            footerStripProgressWrap.className = 'w-full h-1.5 bg-white/90 rounded-full overflow-hidden border border-orange-200/60 mt-1.5';
-            footerStripProgress.className = 'progress-fill h-full bg-orange-500 rounded-full relative overflow-hidden';
           }
           footerStripSubtext.textContent = PROMO_RULES.disclaimer;
-          footerStripPercent.textContent = `${summary.percentOOH}%`;
-          footerStripPercent.classList.remove('hidden');
-          footerStripProgress.style.width = `${summary.percentOOH}%`;
           footerCheckoutBar.classList.remove('hidden');
         }
       }
@@ -1417,7 +1243,7 @@
       }
 
       // =====================================================================
-      // 2. SEÇÃO "VALOR" (SUPORTA VERSÃO SUTIL & VERSÕES CHAMATIVAS)
+      // 2. SEÇÃO "VALOR" (ESTÍMULO APENAS EMBAIXO, SEM PROGRESSÃO/%)
       // =====================================================================
       const couponHeaderDefault = document.getElementById('coupon-header-default');
       const couponHeaderActive = document.getElementById('coupon-header-active');
@@ -1433,18 +1259,8 @@
       }
 
       const optCompact = document.getElementById('valor-opt-compact');
-      const notchL = document.getElementById('voucher-notch-l');
-      const notchR = document.getElementById('voucher-notch-r');
-      const loudTop = document.getElementById('vcompact-loud-top');
-      const loudBadge = document.getElementById('vcompact-loud-badge');
-      const loudTag = document.getElementById('vcompact-loud-tag');
-      const loudStatus = document.getElementById('vcompact-loud-status');
-
       const vcompactIcon = document.getElementById('vcompact-icon');
       const vcompactTitle = document.getElementById('vcompact-title');
-      const vcompactBarWrap = document.getElementById('vcompact-bar-wrap');
-      const vcompactBar = document.getElementById('vcompact-bar');
-      const vcompactShimmer = document.getElementById('vcompact-bar-shimmer');
       const vcompactRule = document.getElementById('vcompact-rule');
 
       const planoDiscountRow = document.getElementById('plano-discount-row');
@@ -1469,40 +1285,26 @@
       }
 
       optCompact.classList.remove('hidden');
-      notchL.classList.toggle('hidden', !isLoud);
-      notchR.classList.toggle('hidden', !isLoud);
-      vcompactShimmer.classList.toggle('hidden', !isLoud);
 
       // Estado 1: Cupom Maior que R$ 500 OFF (ex: VIP800)
       if (summary.activeCoupon && summary.activeCoupon.amount >= PROMO_RULES.discountOOH) {
         if (isLoud) {
           optCompact.className = isDarkTicket
-            ? 'relative overflow-hidden rounded-2xl p-3.5 mb-3.5 border border-indigo-400/50 bg-slate-900 text-white shadow-lg'
-            : 'relative overflow-hidden rounded-2xl p-3.5 mb-3.5 border border-indigo-500 bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-500/20';
-          loudTop.className = 'flex items-center justify-between gap-2 mb-2 pb-2 border-b border-white/20';
-          loudBadge.className = 'px-2.5 py-0.5 rounded-md font-black text-xs tracking-tight bg-white text-indigo-700 shadow-sm';
-          loudBadge.textContent = summary.activeCoupon.code;
-          loudTag.className = 'text-[10px] font-bold uppercase tracking-wider text-indigo-100';
-          loudTag.textContent = 'Cupom Ativo';
-          loudStatus.className = 'text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-black/25 text-white';
-          loudStatus.textContent = `-${formatBRL(summary.appliedDiscount)}`;
-
-          vcompactIcon.className = 'text-white shrink-0';
+            ? 'rounded-xl p-3.5 mb-3.5 border-l-4 border-l-indigo-400 border border-slate-800 bg-slate-900 text-white shadow-md transition-all'
+            : 'rounded-xl p-3.5 mb-3.5 border border-indigo-600 bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-md shadow-indigo-500/20 transition-all';
+          vcompactIcon.className = 'text-white shrink-0 mt-0.5';
           vcompactIcon.innerHTML = SVG_INFO_ICON;
           vcompactTitle.className = 'text-xs font-extrabold text-white leading-snug';
           vcompactTitle.textContent = `Cupom ${summary.activeCoupon.code} aplicado (-${formatBRL(summary.appliedDiscount)} em OOH)`;
-          vcompactBarWrap.classList.add('hidden');
-          vcompactRule.className = 'text-[11px] text-white/90 leading-snug';
+          vcompactRule.className = 'text-[11px] text-white/90 leading-snug mt-1';
           vcompactRule.textContent = 'Maior que os R$ 500 OFF em OOH (não cumulativo)';
         } else {
-          loudTop.className = 'hidden';
-          optCompact.className = 'relative overflow-hidden rounded-xl p-3 mb-3.5 border transition-all bg-indigo-50/90 border-indigo-200';
-          vcompactIcon.className = 'text-indigo-600 shrink-0';
+          optCompact.className = 'rounded-xl p-3 mb-3.5 border transition-all bg-indigo-50/90 border-indigo-200';
+          vcompactIcon.className = 'text-indigo-600 shrink-0 mt-0.5';
           vcompactIcon.innerHTML = SVG_INFO_ICON;
           vcompactTitle.className = 'text-xs font-bold text-indigo-950 leading-snug';
           vcompactTitle.textContent = `Cupom ${summary.activeCoupon.code} aplicado (-${formatBRL(summary.appliedDiscount)} em OOH)`;
-          vcompactBarWrap.classList.add('hidden');
-          vcompactRule.className = 'text-[11px] text-indigo-800 leading-snug';
+          vcompactRule.className = 'text-[11px] text-indigo-800 leading-snug mt-1';
           vcompactRule.textContent = 'Maior que os R$ 500 OFF em OOH (não cumulativo)';
         }
       }
@@ -1515,48 +1317,25 @@
 
         if (isLoud) {
           optCompact.className = isDarkTicket
-            ? 'relative overflow-hidden rounded-2xl p-3.5 mb-3.5 border-2 border-emerald-500 bg-slate-900 text-white shadow-lg'
-            : 'relative overflow-hidden rounded-2xl p-3.5 mb-3.5 border border-emerald-500 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-600/20';
-          loudTop.className = 'flex items-center justify-between gap-2 mb-2 pb-2 border-b border-white/20';
-          loudBadge.className = isDarkTicket
-            ? 'px-2.5 py-0.5 rounded-md font-black text-xs tracking-tight bg-emerald-400 text-slate-950 shadow-sm'
-            : 'px-2.5 py-0.5 rounded-md font-black text-xs tracking-tight bg-white text-emerald-700 shadow-sm';
-          loudBadge.textContent = `${discountFormatted} OFF`;
-          loudTag.className = 'text-[10px] font-bold uppercase tracking-wider text-emerald-100';
-          loudTag.textContent = 'Desconto Aplicado';
-          loudStatus.className = 'text-[10px] font-black px-2 py-0.5 rounded-full bg-white/20 text-white';
-          loudStatus.textContent = 'ATIVO EM OOH';
-
-          vcompactIcon.className = isDarkTicket ? 'text-emerald-400 shrink-0' : 'text-white shrink-0';
+            ? 'rounded-xl p-3.5 mb-3.5 border-l-4 border-l-emerald-400 border border-slate-800 bg-slate-900 text-white shadow-md transition-all'
+            : 'rounded-xl p-3.5 mb-3.5 border border-emerald-600 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-600/20 transition-all';
+          vcompactIcon.className = isDarkTicket ? 'text-emerald-400 shrink-0 mt-0.5' : 'text-white shrink-0 mt-0.5';
           vcompactIcon.innerHTML = SVG_CHECK_ICON;
           vcompactTitle.className = 'text-xs font-extrabold text-white leading-snug';
           vcompactTitle.textContent = `Você ganhou ${discountFormatted} OFF em OOH`;
-
-          vcompactBarWrap.className = 'w-full h-2 bg-black/20 rounded-full overflow-hidden mb-1.5';
-          vcompactBar.style.width = '100%';
-          vcompactBar.className = isDarkTicket
-            ? 'progress-fill h-full bg-emerald-400 rounded-full relative overflow-hidden'
-            : 'progress-fill h-full bg-white rounded-full relative overflow-hidden';
-
-          vcompactRule.className = 'text-[11px] text-white/90 leading-snug';
+          vcompactRule.className = 'text-[11px] text-white/90 leading-snug mt-1';
           vcompactRule.textContent = subText;
         } else {
-          loudTop.className = 'hidden';
-          optCompact.className = 'relative overflow-hidden rounded-xl p-3 mb-3.5 border transition-all bg-emerald-50/80 border-emerald-200';
-          vcompactIcon.className = 'text-emerald-600 shrink-0';
+          optCompact.className = 'rounded-xl p-3 mb-3.5 border transition-all bg-emerald-50/80 border-emerald-200';
+          vcompactIcon.className = 'text-emerald-600 shrink-0 mt-0.5';
           vcompactIcon.innerHTML = SVG_CHECK_ICON;
           vcompactTitle.className = 'text-xs font-bold text-emerald-950 leading-snug';
           vcompactTitle.textContent = `Você ganhou ${discountFormatted} OFF em OOH`;
-
-          vcompactBarWrap.className = 'w-full h-1.5 bg-white rounded-full overflow-hidden border border-emerald-200 mb-1.5';
-          vcompactBar.style.width = '100%';
-          vcompactBar.className = 'progress-fill h-full bg-emerald-600 rounded-full relative overflow-hidden';
-
-          vcompactRule.className = 'text-[11px] text-emerald-800 leading-snug';
+          vcompactRule.className = 'text-[11px] text-emerald-800 leading-snug mt-1';
           vcompactRule.textContent = subText;
         }
       }
-      // Estado 3: Em progresso (< R$ 1.000 em OOH)
+      // Estado 3: Em progresso (< R$ 1.000 em OOH) — Sem progressão com % e sem repetição acima
       else {
         const subText = summary.activeCoupon
           ? `Substitui o cupom ${summary.activeCoupon.code} (-${formatBRL(summary.activeCoupon.amount)}) · Aplicado apenas em OOH`
@@ -1564,49 +1343,26 @@
 
         if (isLoud) {
           optCompact.className = isDarkTicket
-            ? 'relative overflow-hidden rounded-2xl p-3.5 mb-3.5 border-2 border-orange-500 bg-slate-900 text-white shadow-lg'
-            : 'relative overflow-hidden rounded-2xl p-3.5 mb-3.5 border border-orange-500 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white shadow-lg shadow-orange-500/25';
-          loudTop.className = 'flex items-center justify-between gap-2 mb-2 pb-2 border-b border-white/20';
-          loudBadge.className = isDarkTicket
-            ? 'px-2.5 py-0.5 rounded-md font-black text-xs tracking-tight bg-orange-500 text-white shadow-sm'
-            : 'px-2.5 py-0.5 rounded-md font-black text-xs tracking-tight bg-white text-orange-600 shadow-sm';
-          loudBadge.textContent = 'R$ 500 OFF';
-          loudTag.className = 'text-[10px] font-bold uppercase tracking-wider text-orange-100';
-          loudTag.textContent = 'Acima de R$ 1.000 em OOH';
-          loudStatus.className = 'text-[10px] font-black px-2 py-0.5 rounded-full bg-black/25 text-white';
-          loudStatus.textContent = `${summary.percentOOH}%`;
-
-          vcompactIcon.className = isDarkTicket ? 'text-orange-400 shrink-0' : 'text-white shrink-0';
+            ? 'rounded-xl p-3.5 mb-3.5 border-l-4 border-l-orange-500 border border-slate-800 bg-slate-900 text-white shadow-md transition-all'
+            : 'rounded-xl p-3.5 mb-3.5 border border-orange-600 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/20 transition-all';
+          vcompactIcon.className = isDarkTicket ? 'text-orange-400 shrink-0 mt-0.5' : 'text-white shrink-0 mt-0.5';
           vcompactIcon.innerHTML = SVG_TAG_ICON;
           vcompactTitle.className = 'text-xs font-extrabold text-white leading-snug';
           vcompactTitle.innerHTML = `Faltam <span class="underline decoration-2 underline-offset-2">${formatBRL(summary.missingOOH)}</span> em OOH para R$ 500 OFF`;
-
-          vcompactBarWrap.className = 'w-full h-2.5 bg-black/25 rounded-full overflow-hidden mb-1.5 p-0.5';
-          vcompactBar.style.width = `${summary.percentOOH}%`;
-          vcompactBar.className = isDarkTicket
-            ? 'progress-fill h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full relative overflow-hidden'
-            : 'progress-fill h-full bg-white rounded-full relative overflow-hidden';
-
-          vcompactRule.className = 'text-[11px] text-white/95 leading-snug';
+          vcompactRule.className = 'text-[11px] text-white/95 leading-snug mt-1';
           vcompactRule.textContent = subText;
         } else {
-          loudTop.className = 'hidden';
-          optCompact.className = 'relative overflow-hidden rounded-xl p-3 mb-3.5 border transition-all bg-orange-50/80 border-orange-200';
-          vcompactIcon.className = 'text-orange-600 shrink-0';
+          optCompact.className = 'rounded-xl p-3 mb-3.5 border transition-all bg-orange-50/80 border-orange-200';
+          vcompactIcon.className = 'text-orange-600 shrink-0 mt-0.5';
           vcompactIcon.innerHTML = SVG_TAG_ICON;
           vcompactTitle.className = 'text-xs font-bold text-slate-900 leading-snug';
           vcompactTitle.innerHTML = `Faltam <span class="text-orange-700 font-extrabold">${formatBRL(summary.missingOOH)}</span> em OOH para <span class="text-emerald-700 font-extrabold">R$ 500 OFF</span>`;
-
-          vcompactBarWrap.className = 'w-full h-1.5 bg-white rounded-full overflow-hidden border border-orange-200/70 mb-1.5';
-          vcompactBar.style.width = `${summary.percentOOH}%`;
-          vcompactBar.className = 'progress-fill h-full bg-orange-500 rounded-full relative overflow-hidden';
-
-          vcompactRule.className = 'text-[11px] text-slate-600 leading-snug';
+          vcompactRule.className = 'text-[11px] text-slate-600 leading-snug mt-1';
           vcompactRule.textContent = subText;
         }
       }
 
-      // Atualização da tabela de valores (com pílula verde no modo Chamativo quando há desconto)
+      // Atualização da tabela de valores
       if (summary.appliedDiscount > 0) {
         planoDiscountRow.classList.remove('hidden');
         planoDiscountLabel.textContent = summary.appliedType === 'coupon'
