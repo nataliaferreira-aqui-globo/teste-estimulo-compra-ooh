@@ -109,10 +109,10 @@
             Progressivo (Padrão)
           </button>
           <button id="coupon-btn-smaller" onclick="setCouponScenario('smaller')" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
-            Cupom R$ 200
+            Cupom Menor (R$ 300)
           </button>
           <button id="coupon-btn-larger" onclick="setCouponScenario('larger')" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
-            Cupom VIP R$ 800
+            Cupom Superior (R$ 3 mil)
           </button>
         </div>
       </div>
@@ -427,11 +427,11 @@
                   <h3 class="text-base font-bold text-slate-900">Valor</h3>
                   
                   <div id="coupon-header-default" class="text-xs text-slate-600">
-                    Possui cupom? <button onclick="setCouponScenario('smaller')" class="text-[#16A34A] hover:underline font-semibold ml-0.5">Adicionar</button>
+                    Possui cupom? <button onclick="setCouponScenario('larger')" class="text-[#16A34A] hover:underline font-semibold ml-0.5">Adicionar</button>
                   </div>
 
                   <div id="coupon-header-active" class="hidden flex items-center gap-1.5">
-                    <span id="coupon-badge-code" class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-[11px] font-bold text-slate-700">PARCEIRO200</span>
+                    <span id="coupon-badge-code" class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-[11px] font-bold text-slate-700">VIP3000</span>
                     <button onclick="setCouponScenario('none')" class="text-[11px] text-slate-500 hover:text-red-600 underline">remover</button>
                   </div>
                 </div>
@@ -565,10 +565,12 @@
       { id: 5, min: 10000, max: Infinity, discount: 2000, offLabel: '-R$ 2 mil', minLabel: 'R$ 10 mil' }
     ];
 
+    const MAX_PROMO_DISCOUNT = 2000;
+
     const COUPON_SCENARIOS = {
       none: null,
-      smaller: { code: 'PARCEIRO200', amount: 200.00 },
-      larger:  { code: 'VIP800',      amount: 800.00 }
+      smaller: { code: 'PARCEIRO300', amount: 300.00, isSuperiorToMaxPromo: false },
+      larger:  { code: 'VIP3000',     amount: 3000.00, isSuperiorToMaxPromo: true }
     };
 
     const SVG_TAG_ICON = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>`;
@@ -864,12 +866,33 @@
       let softBadgeText = '';
       let softBadgeClass = '';
 
-      if (summary.appliedType === 'coupon' && summary.activeCoupon) {
-        darkTextHTML = `Cupom ${summary.activeCoupon.code} aplicado (-${formatBRLShort(summary.appliedDiscount)} em OOH)`;
-        darkBadgeText = `-${formatBRLShort(summary.appliedDiscount)}`;
+      const isSuperiorCoupon = Boolean(summary.activeCoupon && summary.activeCoupon.amount > MAX_PROMO_DISCOUNT);
+      const isSmallerCouponOverridden = Boolean(
+        summary.activeCoupon &&
+        !isSuperiorCoupon &&
+        summary.appliedType === 'progressive' &&
+        summary.progressiveDiscount >= summary.activeCoupon.amount
+      );
+
+      if (isSuperiorCoupon) {
+        // Caso em que o desconto do cupom (R$ 3.000 OFF) é MUITO SUPERIOR ao valor máximo da promo (R$ 2.000 OFF)
+        darkIconHTML = SVG_CHECK_ICON;
+        darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
+        darkTextHTML = `Cupom <span class="text-emerald-400 font-bold">${summary.activeCoupon.code} (-${formatBRLShort(summary.activeCoupon.amount)})</span> aplicado em OOH`;
+        darkBadgeText = `-${formatBRLShort(summary.appliedDiscount || summary.activeCoupon.amount)} ativo`;
+        darkBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+
+        softTextHTML = `Cupom <span class="font-bold text-slate-900">${summary.activeCoupon.code}</span> (<span class="font-bold text-[#15803D]">-${formatBRLShort(summary.activeCoupon.amount)}</span>) aplicado em OOH`;
+        softBadgeText = `-${formatBRLShort(summary.appliedDiscount || summary.activeCoupon.amount)} ativo`;
+        softBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#DCFCE7] text-[#15803D] border border-emerald-300/60';
+      } else if (summary.appliedType === 'coupon' && summary.activeCoupon) {
+        darkIconHTML = SVG_CHECK_ICON;
+        darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
+        darkTextHTML = `Cupom <span class="text-emerald-400 font-bold">${summary.activeCoupon.code} (-${formatBRLShort(summary.activeCoupon.amount)})</span> ativo · Adicione OOH para subir até R$ 2 mil OFF`;
+        darkBadgeText = `-${formatBRLShort(summary.appliedDiscount)} ativo`;
         darkBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-400/30';
 
-        softTextHTML = `Cupom <span class="font-bold text-slate-900">${summary.activeCoupon.code}</span> aplicado em OOH`;
+        softTextHTML = `Cupom <span class="font-bold text-slate-900">${summary.activeCoupon.code} (-${formatBRLShort(summary.activeCoupon.amount)})</span> ativo em OOH`;
         softBadgeText = `-${formatBRLShort(summary.appliedDiscount)} ativo`;
         softBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200';
       } else if (!summary.currentTier) {
@@ -907,6 +930,33 @@
         softBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#DCFCE7] text-[#15803D] border border-emerald-300/60';
       }
 
+      // Mensagem ou trilha de progressão dependendo se o cupom é superior ao valor máximo da promo
+      let darkBodyHTML = '';
+      let softBodyHTML = '';
+
+      if (isSuperiorCoupon) {
+        darkBodyHTML = `
+          <div class="rounded-lg bg-zinc-800/90 border border-zinc-700 px-3 py-2 text-[12px] text-zinc-200 leading-snug">
+            O desconto do seu cupom (<strong class="text-emerald-400">${formatBRLShort(summary.activeCoupon.amount)} OFF</strong>) é superior ao valor máximo da promo (<strong class="text-white">${formatBRLShort(MAX_PROMO_DISCOUNT)} OFF</strong>). Mantivemos o seu cupom para garantir o maior desconto em OOH.
+          </div>
+        `;
+        softBodyHTML = `
+          <div class="rounded-lg bg-white border border-slate-200 px-3 py-2.5 text-[12px] text-slate-700 leading-snug">
+            O desconto do seu cupom (<strong class="text-[#15803D]">${formatBRLShort(summary.activeCoupon.amount)} OFF</strong>) é superior ao valor máximo da promo (<strong class="text-slate-900">${formatBRLShort(MAX_PROMO_DISCOUNT)} OFF</strong>). Mantivemos o seu cupom para garantir o maior desconto em OOH.
+          </div>
+        `;
+      } else {
+        const extraConflictDark = isSmallerCouponOverridden
+          ? `<div class="mt-2 text-[11px] text-zinc-300 leading-snug">Seu desconto da promo (<strong class="text-emerald-400">-${formatBRLShort(summary.progressiveDiscount)}</strong>) supera o cupom ${summary.activeCoupon.code} (-${formatBRLShort(summary.activeCoupon.amount)}). Aplicamos o maior desconto.</div>`
+          : '';
+        const extraConflictSoft = isSmallerCouponOverridden
+          ? `<div class="mt-2.5 rounded-lg bg-white border border-slate-200 px-2.5 py-1.5 text-[11px] text-slate-700 leading-snug">Seu desconto da promo (<strong class="text-[#15803D]">-${formatBRLShort(summary.progressiveDiscount)}</strong>) supera o cupom <strong>${summary.activeCoupon.code}</strong> (-${formatBRLShort(summary.activeCoupon.amount)}). Mantivemos o maior desconto.</div>`
+          : '';
+
+        darkBodyHTML = buildConnectedStepperHTML(summary, 'dark') + extraConflictDark;
+        softBodyHTML = buildConnectedStepperHTML(summary, 'soft') + extraConflictSoft;
+      }
+
       // =====================================================================
       // 1. PÁGINA PRINCIPAL DE RESULTADOS OOH: RODAPÉ PRETO CHAMATIVO
       // =====================================================================
@@ -923,7 +973,7 @@
         document.getElementById('footer-strip-text').innerHTML = darkTextHTML;
         document.getElementById('footer-strip-badge').className = darkBadgeClass;
         document.getElementById('footer-strip-badge').textContent = darkBadgeText;
-        document.getElementById('footer-stepper').innerHTML = buildConnectedStepperHTML(summary, 'dark');
+        document.getElementById('footer-stepper').innerHTML = darkBodyHTML;
         footerCheckoutBar.classList.toggle('hidden', summary.isEmpty);
       }
 
@@ -984,7 +1034,7 @@
       document.getElementById('vsoft-headline').innerHTML = softTextHTML;
       document.getElementById('vsoft-badge').className = softBadgeClass;
       document.getElementById('vsoft-badge').textContent = softBadgeText;
-      document.getElementById('vsoft-stepper').innerHTML = buildConnectedStepperHTML(summary, 'soft');
+      document.getElementById('vsoft-stepper').innerHTML = softBodyHTML;
 
       if (summary.appliedDiscount > 0) {
         planoDiscountRow.classList.remove('hidden');
@@ -1019,6 +1069,16 @@
             : 'px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition';
         }
       });
+
+      // Ao simular o Cupom Superior (R$ 3.000 OFF), se o carrinho OOH estiver abaixo de R$ 3.000,
+      // seleciona automaticamente pontos suficientes (R$ 3.445) para demonstrar o desconto cheio de R$ 3.000 em OOH
+      const currentOOH = oohCatalog.filter(p => p.selected).reduce((acc, p) => acc + p.price, 0);
+      if (scenario === 'larger' && currentOOH < 3000) {
+        oohCatalog[0].selected = true;
+        oohCatalog[1].selected = true;
+        oohCatalog[2].selected = true;
+      }
+
       renderAll();
     }
 

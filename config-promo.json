@@ -6,13 +6,26 @@
   "singleUsePerOrder": true,
   "excludeGloboPages": true,
   "tiers": [
-    { "tier": 1, "minSpend": 200.00, "maxSpend": 999.99, "discount": 100.00, "shortLabel": "-R$ 100", "thresholdLabel": "R$ 200+" },
-    { "tier": 2, "minSpend": 1000.00, "maxSpend": 2999.99, "discount": 500.00, "shortLabel": "-R$ 500", "thresholdLabel": "R$ 1 mil+" },
-    { "tier": 3, "minSpend": 3000.00, "maxSpend": 4999.99, "discount": 1000.00, "shortLabel": "-R$ 1 mil", "thresholdLabel": "R$ 3 mil+" },
-    { "tier": 4, "minSpend": 5000.00, "maxSpend": 9999.99, "discount": 1500.00, "shortLabel": "-R$ 1,5 mil", "thresholdLabel": "R$ 5 mil+" },
-    { "tier": 5, "minSpend": 10000.00, "maxSpend": null, "discount": 2000.00, "shortLabel": "-R$ 2 mil", "thresholdLabel": "R$ 10 mil+" }
+    { "tier": 1, "minSpend": 200.00, "maxSpend": 999.99, "discount": 100.00, "shortLabel": "-R$ 100", "thresholdLabel": "R$ 200" },
+    { "tier": 2, "minSpend": 1000.00, "maxSpend": 2999.99, "discount": 500.00, "shortLabel": "-R$ 500", "thresholdLabel": "R$ 1 mil" },
+    { "tier": 3, "minSpend": 3000.00, "maxSpend": 4999.99, "discount": 1000.00, "shortLabel": "-R$ 1 mil", "thresholdLabel": "R$ 3 mil" },
+    { "tier": 4, "minSpend": 5000.00, "maxSpend": 9999.99, "discount": 1500.00, "shortLabel": "-R$ 1,5 mil", "thresholdLabel": "R$ 5 mil" },
+    { "tier": 5, "minSpend": 10000.00, "maxSpend": null, "discount": 2000.00, "shortLabel": "-R$ 2 mil", "thresholdLabel": "R$ 10 mil" }
   ],
+  "couponConflictScenarios": {
+    "smallerCoupon": {
+      "code": "PARCEIRO300",
+      "discount": 300.00,
+      "rule": "Prevalece sempre o maior desconto em OOH (não cumulativo)."
+    },
+    "superiorToMaxPromoCoupon": {
+      "code": "VIP3000",
+      "discount": 3000.00,
+      "rule": "O desconto do cupom (R$ 3.000 OFF) é superior ao valor máximo da promo (R$ 2.000 OFF). Prevalece o cupom."
+    }
+  },
   "copy": {
+    "superiorCouponMessage": "O desconto do seu cupom (R$ 3.000 OFF) é superior ao valor máximo da promo (R$ 2.000 OFF). Mantivemos o seu cupom para garantir o maior desconto em OOH.",
     "disclaimer": "Aplicado apenas em OOH · 1 cupom por pedido · Válido até 31/10"
   }
 }
