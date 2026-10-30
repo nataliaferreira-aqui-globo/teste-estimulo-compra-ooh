@@ -436,20 +436,22 @@
                   </div>
                 </div>
 
-                <!-- BLOCO SUAVIZADO DO PRONTOOH NA PÁGINA DE RESUMO (ZERO TRUNCAMENTO, BARRA CONTÍNUA REAL) -->
-                <div id="valor-soft-box" class="rounded-xl p-3.5 mb-3.5 bg-[#F8FAFC] border border-slate-200/90 transition-all">
+                <!-- BLOCO SUAVIZADO DO PRONTOOH NA PÁGINA DE RESUMO (TAG NO TOPO ESQUERDO -> TÍTULO -> ESPAÇAMENTO MAIOR -> PROGRESSÃO) -->
+                <div id="valor-soft-box" class="rounded-xl p-4 mb-3.5 bg-[#F8FAFC] border border-slate-200/90 transition-all">
                   
-                  <!-- Linha 1: Mensagem completa e legível (13px, zero reticências!) -->
-                  <div class="flex items-start justify-between gap-2 mb-3">
-                    <div id="vsoft-headline" class="text-[13px] font-semibold text-slate-900 leading-snug"></div>
-                    <span id="vsoft-badge" class="shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold"></span>
+                  <!-- 1. Tag no canto superior esquerdo -->
+                  <div class="flex items-center mb-1.5">
+                    <span id="vsoft-badge" class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold"></span>
                   </div>
 
-                  <!-- Linha 2: Trilha Contínua Real das 5 Faixas (Linha inteiriça ligando os pontos + Contraste WCAG AA) -->
+                  <!-- 2. Título logo abaixo da tag (100% da largura, zero aperto) -->
+                  <div id="vsoft-headline" class="text-[13px] font-semibold text-slate-900 leading-snug mb-4"></div>
+
+                  <!-- 3. Trilha Contínua Real das 5 Faixas (com maior respiro acima e abaixo) -->
                   <div id="vsoft-stepper" class="w-full"></div>
 
-                  <!-- Linha 3: Regra legível (11px text-slate-600) -->
-                  <div id="vsoft-disclaimer" class="text-[11px] text-slate-600 font-medium leading-snug mt-3 pt-2 border-t border-slate-200/70">
+                  <!-- 4. Regra legível (11px text-slate-600) -->
+                  <div id="vsoft-disclaimer" class="text-[11px] text-slate-600 font-medium leading-snug mt-3.5 pt-2.5 border-t border-slate-200/70">
                     Aplicado apenas em OOH · 1 cupom por pedido · Válido até 31/10
                   </div>
                 </div>
@@ -518,18 +520,18 @@
       
       <!-- Faixa Preta Chamativa de Estímulo (SOMENTE na Página Principal de Resultados OOH) -->
       <div id="footer-promo-strip" class="w-full bg-[#18181B] text-white border-b border-zinc-800 transition-all duration-300">
-        <div class="max-w-[1380px] mx-auto px-3.5 py-2.5">
+        <div class="max-w-[1380px] mx-auto px-3.5 py-3.5">
           
-          <!-- Linha 1: Mensagem de Estímulo Completa (Sem truncar!) + Badge -->
-          <div class="flex items-start justify-between gap-2 mb-2.5">
-            <div class="flex items-start gap-2 min-w-0">
-              <span id="footer-strip-icon" class="text-[#F05A22] shrink-0 mt-0.5"></span>
-              <p id="footer-strip-text" class="text-[13px] font-semibold text-white leading-snug"></p>
-            </div>
-            <span id="footer-strip-badge" class="shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold"></span>
+          <!-- 1. Tag no canto superior esquerdo -->
+          <div class="flex items-center gap-1.5 mb-1.5">
+            <span id="footer-strip-icon" class="text-[#F05A22] shrink-0"></span>
+            <span id="footer-strip-badge" class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold"></span>
           </div>
 
-          <!-- Linha 2: Trilha Contínua Real das 5 Faixas (Linha inteiriça ligando as bolinhas) -->
+          <!-- 2. Título logo abaixo da tag (100% da largura, com respiro mb-4 antes da progressão) -->
+          <p id="footer-strip-text" class="text-[13px] font-semibold text-white leading-snug mb-4"></p>
+
+          <!-- 3. Trilha Contínua Real das 5 Faixas (Linha inteiriça ligando as bolinhas) -->
           <div id="footer-stepper" class="w-full"></div>
 
         </div>
@@ -814,9 +816,9 @@
       }
 
       return `
-        <div class="w-full select-none">
+        <div class="w-full select-none pt-0.5">
           <!-- Valores de desconto (Acima da linha) -->
-          <div class="grid grid-cols-5 gap-0.5 mb-1.5">
+          <div class="grid grid-cols-5 gap-0.5 mb-2">
             ${topRowHTML}
           </div>
 
@@ -825,13 +827,13 @@
             <div class="absolute top-1/2 left-[10%] right-[10%] -translate-y-1/2 h-[3px] ${trackBg} rounded-full overflow-hidden">
               <div class="h-full ${fillBg} transition-all duration-300 rounded-full" style="width: ${fillPct}%"></div>
             </div>
-            <div class=" relative grid grid-cols-5 gap-0.5 items-center">
+            <div class="relative grid grid-cols-5 gap-0.5 items-center">
               ${dotsRowHTML}
             </div>
           </div>
 
           <!-- Pisos de investimento OOH (Abaixo da linha) -->
-          <div class="grid grid-cols-5 gap-0.5 mt-1.5">
+          <div class="grid grid-cols-5 gap-0.5 mt-2">
             ${bottomRowHTML}
           </div>
         </div>
@@ -898,36 +900,34 @@
       } else if (!summary.currentTier) {
         const needed = summary.oohSum === 0 ? 200 : summary.missingForNext;
         darkIconHTML = SVG_TAG_ICON;
-        darkIconColor = 'text-[#F05A22] shrink-0 mt-0.5';
-        darkTextHTML = summary.oohSum === 0
-          ? `Ganhe até <span class="text-[#FF7A45] font-bold">R$ 2 mil OFF</span> em OOH (a partir de R$ 200)`
-          : `Faltam <span class="text-[#FF7A45] font-bold">${formatBRLShort(needed)}</span> em OOH para <span class="text-emerald-400 font-bold">R$ 100 OFF</span>`;
+        darkIconColor = 'text-[#F05A22] shrink-0';
+        darkTextHTML = `Faltam <span class="text-[#FF7A45] font-bold">${formatBRLShort(needed)}</span> em OOH para ganhar <span class="text-emerald-400 font-bold">R$ 100 OFF</span>`;
         darkBadgeText = 'Até R$ 2 mil OFF';
-        darkBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#F05A22]/20 text-[#FF7A45] border border-[#F05A22]/40';
+        darkBadgeClass = 'inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#F05A22]/20 text-[#FF7A45] border border-[#F05A22]/40';
 
         softTextHTML = `Faltam <span class="font-bold text-[#D94B16]">${formatBRLShort(needed)}</span> em OOH para ganhar <span class="font-bold text-[#15803D]">R$ 100 OFF</span>`;
         softBadgeText = 'Até R$ 2 mil OFF';
-        softBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-orange-50 text-[#D94B16] border border-orange-200';
+        softBadgeClass = 'inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-orange-50 text-[#D94B16] border border-orange-200';
       } else if (summary.nextTier) {
         darkIconHTML = SVG_CHECK_ICON;
-        darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
-        darkTextHTML = `Faltam <span class="text-[#FF7A45] font-bold">${formatBRLShort(summary.missingForNext)}</span> em OOH para <span class="text-white font-bold">${formatBRLShort(summary.nextTier.discount)} OFF</span>`;
+        darkIconColor = 'text-emerald-400 shrink-0';
+        darkTextHTML = `Faltam <span class="text-[#FF7A45] font-bold">${formatBRLShort(summary.missingForNext)}</span> em OOH para ganhar <span class="text-white font-bold">${formatBRLShort(summary.nextTier.discount)} OFF</span>`;
         darkBadgeText = `-${formatBRLShort(summary.currentTier.discount)} ativo`;
-        darkBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+        darkBadgeClass = 'inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
 
-        softTextHTML = `Faltam <span class="font-bold text-[#D94B16]">${formatBRLShort(summary.missingForNext)}</span> em OOH para <span class="font-bold text-slate-900">${formatBRLShort(summary.nextTier.discount)} OFF</span>`;
+        softTextHTML = `Faltam <span class="font-bold text-[#D94B16]">${formatBRLShort(summary.missingForNext)}</span> em OOH para ganhar <span class="font-bold text-slate-900">${formatBRLShort(summary.nextTier.discount)} OFF</span>`;
         softBadgeText = `-${formatBRLShort(summary.currentTier.discount)} ativo`;
-        softBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#DCFCE7] text-[#15803D] border border-emerald-300/60';
+        softBadgeClass = 'inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#DCFCE7] text-[#15803D] border border-emerald-300/60';
       } else {
         darkIconHTML = SVG_CHECK_ICON;
-        darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
+        darkIconColor = 'text-emerald-400 shrink-0';
         darkTextHTML = `Desconto máximo de <span class="text-emerald-400 font-bold">R$ 2 mil OFF</span> aplicado em OOH`;
         darkBadgeText = `-R$ 2 mil ativo`;
-        darkBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+        darkBadgeClass = 'inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
 
         softTextHTML = `Desconto máximo de <span class="font-bold text-[#15803D]">R$ 2 mil OFF</span> aplicado em OOH`;
         softBadgeText = `-R$ 2 mil ativo`;
-        softBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#DCFCE7] text-[#15803D] border border-emerald-300/60';
+        softBadgeClass = 'inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#DCFCE7] text-[#15803D] border border-emerald-300/60';
       }
 
       // Mensagem ou trilha de progressão dependendo se o cupom é superior ao valor máximo da promo
