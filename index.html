@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aqui Ads (Prontooh DS) — Cupom Progressivo até R$ 2 mil OFF</title>
+  <title>Aqui Ads (Prontooh DS) — Cupom Progressivo OOH</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,18 +14,6 @@
         extend: {
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
-          },
-          colors: {
-            pronto: {
-              orange: '#F05A22',
-              orangeHover: '#D94B16',
-              green: '#16A34A',
-              greenDark: '#15803D',
-              greenSoft: '#F0FDF4',
-              dark: '#18181B',
-              surface: '#F8FAFC',
-              border: '#E2E8F0'
-            }
           }
         }
       }
@@ -36,6 +24,7 @@
       font-family: 'Inter', sans-serif;
       background-color: #FAFAFA;
       color: #1E293B;
+      -webkit-font-smoothing: antialiased;
     }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #F1F5F9; }
@@ -101,13 +90,13 @@
 
           <!-- Navegação entre as páginas -->
           <div class="inline-flex rounded-lg bg-slate-800 p-0.5 border border-slate-700">
-            <button onclick="switchScreen('vitrine')" id="tab-screen-vitrine" class="px-2.5 py-1 rounded-md font-semibold transition-all bg-[#F05A22] text-white">
-              1. Resultados OOH (Destaque Preto)
+            <button onclick="switchScreen('vitrine')" id="tab-screen-vitrine" class="px-2.5 py-1 rounded-md font-semibold transition-all text-slate-300 hover:text-white">
+              1. Resultados OOH (Forte / Preto)
             </button>
             <button onclick="switchScreen('globo')" id="tab-screen-globo" class="px-2.5 py-1 rounded-md font-semibold transition-all text-slate-300 hover:text-white">
               2. Resultados Globo (Sem Promo)
             </button>
-            <button onclick="switchScreen('plano')" id="tab-screen-plano" class="px-2.5 py-1 rounded-md font-semibold transition-all text-slate-300 hover:text-white">
+            <button onclick="switchScreen('plano')" id="tab-screen-plano" class="px-2.5 py-1 rounded-md font-semibold transition-all bg-[#F05A22] text-white">
               3. Resumo / Plano de Mídia (Suave)
             </button>
           </div>
@@ -228,7 +217,7 @@
       </header>
 
       <!-- ================================================================= -->
-      <!-- TELA 1: VITRINE OOH (CHAMATIVO NO RODAPÉ PRETO COM STEPPER LEVE)  -->
+      <!-- TELA 1: VITRINE OOH (RESULTADOS)                                  -->
       <!-- ================================================================= -->
       <main id="screen-vitrine" class="hidden max-w-[1380px] w-full mx-auto px-3.5 pt-3.5 pb-8 flex-1">
         <div id="search-bar-desktop" class="max-w-2xl mx-auto mb-4">
@@ -346,7 +335,7 @@
       </main>
 
       <!-- ================================================================= -->
-      <!-- TELA 3: PLANO DE MÍDIA / RESUMO (DESCONTO SUAVIZADO NO PRONTOOH)  -->
+      <!-- TELA 3: PLANO DE MÍDIA / RESUMO (SUAVIZADO E 100% LEGÍVEL)        -->
       <!-- ================================================================= -->
       <main id="screen-plano" class="max-w-[1160px] w-full mx-auto px-3 pt-4 pb-10 flex-1">
         <button onclick="switchScreen('vitrine')" class="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-[#F05A22] mb-2.5 transition">
@@ -395,7 +384,7 @@
             </button>
           </div>
 
-          <!-- COLUNA DIREITA: CONFIGURE -> PERFORMANCE -> VALOR (SUAVIZADO PRONTOOH) -->
+          <!-- COLUNA DIREITA: CONFIGURE -> PERFORMANCE -> VALOR -->
           <div id="plano-right-col" class="col-span-6">
             <div id="plano-right-card" class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4">
               
@@ -424,59 +413,59 @@
               <div class="pb-4 mb-4 border-b border-slate-100">
                 <h3 class="text-sm font-bold text-slate-800 mb-2.5">Performance projetada</h3>
                 <div class="grid grid-cols-3 gap-2.5 text-xs bg-[#F8FAFC] p-2.5 rounded-xl">
-                  <div><div class="text-[10px] text-slate-400">exibições OOH</div><div class="font-bold text-slate-900">208,27 mil</div></div>
-                  <div><div class="text-[10px] text-slate-400">alcance OOH</div><div class="font-bold text-slate-900">43,15 mil</div></div>
-                  <div><div class="text-[10px] text-slate-400">impacto OOH</div><div class="font-bold text-slate-900">283,15 mil</div></div>
+                  <div><div class="text-[10px] text-slate-500">exibições OOH</div><div class="font-bold text-slate-900">208,27 mil</div></div>
+                  <div><div class="text-[10px] text-slate-500">alcance OOH</div><div class="font-bold text-slate-900">43,15 mil</div></div>
+                  <div><div class="text-[10px] text-slate-500">impacto OOH</div><div class="font-bold text-slate-900">283,15 mil</div></div>
                 </div>
               </div>
 
               <!-- ========================================================= -->
-              <!-- 3. SEÇÃO "VALOR" — SUAVIZADO NO DESIGN SYSTEM PRONTOOH    -->
+              <!-- 3. SEÇÃO "VALOR" — SUAVIZADO NO PRONTOOH E 100% LEGÍVEL   -->
               <!-- ========================================================= -->
               <div id="secao-valor-anchor">
-                <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center justify-between gap-2 mb-2.5">
                   <h3 class="text-base font-bold text-slate-900">Valor</h3>
                   
-                  <div id="coupon-header-default" class="text-xs text-slate-500">
+                  <div id="coupon-header-default" class="text-xs text-slate-600">
                     Possui cupom? <button onclick="setCouponScenario('smaller')" class="text-[#16A34A] hover:underline font-semibold ml-0.5">Adicionar</button>
                   </div>
 
                   <div id="coupon-header-active" class="hidden flex items-center gap-1.5">
                     <span id="coupon-badge-code" class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-[11px] font-bold text-slate-700">PARCEIRO200</span>
-                    <button onclick="setCouponScenario('none')" class="text-[11px] text-slate-400 hover:text-red-600 underline">remover</button>
+                    <button onclick="setCouponScenario('none')" class="text-[11px] text-slate-500 hover:text-red-600 underline">remover</button>
                   </div>
                 </div>
 
-                <!-- BLOCO SUAVIZADO DO PRONTOOH NA PÁGINA DE RESUMO (SEM CARDS PESADOS) -->
-                <div id="valor-soft-box" class="rounded-xl px-3 py-2.5 mb-3 bg-[#F8FAFC] border border-[#E2E8F0] transition-all">
+                <!-- BLOCO SUAVIZADO DO PRONTOOH NA PÁGINA DE RESUMO (ZERO TRUNCAMENTO, BARRA CONTÍNUA REAL) -->
+                <div id="valor-soft-box" class="rounded-xl p-3.5 mb-3.5 bg-[#F8FAFC] border border-slate-200/90 transition-all">
                   
-                  <!-- Linha 1: Status atual + estímulo em 1 linha limpa -->
-                  <div class="flex items-center justify-between gap-2 mb-2">
-                    <div id="vsoft-headline" class="text-[11px] font-medium text-slate-700 leading-snug truncate"></div>
-                    <span id="vsoft-badge" class="shrink-0 px-1.5 py-0.5 rounded text-[10px] font-bold"></span>
+                  <!-- Linha 1: Mensagem completa e legível (13px, zero reticências!) -->
+                  <div class="flex items-start justify-between gap-2 mb-3">
+                    <div id="vsoft-headline" class="text-[13px] font-semibold text-slate-900 leading-snug"></div>
+                    <span id="vsoft-badge" class="shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold"></span>
                   </div>
 
-                  <!-- Trilha de itens com barrinha de progressão entre eles (Sem Cards!) -->
-                  <div id="vsoft-stepper" class="w-full py-0.5"></div>
+                  <!-- Linha 2: Trilha Contínua Real das 5 Faixas (Linha inteiriça ligando os pontos + Contraste WCAG AA) -->
+                  <div id="vsoft-stepper" class="w-full"></div>
 
-                  <!-- Disclaimer em 1 linha discreta -->
-                  <div id="vsoft-disclaimer" class="text-[10px] text-slate-400 leading-none mt-2">
-                    Apenas em OOH · 1 cupom por pedido · Válido até 31/10
+                  <!-- Linha 3: Regra legível (11px text-slate-600) -->
+                  <div id="vsoft-disclaimer" class="text-[11px] text-slate-600 font-medium leading-snug mt-3 pt-2 border-t border-slate-200/70">
+                    Aplicado apenas em OOH · 1 cupom por pedido · Válido até 31/10
                   </div>
                 </div>
 
                 <!-- Relação de Valores no padrão Prontooh -->
-                <div class="space-y-2 text-xs pt-1 border-t border-slate-100">
+                <div class="space-y-2 text-xs pt-1">
                   <div class="flex justify-between text-slate-600">
                     <span>Campanha Digital</span>
-                    <span id="plano-digital-val" class="font-medium text-slate-700">R$ 2.000,00</span>
+                    <span id="plano-digital-val" class="font-medium text-slate-800">R$ 2.000,00</span>
                   </div>
                   
                   <div class="flex justify-between items-baseline text-slate-600">
                     <span>Campanha Out of Home</span>
                     <div class="text-right">
                       <span id="plano-ooh-old-val" class="text-[11px] text-slate-400 line-through mr-1 hidden">R$ 400,00</span>
-                      <span id="plano-ooh-val" class="font-medium text-slate-700">R$ 300,00</span>
+                      <span id="plano-ooh-val" class="font-medium text-slate-800">R$ 300,00</span>
                     </div>
                   </div>
 
@@ -485,7 +474,7 @@
                     <span id="plano-subtotal">R$ 2.400,00</span>
                   </div>
 
-                  <!-- Linha de Desconto OOH Suavizada -->
+                  <!-- Linha de Desconto OOH -->
                   <div id="plano-discount-row" class="flex justify-between items-center text-[#15803D] font-semibold hidden">
                     <span id="plano-discount-label">Desconto OOH</span>
                     <span id="plano-discount-val">- R$ 100,00</span>
@@ -523,41 +512,41 @@
 
     <!-- =================================================================== -->
     <!-- STICKY FOOTER NA PÁGINA PRINCIPAL (RESULTADOS OOH)                  -->
-    <!-- Chamar mais atenção aqui: Tema Preto + Itens com Barrinha Entre Eles-->
+    <!-- Destaque Forte (Preto Prontooh) + Barra Contínua Real entre os itens-->
     <!-- =================================================================== -->
     <footer id="sticky-footer" class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] shrink-0 hidden">
       
       <!-- Faixa Preta Chamativa de Estímulo (SOMENTE na Página Principal de Resultados OOH) -->
       <div id="footer-promo-strip" class="w-full bg-[#18181B] text-white border-b border-zinc-800 transition-all duration-300">
-        <div class="max-w-[1380px] mx-auto px-3.5 py-2">
+        <div class="max-w-[1380px] mx-auto px-3.5 py-2.5">
           
-          <!-- Linha 1: Mensagem de Estímulo + Badge -->
-          <div class="flex items-center justify-between gap-2 mb-1.5">
-            <div class="flex items-center gap-1.5 min-w-0">
-              <span id="footer-strip-icon" class="text-[#F05A22] shrink-0"></span>
-              <p id="footer-strip-text" class="text-xs font-semibold text-white truncate"></p>
+          <!-- Linha 1: Mensagem de Estímulo Completa (Sem truncar!) + Badge -->
+          <div class="flex items-start justify-between gap-2 mb-2.5">
+            <div class="flex items-start gap-2 min-w-0">
+              <span id="footer-strip-icon" class="text-[#F05A22] shrink-0 mt-0.5"></span>
+              <p id="footer-strip-text" class="text-[13px] font-semibold text-white leading-snug"></p>
             </div>
-            <span id="footer-strip-badge" class="shrink-0 px-1.5 py-0.5 rounded text-[10px] font-bold"></span>
+            <span id="footer-strip-badge" class="shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold"></span>
           </div>
 
-          <!-- Linha 2: Itens de Desconto com Barrinha de Progressão Entre Eles (Sem Cards!) -->
+          <!-- Linha 2: Trilha Contínua Real das 5 Faixas (Linha inteiriça ligando as bolinhas) -->
           <div id="footer-stepper" class="w-full"></div>
 
         </div>
       </div>
 
       <!-- Bloco de Checkout Prontooh -->
-      <div id="footer-checkout-bar" class="hidden max-w-[1380px] mx-auto px-3.5 py-2 flex items-center justify-between gap-3 bg-white">
+      <div id="footer-checkout-bar" class="hidden max-w-[1380px] mx-auto px-3.5 py-2.5 flex items-center justify-between gap-3 bg-white">
         <div class="flex-1 min-w-0">
-          <div id="footer-selected-count" class="text-[11px] text-slate-500 font-medium leading-tight">3 produtos selecionados</div>
+          <div id="footer-selected-count" class="text-[11px] text-slate-600 font-medium leading-tight">3 produtos selecionados</div>
           <div class="flex items-baseline gap-1.5 flex-wrap">
             <span class="text-xs font-bold text-slate-900">Total</span>
-            <span id="footer-old-total" class="text-[11px] text-slate-400 line-through hidden">R$ 2.400,00</span>
-            <span id="footer-final-total" class="text-sm font-extrabold text-slate-900">R$ 2.300,00</span>
+            <span id="footer-old-total" class="text-xs text-slate-400 line-through hidden">R$ 2.400,00</span>
+            <span id="footer-final-total" class="text-base font-extrabold text-slate-900">R$ 2.300,00</span>
           </div>
         </div>
 
-        <button onclick="switchScreen('plano')" class="h-9 px-4 rounded-xl bg-[#F05A22] hover:bg-[#D94B16] text-white font-semibold text-xs flex items-center gap-1.5 shadow-sm transition shrink-0">
+        <button onclick="switchScreen('plano')" class="h-10 px-5 rounded-xl bg-[#F05A22] hover:bg-[#D94B16] text-white font-semibold text-xs flex items-center gap-1.5 shadow-sm transition shrink-0">
           <span>continuar</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
@@ -569,11 +558,11 @@
   <!-- MOTOR DE REGRAS DAS 5 FAIXAS PROGRESSIVAS OOH -->
   <script>
     const OOH_TIERS = [
-      { id: 1, min: 200,   max: 999.99,   discount: 100,  offShort: '-R$ 100',   minShort: 'R$ 200' },
-      { id: 2, min: 1000,  max: 2999.99,  discount: 500,  offShort: '-R$ 500',   minShort: 'R$ 1 mil' },
-      { id: 3, min: 3000,  max: 4999.99,  discount: 1000, offShort: '-R$ 1 mil', minShort: 'R$ 3 mil' },
-      { id: 4, min: 5000,  max: 9999.99,  discount: 1500, offShort: '-R$ 1,5 mil', minShort: 'R$ 5 mil' },
-      { id: 5, min: 10000, max: Infinity, discount: 2000, offShort: '-R$ 2 mil', minShort: 'R$ 10 mil' }
+      { id: 1, min: 200,   max: 999.99,   discount: 100,  offLabel: '-R$ 100',   minLabel: 'R$ 200' },
+      { id: 2, min: 1000,  max: 2999.99,  discount: 500,  offLabel: '-R$ 500',   minLabel: 'R$ 1 mil' },
+      { id: 3, min: 3000,  max: 4999.99,  discount: 1000, offLabel: '-R$ 1 mil', minLabel: 'R$ 3 mil' },
+      { id: 4, min: 5000,  max: 9999.99,  discount: 1500, offLabel: '-R$ 1,5 mil', minLabel: 'R$ 5 mil' },
+      { id: 5, min: 10000, max: Infinity, discount: 2000, offLabel: '-R$ 2 mil', minLabel: 'R$ 10 mil' }
     ];
 
     const COUPON_SCENARIOS = {
@@ -582,10 +571,10 @@
       larger:  { code: 'VIP800',      amount: 800.00 }
     };
 
-    const SVG_TAG_ICON = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>`;
-    const SVG_CHECK_ICON = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+    const SVG_TAG_ICON = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>`;
+    const SVG_CHECK_ICON = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
 
-    let currentScreen = 'vitrine';
+    let currentScreen = 'plano';
     let viewportMode = 'mobile';
     let showMobileMap = false;
     let couponScenario = 'none';
@@ -729,30 +718,51 @@
     }
 
     /**
-     * Constrói os 5 itens como marcos leves conectados por uma barrinha de progressão entre eles (Sem cards!)
-     * theme = 'dark' (para a página de resultados OOH) ou 'soft' (para a página de resumo Valor)
+     * Calcula a porcentagem exata (0 a 100%) ao longo da linha contínua que liga os 5 pontos
+     * Os 5 pontos estão posicionados nos centros das 5 colunas (0%, 25%, 50%, 75%, 100% da trilha interna)
+     */
+    function calculateTrackProgressPercent(oohSum) {
+      if (oohSum <= 0) return 0;
+      if (oohSum < OOH_TIERS[0].min) {
+        return Math.min(100, Math.round((oohSum / OOH_TIERS[0].min) * 12));
+      }
+      for (let i = 0; i < OOH_TIERS.length - 1; i++) {
+        const curMin = OOH_TIERS[i].min;
+        const nxtMin = OOH_TIERS[i + 1].min;
+        if (oohSum >= curMin && oohSum < nxtMin) {
+          const basePct = i * 25;
+          const segFraction = (oohSum - curMin) / (nxtMin - curMin);
+          return Math.min(100, Math.round(basePct + segFraction * 25));
+        }
+      }
+      return 100;
+    }
+
+    /**
+     * Constrói a Trilha de 5 Faixas com:
+     * - Linha contínua REAL (h-1 / 4px) ligando os 5 círculos de ponta a ponta (zero tracinhos soltos!)
+     * - Tipografia 11px/12px com contraste alto (WCAG AA) tanto no Mobile quanto no Desktop
      */
     function buildConnectedStepperHTML(summary, theme) {
       const isDark = theme === 'dark';
       const activeIdx = summary.currentTier ? summary.currentTier.id - 1 : -1;
+      const fillPct = calculateTrackProgressPercent(summary.oohSum);
 
-      // Calcula o preenchimento parcial de cada um dos 4 segmentos entre os 5 nós
-      const segmentFills = [0, 1, 2, 3].map(segIndex => {
-        const startMin = OOH_TIERS[segIndex].min;
-        const endMin = OOH_TIERS[segIndex + 1].min;
-        if (summary.oohSum <= startMin) return 0;
-        if (summary.oohSum >= endMin) return 100;
-        return Math.round(((summary.oohSum - startMin) / (endMin - startMin)) * 100);
-      });
+      const trackBg = isDark ? 'bg-zinc-700' : 'bg-slate-300';
+      const fillBg = activeIdx >= 0
+        ? (isDark ? 'bg-gradient-to-r from-emerald-400 to-[#F05A22]' : 'bg-gradient-to-r from-[#16A34A] to-[#F05A22]')
+        : 'bg-[#F05A22]';
 
-      let nodesHTML = '';
+      let topRowHTML = '';
+      let dotsRowHTML = '';
+      let bottomRowHTML = '';
+
       for (let i = 0; i < OOH_TIERS.length; i++) {
         const tier = OOH_TIERS[i];
         const isReached = i <= activeIdx;
         const isCurrent = i === activeIdx;
         const isNext = i === activeIdx + 1;
 
-        // Cores dos textos e do ponto (dot)
         let topTextClass = '';
         let subTextClass = '';
         let dotClass = '';
@@ -760,67 +770,70 @@
         if (isDark) {
           if (isCurrent) {
             topTextClass = 'text-emerald-400 font-extrabold';
-            subTextClass = 'text-emerald-300/90 font-medium';
-            dotClass = 'bg-emerald-400 ring-2 ring-emerald-400/30';
+            subTextClass = 'text-white font-semibold';
+            dotClass = 'w-3.5 h-3.5 bg-emerald-400 border-2 border-[#18181B] ring-2 ring-emerald-400';
           } else if (isReached) {
-            topTextClass = 'text-emerald-400/90 font-bold';
-            subTextClass = 'text-zinc-400';
-            dotClass = 'bg-emerald-500';
-          } else if (isNext) {
-            topTextClass = 'text-[#F05A22] font-extrabold';
+            topTextClass = 'text-emerald-400 font-bold';
             subTextClass = 'text-zinc-300 font-medium';
-            dotClass = 'bg-[#F05A22] ring-2 ring-[#F05A22]/30';
+            dotClass = 'w-3 h-3 bg-emerald-400 border-2 border-[#18181B]';
+          } else if (isNext) {
+            topTextClass = 'text-[#FF7A45] font-extrabold';
+            subTextClass = 'text-white font-semibold';
+            dotClass = 'w-3.5 h-3.5 bg-[#F05A22] border-2 border-[#18181B] ring-2 ring-[#F05A22]/70';
           } else {
-            topTextClass = 'text-zinc-400 font-semibold';
-            subTextClass = 'text-zinc-500';
-            dotClass = 'bg-zinc-700';
+            topTextClass = 'text-zinc-200 font-semibold';
+            subTextClass = 'text-zinc-300 font-medium';
+            dotClass = 'w-2.5 h-2.5 bg-zinc-600 border-2 border-[#18181B]';
           }
         } else {
-          // Tema suave (Prontooh Design System na página de Resumo)
+          // Tema Suave (Prontooh Design System na página de Resumo) — Alto contraste de leitura (WCAG AA)
           if (isCurrent) {
             topTextClass = 'text-[#15803D] font-extrabold';
-            subTextClass = 'text-[#15803D] font-medium';
-            dotClass = 'bg-[#16A34A] ring-2 ring-[#16A34A]/25';
+            subTextClass = 'text-slate-900 font-bold';
+            dotClass = 'w-3.5 h-3.5 bg-[#16A34A] border-2 border-white ring-2 ring-[#16A34A] shadow-sm';
           } else if (isReached) {
-            topTextClass = 'text-[#16A34A] font-bold';
-            subTextClass = 'text-slate-400';
-            dotClass = 'bg-[#16A34A]';
+            topTextClass = 'text-[#15803D] font-bold';
+            subTextClass = 'text-slate-700 font-semibold';
+            dotClass = 'w-3 h-3 bg-[#16A34A] border-2 border-white';
           } else if (isNext) {
-            topTextClass = 'text-[#F05A22] font-bold';
-            subTextClass = 'text-slate-600 font-medium';
-            dotClass = 'bg-[#F05A22] ring-2 ring-[#F05A22]/20';
+            topTextClass = 'text-[#D94B16] font-extrabold';
+            subTextClass = 'text-slate-900 font-bold';
+            dotClass = 'w-3.5 h-3.5 bg-[#F05A22] border-2 border-white ring-2 ring-[#F05A22]/60 shadow-sm';
           } else {
-            topTextClass = 'text-slate-400 font-medium';
-            subTextClass = 'text-slate-400';
-            dotClass = 'bg-slate-300';
+            topTextClass = 'text-slate-700 font-semibold';
+            subTextClass = 'text-slate-600 font-medium';
+            dotClass = 'w-2.5 h-2.5 bg-slate-300 border-2 border-[#F8FAFC]';
           }
         }
 
-        nodesHTML += `
-          <div class="flex flex-col items-center shrink-0">
-            <span class="text-[10px] leading-none whitespace-nowrap ${topTextClass}">${tier.offShort}</span>
-            <span class="w-2 h-2 rounded-full my-1 transition-all ${dotClass}"></span>
-            <span class="text-[9px] leading-none whitespace-nowrap ${subTextClass}">${tier.minShort}</span>
-          </div>
-        `;
-
-        // Barrinha de progressão entre um item e outro
-        if (i < OOH_TIERS.length - 1) {
-          const fillPct = segmentFills[i];
-          const trackBg = isDark ? 'bg-zinc-700' : 'bg-slate-200';
-          const barColor = fillPct === 100
-            ? (isDark ? 'bg-emerald-400' : 'bg-[#16A34A]')
-            : 'bg-[#F05A22]';
-
-          nodesHTML += `
-            <div class="flex-1 h-[2px] ${trackBg} rounded-full overflow-hidden mx-1 self-center -mt-0.5">
-              <div class="h-full ${barColor} transition-all duration-300" style="width: ${fillPct}%"></div>
-            </div>
-          `;
-        }
+        topRowHTML += `<div class="text-center text-[11px] leading-tight whitespace-nowrap ${topTextClass}">${tier.offLabel}</div>`;
+        dotsRowHTML += `<div class="flex items-center justify-center z-10"><span class="rounded-full transition-all duration-300 ${dotClass}"></span></div>`;
+        bottomRowHTML += `<div class="text-center text-[11px] leading-tight whitespace-nowrap ${subTextClass}">${tier.minLabel}</div>`;
       }
 
-      return `<div class="flex items-center justify-between w-full">${nodesHTML}</div>`;
+      return `
+        <div class="w-full select-none">
+          <!-- Valores de desconto (Acima da linha) -->
+          <div class="grid grid-cols-5 gap-0.5 mb-1.5">
+            ${topRowHTML}
+          </div>
+
+          <!-- Linha de progressão contínua ligando todos os 5 pontos de centro a centro -->
+          <div class="relative py-1">
+            <div class="absolute top-1/2 left-[10%] right-[10%] -translate-y-1/2 h-[3px] ${trackBg} rounded-full overflow-hidden">
+              <div class="h-full ${fillBg} transition-all duration-300 rounded-full" style="width: ${fillPct}%"></div>
+            </div>
+            <div class=" relative grid grid-cols-5 gap-0.5 items-center">
+              ${dotsRowHTML}
+            </div>
+          </div>
+
+          <!-- Pisos de investimento OOH (Abaixo da linha) -->
+          <div class="grid grid-cols-5 gap-0.5 mt-1.5">
+            ${bottomRowHTML}
+          </div>
+        </div>
+      `;
     }
 
     function updateAllPromoVisuals() {
@@ -840,58 +853,58 @@
       cartBadge.textContent = summary.count;
       cartBadge.classList.toggle('hidden', summary.isEmpty);
 
-      // Textos concisos (1 linha no Mobile!)
+      // Textos completos (zero truncamento!)
       let darkTextHTML = '';
       let darkBadgeText = '';
       let darkBadgeClass = '';
       let darkIconHTML = SVG_TAG_ICON;
-      let darkIconColor = 'text-[#F05A22] shrink-0';
+      let darkIconColor = 'text-[#F05A22] shrink-0 mt-0.5';
 
       let softTextHTML = '';
       let softBadgeText = '';
       let softBadgeClass = '';
 
       if (summary.appliedType === 'coupon' && summary.activeCoupon) {
-        darkTextHTML = `Cupom ${summary.activeCoupon.code} ativo · +${formatBRLShort(summary.missingForNext)} em OOH para ${ summary.nextTier ? formatBRLShort(summary.nextTier.discount) + ' OFF' : 'máximo' }`;
+        darkTextHTML = `Cupom ${summary.activeCoupon.code} aplicado (-${formatBRLShort(summary.appliedDiscount)} em OOH)`;
         darkBadgeText = `-${formatBRLShort(summary.appliedDiscount)}`;
-        darkBadgeClass = 'shrink-0 px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-400/30';
+        darkBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-400/30';
 
-        softTextHTML = `Cupom <strong class="text-slate-900">${summary.activeCoupon.code}</strong> aplicado em OOH (não cumulativo)`;
+        softTextHTML = `Cupom <span class="font-bold text-slate-900">${summary.activeCoupon.code}</span> aplicado em OOH`;
         softBadgeText = `-${formatBRLShort(summary.appliedDiscount)} ativo`;
-        softBadgeClass = 'shrink-0 px-1.5 py-0.5 rounded text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200';
+        softBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200';
       } else if (!summary.currentTier) {
         const needed = summary.oohSum === 0 ? 200 : summary.missingForNext;
         darkIconHTML = SVG_TAG_ICON;
-        darkIconColor = 'text-[#F05A22] shrink-0';
+        darkIconColor = 'text-[#F05A22] shrink-0 mt-0.5';
         darkTextHTML = summary.oohSum === 0
-          ? `Adicione <strong class="text-[#F05A22]">R$ 200</strong> em OOH para <strong class="text-emerald-400">R$ 100 OFF</strong>`
-          : `Faltam <strong class="text-[#F05A22]">${formatBRLShort(needed)}</strong> em OOH para <strong class="text-emerald-400">R$ 100 OFF</strong>`;
+          ? `Ganhe até <span class="text-[#FF7A45] font-bold">R$ 2 mil OFF</span> em OOH (a partir de R$ 200)`
+          : `Faltam <span class="text-[#FF7A45] font-bold">${formatBRLShort(needed)}</span> em OOH para <span class="text-emerald-400 font-bold">R$ 100 OFF</span>`;
         darkBadgeText = 'Até R$ 2 mil OFF';
-        darkBadgeClass = 'shrink-0 px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#F05A22]/20 text-[#F05A22] border border-[#F05A22]/40';
+        darkBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#F05A22]/20 text-[#FF7A45] border border-[#F05A22]/40';
 
-        softTextHTML = `Faltam <strong class="text-slate-900">${formatBRLShort(needed)}</strong> em OOH para liberar <strong class="text-[#15803D]">R$ 100 OFF</strong>`;
+        softTextHTML = `Faltam <span class="font-bold text-[#D94B16]">${formatBRLShort(needed)}</span> em OOH para ganhar <span class="font-bold text-[#15803D]">R$ 100 OFF</span>`;
         softBadgeText = 'Até R$ 2 mil OFF';
-        softBadgeClass = 'shrink-0 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-orange-50 text-[#F05A22] border border-orange-200';
+        softBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-orange-50 text-[#D94B16] border border-orange-200';
       } else if (summary.nextTier) {
         darkIconHTML = SVG_CHECK_ICON;
-        darkIconColor = 'text-emerald-400 shrink-0';
-        darkTextHTML = `Faltam <strong class="text-[#F05A22]">${formatBRLShort(summary.missingForNext)}</strong> em OOH para <strong class="text-white">${formatBRLShort(summary.nextTier.discount)} OFF</strong>`;
-        darkBadgeText = `Ganhou -${formatBRLShort(summary.currentTier.discount)}`;
-        darkBadgeClass = 'shrink-0 px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+        darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
+        darkTextHTML = `Faltam <span class="text-[#FF7A45] font-bold">${formatBRLShort(summary.missingForNext)}</span> em OOH para <span class="text-white font-bold">${formatBRLShort(summary.nextTier.discount)} OFF</span>`;
+        darkBadgeText = `-${formatBRLShort(summary.currentTier.discount)} ativo`;
+        darkBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
 
-        softTextHTML = `Faltam <strong class="text-slate-900">${formatBRLShort(summary.missingForNext)}</strong> em OOH para subir para <strong class="text-[#F05A22]">${formatBRLShort(summary.nextTier.discount)} OFF</strong>`;
+        softTextHTML = `Faltam <span class="font-bold text-[#D94B16]">${formatBRLShort(summary.missingForNext)}</span> em OOH para <span class="font-bold text-slate-900">${formatBRLShort(summary.nextTier.discount)} OFF</span>`;
         softBadgeText = `-${formatBRLShort(summary.currentTier.discount)} ativo`;
-        softBadgeClass = 'shrink-0 px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#DCFCE7] text-[#15803D]';
+        softBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#DCFCE7] text-[#15803D] border border-emerald-300/60';
       } else {
         darkIconHTML = SVG_CHECK_ICON;
-        darkIconColor = 'text-emerald-400 shrink-0';
-        darkTextHTML = `Desconto máximo liberado no seu plano OOH`;
-        darkBadgeText = `Ganhou -R$ 2 mil`;
-        darkBadgeClass = 'shrink-0 px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+        darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
+        darkTextHTML = `Desconto máximo de <span class="text-emerald-400 font-bold">R$ 2 mil OFF</span> aplicado em OOH`;
+        darkBadgeText = `-R$ 2 mil ativo`;
+        darkBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
 
-        softTextHTML = `Você atingiu a faixa máxima de desconto em OOH`;
+        softTextHTML = `Desconto máximo de <span class="font-bold text-[#15803D]">R$ 2 mil OFF</span> aplicado em OOH`;
         softBadgeText = `-R$ 2 mil ativo`;
-        softBadgeClass = 'shrink-0 px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#DCFCE7] text-[#15803D]';
+        softBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#DCFCE7] text-[#15803D] border border-emerald-300/60';
       }
 
       // =====================================================================
@@ -921,15 +934,15 @@
         footerOldTotal.textContent = formatBRL(summary.subtotal);
         footerOldTotal.classList.remove('hidden');
         footerFinalTotal.textContent = formatBRL(summary.finalTotal);
-        footerFinalTotal.className = 'text-sm font-extrabold text-[#15803D]';
+        footerFinalTotal.className = 'text-base font-extrabold text-[#15803D]';
       } else {
         footerOldTotal.classList.add('hidden');
         footerFinalTotal.textContent = formatBRL(summary.subtotal);
-        footerFinalTotal.className = 'text-sm font-extrabold text-slate-900';
+        footerFinalTotal.className = 'text-base font-extrabold text-slate-900';
       }
 
       // =====================================================================
-      // 2. PÁGINA DE RESUMO (PLANO DE MÍDIA): BLOCO SUAVIZADO PRONTOOH
+      // 2. PÁGINA DE RESUMO (PLANO DE MÍDIA): BLOCO SUAVIZADO E LEGÍVEL
       // =====================================================================
       const couponHeaderDefault = document.getElementById('coupon-header-default');
       const couponHeaderActive = document.getElementById('coupon-header-active');
@@ -992,7 +1005,7 @@
         planoOohOldVal.classList.add('hidden');
         planoTotalOldVal.classList.add('hidden');
         planoOohVal.textContent = formatBRL(summary.oohSum);
-        planoOohVal.className = 'font-medium text-slate-700';
+        planoOohVal.className = 'font-medium text-slate-800';
       }
     }
 
@@ -1063,7 +1076,7 @@
           : 'hidden';
       } else {
         body.classList.remove('mobile-mode-bg');
-        shell.className = showFooter ? 'w-full flex-1 flex flex-col pb-36' : 'w-full flex-1 flex flex-col pb-12';
+        shell.className = showFooter ? 'w-full flex-1 flex flex-col pb-40' : 'w-full flex-1 flex flex-col pb-12';
         scrollArea.className = 'w-full flex-1 flex flex-col';
         stickyFooter.className = showFooter
           ? 'fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]'
