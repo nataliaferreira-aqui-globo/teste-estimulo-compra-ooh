@@ -520,27 +520,27 @@
     <!-- =================================================================== -->
     <footer id="sticky-footer" class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] shrink-0 hidden">
       
-      <!-- Faixa Preta Chamativa de Estímulo (SOMENTE na Página Principal de Resultados OOH — Ocupando a largura da Grid 1600px) -->
+      <!-- Faixa Preta Chamativa de Estímulo (SOMENTE na Página Principal de Resultados OOH — Compacta em Altura: Tag+Título à esquerda e Progressão à direita no Desktop) -->
       <div id="footer-promo-strip" class="w-full bg-[#18181B] text-white border-b border-zinc-800 transition-all duration-300">
-        <div class="max-w-[1600px] mx-auto px-4 lg:px-8 py-3.5 sm:py-4">
+        <div id="footer-promo-inner" class="max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-8">
           
-          <!-- 1. Tag no canto superior esquerdo -->
-          <div class="flex items-center gap-1.5 mb-1.5">
-            <span id="footer-strip-icon" class="text-[#F05A22] shrink-0"></span>
-            <span id="footer-strip-badge" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] sm:text-xs font-bold"></span>
+          <!-- Bloco Esquerdo: Tag no canto superior esquerdo + Título logo abaixo -->
+          <div id="footer-promo-header" class="shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-zinc-800 md:pr-6">
+            <div class="flex items-center gap-1.5 mb-1">
+              <span id="footer-strip-icon" class="text-[#F05A22] shrink-0"></span>
+              <span id="footer-strip-badge" class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold"></span>
+            </div>
+            <p id="footer-strip-text" class="text-[13px] sm:text-[14px] font-semibold text-white leading-snug"></p>
           </div>
 
-          <!-- 2. Título logo abaixo da tag (100% da largura, com respiro mb-4 sm:mb-5 antes da progressão) -->
-          <p id="footer-strip-text" class="text-[13px] sm:text-[15px] font-semibold text-white leading-snug mb-4 sm:mb-5"></p>
-
-          <!-- 3. Trilha Contínua Real das 5 Faixas (Ocupando espaço amplo de ponta a ponta da grid) -->
-          <div id="footer-stepper" class="w-full"></div>
+          <!-- Bloco Direito: Trilha Contínua Real das 5 Faixas ocupando todo o espaço restante -->
+          <div id="footer-stepper" class="w-full md:flex-1 min-w-0"></div>
 
         </div>
       </div>
 
       <!-- Bloco de Checkout Prontooh (Largura 1600px alinhada à grid de resultados) -->
-      <div id="footer-checkout-bar" class="hidden max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 sm:py-3 flex items-center justify-between gap-3 bg-white">
+      <div id="footer-checkout-bar" class="hidden max-w-[1600px] mx-auto px-4 lg:px-8 py-2 flex items-center justify-between gap-3 bg-white">
         <div class="flex-1 min-w-0">
           <div id="footer-selected-count" class="text-[11px] text-slate-600 font-medium leading-tight">3 produtos selecionados</div>
           <div class="flex items-baseline gap-1.5 flex-wrap">
@@ -778,8 +778,8 @@
 
       const topFontSize = isMob ? 'text-[11px]' : (isDark ? 'text-[13px]' : 'text-xs');
       const subFontSize = isMob ? 'text-[11px]' : 'text-xs';
-      const nodeWidth = isMob ? 'w-[54px]' : (isDark ? 'w-[84px]' : 'w-[68px]');
-      const trackInset = isMob ? 'left-[27px] right-[27px] top-[29px]' : (isDark ? 'left-[42px] right-[42px] top-[34px]' : 'left-[34px] right-[34px] top-[32px]');
+      const nodeWidth = isMob ? 'w-[54px]' : (isDark ? 'w-[80px]' : 'w-[68px]');
+      const trackInset = isMob ? 'left-[27px] right-[27px] top-[30px]' : (isDark ? 'left-[40px] right-[40px] top-[30px]' : 'left-[34px] right-[34px] top-[30px]');
 
       let nodesHTML = '';
 
@@ -847,17 +847,17 @@
 
         nodesHTML += `
           <div class="flex flex-col items-center z-10 ${nodeWidth}">
-            <div class="text-center ${topFontSize} leading-tight whitespace-nowrap ${isMob ? 'mb-2' : 'mb-2.5'} ${topTextClass}">${tier.offLabel}</div>
+            <div class="h-4 flex items-center justify-center text-center ${topFontSize} leading-none whitespace-nowrap mb-1 ${topTextClass}">${tier.offLabel}</div>
             <div class="h-5 flex items-center justify-center">
               <span class="rounded-full flex items-center justify-center transition-all duration-300 ${dotClass}">${dotInner}</span>
             </div>
-            <div class="text-center ${subFontSize} leading-tight whitespace-nowrap ${isMob ? 'mt-2' : 'mt-2.5'} ${subTextClass}">${tier.minLabel}</div>
+            <div class="h-4 flex items-center justify-center text-center ${subFontSize} leading-none whitespace-nowrap mt-1 ${subTextClass}">${tier.minLabel}</div>
           </div>
         `;
       }
 
       return `
-        <div class="w-full select-none pt-0.5 relative">
+        <div class="w-full select-none relative">
           <!-- Linha de progressão contínua ocupando de ponta a ponta entre o 1º e o 5º marco -->
           <div class="absolute ${trackInset} -translate-y-1/2 ${trackHeight} ${trackBg} rounded-full overflow-hidden">
             <div class="h-full ${fillBg} transition-all duration-300 rounded-full" style="width: ${fillPct}%"></div>
@@ -1158,6 +1158,9 @@
       const summary = getCartSummary();
       const showFooter = (currentScreen === 'vitrine') || (currentScreen === 'globo' && !summary.isEmpty);
 
+      const footerPromoInner = document.getElementById('footer-promo-inner');
+      const footerPromoHeader = document.getElementById('footer-promo-header');
+
       if (isMob) {
         body.classList.add('mobile-mode-bg');
         shell.className = 'phone-frame';
@@ -1165,13 +1168,17 @@
         stickyFooter.className = showFooter
           ? 'w-full z-40 bg-white border-t border-slate-200 shadow-[0_-6px_20px_rgba(0,0,0,0.08)] shrink-0'
           : 'hidden';
+        if (footerPromoInner) footerPromoInner.className = 'px-3.5 py-2.5 flex flex-col gap-2';
+        if (footerPromoHeader) footerPromoHeader.className = 'w-full';
       } else {
         body.classList.remove('mobile-mode-bg');
-        shell.className = showFooter ? 'w-full flex-1 flex flex-col pb-40' : 'w-full flex-1 flex flex-col pb-12';
+        shell.className = showFooter ? 'w-full flex-1 flex flex-col pb-32' : 'w-full flex-1 flex flex-col pb-12';
         scrollArea.className = 'w-full flex-1 flex flex-col';
         stickyFooter.className = showFooter
           ? 'fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]'
           : 'hidden';
+        if (footerPromoInner) footerPromoInner.className = 'max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-8';
+        if (footerPromoHeader) footerPromoHeader.className = 'shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-zinc-800 md:pr-6';
       }
 
       document.getElementById('header-channel-tabs-desktop').className = isMob || currentScreen === 'plano'
