@@ -1,25 +1,18 @@
 {
-  "promoId": "estimulo-ooh-1k-500off-v3",
-  "active": true,
-  "rules": {
-    "minSpendOOH": 1000.00,
-    "discountAmount": 500.00,
-    "currency": "BRL",
-    "eligibleChannels": ["OOH"],
-    "excludedChannels": ["DIGITAL_GLOBO", "TV_GLOBO"],
-    "validUntil": "2026-10-31",
-    "singleUsePerAccount": true,
-    "cumulativeWithCoupons": false,
-    "conflictResolution": "BEST_DISCOUNT_WINS"
-  },
+  "campaignName": "Cupom Progressivo OOH — Até R$ 2.000 OFF em 5 Faixas",
+  "channel": "OOH",
+  "maxDiscount": 2000.00,
+  "validUntil": "2026-10-31",
+  "singleUsePerOrder": true,
+  "excludeGloboPages": true,
+  "tiers": [
+    { "tier": 1, "minSpend": 200.00, "maxSpend": 999.99, "discount": 100.00, "shortLabel": "-R$ 100", "thresholdLabel": "R$ 200+" },
+    { "tier": 2, "minSpend": 1000.00, "maxSpend": 2999.99, "discount": 500.00, "shortLabel": "-R$ 500", "thresholdLabel": "R$ 1 mil+" },
+    { "tier": 3, "minSpend": 3000.00, "maxSpend": 4999.99, "discount": 1000.00, "shortLabel": "-R$ 1 mil", "thresholdLabel": "R$ 3 mil+" },
+    { "tier": 4, "minSpend": 5000.00, "maxSpend": 9999.99, "discount": 1500.00, "shortLabel": "-R$ 1,5 mil", "thresholdLabel": "R$ 5 mil+" },
+    { "tier": 5, "minSpend": 10000.00, "maxSpend": null, "discount": 2000.00, "shortLabel": "-R$ 2 mil", "thresholdLabel": "R$ 10 mil+" }
+  ],
   "copy": {
-    "disclaimer": "Aplicado apenas em OOH · Válido até 31/10 · Uso único por conta",
-    "browsingEmptyTitle": "Ganhe R$ 500 OFF acima de R$ 1.000 em OOH",
-    "progressTitle": "Faltam {{missing}} em OOH para R$ 500 OFF",
-    "unlockedTitle": "Você ganhou R$ 500 OFF em OOH",
-    "tableDiscountLabel": "Desconto OOH",
-    "couponSmallerSub": "Maior que o cupom {{couponCode}} (não cumulativo) · Até 31/10 · Uso único",
-    "couponLargerTitle": "Cupom {{couponCode}} aplicado (-{{couponValue}})",
-    "couponLargerSub": "Maior que os R$ 500 OFF em OOH (não cumulativo)"
+    "disclaimer": "Aplicado apenas em OOH · 1 cupom por pedido · Válido até 31/10"
   }
 }

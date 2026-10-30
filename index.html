@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aqui Ads — Protótipo: R$ 500 OFF em OOH acima de R$ 1.000</title>
+  <title>Aqui Ads — Cupom Progressivo OOH: Até R$ 2 mil OFF em 5 faixas</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,24 +25,11 @@
       background-color: #FAFAFA;
       color: #1E293B;
     }
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #F1F5F9;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #CBD5E1;
-      border-radius: 9999px;
-    }
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #F1F5F9; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 9999px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .map-bg {
       background-color: #E5E7EB;
       background-image: 
@@ -52,8 +39,6 @@
         radial-gradient(#D1D5DB 1px, transparent 1px);
       background-size: 280px 280px, 220px 220px, 180px 180px, 24px 24px;
     }
-
-    /* Simulador Mobile 396px */
     body.mobile-mode-bg {
       background-color: #0F172A;
       padding-bottom: 20px;
@@ -61,7 +46,7 @@
     .phone-frame {
       width: 396px;
       max-width: 100vw;
-      height: calc(100vh - 96px);
+      height: calc(100vh - 102px);
       max-height: 860px;
       margin: 8px auto 0 auto;
       background: #FAFAFA;
@@ -84,16 +69,13 @@
 </head>
 <body id="page-body" class="min-h-screen flex flex-col bg-[#FAFAFA]">
 
-  <!-- ===================================================================== -->
-  <!-- BARRA DE CONTROLE DO PROTÓTIPO                                        -->
-  <!-- ===================================================================== -->
+  <!-- BARRA DE CONTROLE DO PROTÓTIPO -->
   <div id="pantheon-lab-bar" class="sticky top-0 z-50 bg-slate-900 text-white border-b border-slate-700 shadow-lg">
     <div class="max-w-[1440px] mx-auto px-3 py-2 flex flex-col gap-2 text-xs">
       
-      <!-- Linha 1: Viewport + Estilo Visual (Sutil vs Chamativo) + Telas -->
+      <!-- Linha 1: Viewport + Variação do Tema Preto + Telas -->
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-2 flex-wrap">
-          <!-- Toggle Desktop vs Mobile -->
           <div class="inline-flex rounded-lg bg-slate-800 p-0.5 border border-slate-600">
             <button onclick="setViewportMode('desktop')" id="btn-mode-desktop" class="px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 text-slate-300 hover:text-white">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
@@ -105,20 +87,17 @@
             </button>
           </div>
 
-          <!-- Toggle Estilo Visual: Sutil vs Chamativo Vibrante vs Chamativo Dark -->
-          <div class="inline-flex rounded-lg bg-slate-800 p-0.5 border border-amber-500/60">
-            <button onclick="setVisualStyle('sutil')" id="style-btn-sutil" class="px-2.5 py-1 rounded-md font-semibold transition text-slate-300 hover:text-white">
-              Versão 1: Sutil
+          <!-- Variações dentro do Tema Preto Vencedor -->
+          <div class="inline-flex rounded-lg bg-slate-800 p-0.5 border border-orange-500/60">
+            <button onclick="setDarkVariant('steps')" id="dark-btn-steps" class="px-2.5 py-1 rounded-md font-bold transition bg-orange-600 text-white shadow">
+              Preto 1: Trilha 5 Faixas
             </button>
-            <button onclick="setVisualStyle('chamativo')" id="style-btn-chamativo" class="px-2.5 py-1 rounded-md font-bold transition bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow">
-              Versão 2: Chamativo (Vibrante)
-            </button>
-            <button onclick="setVisualStyle('dark-ticket')" id="style-btn-dark-ticket" class="px-2.5 py-1 rounded-md font-semibold transition text-slate-300 hover:text-white">
-              Versão 3: Chamativo (Dark)
+            <button onclick="setDarkVariant('compact')" id="dark-btn-compact" class="px-2.5 py-1 rounded-md font-semibold transition text-slate-300 hover:text-white">
+              Preto 2: Compacto + Ver Faixas
             </button>
           </div>
 
-          <!-- Screen Toggle -->
+          <!-- Telas -->
           <div class="inline-flex rounded-lg bg-slate-800 p-0.5 border border-slate-700">
             <button onclick="switchScreen('vitrine')" id="tab-screen-vitrine" class="px-2.5 py-1 rounded-md font-semibold transition-all text-slate-300 hover:text-white">
               1. Vitrine OOH
@@ -132,59 +111,52 @@
           </div>
         </div>
 
-        <!-- Cart State Presets -->
+        <!-- Conflito de Cupom -->
         <div class="flex items-center gap-1.5 flex-wrap">
-          <button id="preset-btn-empty" onclick="applyPreset('empty')" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
-            0. Vazio (R$ 0)
+          <span class="text-slate-400 text-[10px] uppercase font-bold">Cupom Extra:</span>
+          <button id="coupon-btn-none" onclick="setCouponScenario('none')" class="px-2 py-1 rounded-md bg-orange-600 text-white font-semibold transition">
+            Automático (5 Faixas)
           </button>
-          <button id="preset-btn-hybrid-low" onclick="applyPreset('hybrid-low')" class="px-2 py-1 rounded-md bg-amber-600 text-white border border-amber-500 font-semibold transition">
-            1. Híbrido: R$ 400 OOH + R$ 2.000 Globo
+          <button id="coupon-btn-smaller" onclick="setCouponScenario('smaller')" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+            Cupom R$ 200
           </button>
-          <button id="preset-btn-hybrid-unlocked" onclick="applyPreset('hybrid-unlocked')" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
-            2. Híbrido: R$ 1.295 OOH + R$ 2.000 Globo
-          </button>
-          <button id="preset-btn-onlyglobo" onclick="applyPreset('onlyglobo')" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
-            3. Só Globo (R$ 2.000)
+          <button id="coupon-btn-larger" onclick="setCouponScenario('larger')" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+            Cupom VIP R$ 800
           </button>
         </div>
       </div>
 
-      <!-- Linha 2: Simulador de Edge Cases de Cupom + Regra de Elegibilidade Híbrida -->
-      <div class="flex flex-wrap items-center justify-between gap-2 pt-1.5 border-t border-slate-800">
+      <!-- Linha 2: Simulador das 5 Faixas Progressivas (de R$ 0 até R$ 10.000+) -->
+      <div class="flex flex-wrap items-center justify-between gap-1.5 pt-1.5 border-t border-slate-800">
         <div class="flex items-center gap-1.5 flex-wrap">
-          <span class="text-amber-400 font-bold uppercase tracking-wider text-[10px]">Conflito de Cupom:</span>
-          
-          <button id="coupon-btn-none" onclick="setCouponScenario('none')" class="px-2.5 py-1 rounded-md bg-orange-600 text-white font-semibold transition">
-            Sem Cupom Extra
+          <span class="text-amber-400 font-bold uppercase tracking-wider text-[10px]">Testar Faixas OOH:</span>
+          <button id="tier-btn-0" onclick="applyTierPreset(0)" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+            0. Sem OOH (R$ 0)
           </button>
-          
-          <button id="coupon-btn-smaller" onclick="setCouponScenario('smaller')" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
-            Cupom Menor (PARCEIRO200 = R$ 200)
+          <button id="tier-btn-1" onclick="applyTierPreset(1)" class="px-2 py-1 rounded-md bg-orange-600 text-white border border-orange-500 font-semibold transition">
+            Faixa 1: R$ 400 (-R$ 100)
           </button>
-          
-          <button id="coupon-btn-larger" onclick="setCouponScenario('larger')" class="px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
-            Cupom Maior (VIP800 = R$ 800)
+          <button id="tier-btn-2" onclick="applyTierPreset(2)" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+            Faixa 2: R$ 1.295 (-R$ 500)
+          </button>
+          <button id="tier-btn-3" onclick="applyTierPreset(3)" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+            Faixa 3: R$ 3.445 (-R$ 1.000)
+          </button>
+          <button id="tier-btn-4" onclick="applyTierPreset(4)" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+            Faixa 4: R$ 5.845 (-R$ 1.500)
+          </button>
+          <button id="tier-btn-5" onclick="applyTierPreset(5)" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+            Faixa 5: R$ 10.345 (-R$ 2.000 MÁX)
           </button>
         </div>
-
-        <!-- Seletor de Comportamento para o Híbrido (R$ 400 OOH + R$ 2.000 Globo) -->
-        <div class="flex items-center gap-1.5">
-          <span class="text-slate-400 text-[11px]">Regra Híbrido (400 OOH + 2k Globo):</span>
-          <select id="hybrid-rule-select" onchange="changeHybridRule(this.value)" class="bg-slate-800 text-white font-semibold border border-slate-600 rounded-lg px-2 py-1 text-[11px] focus:outline-none focus:border-orange-500 cursor-pointer">
-            <option value="strict-ooh" selected>Regra A: Exige R$ 1.000 em OOH (Faltam R$ 600 em OOH)</option>
-            <option value="cap-ooh">Regra B: Aplica até o limite de OOH (-R$ 400 em OOH)</option>
-          </select>
-        </div>
+        <span class="text-[11px] text-slate-400 hidden xl:inline">Ou clique em "adicionar ponto" nos cards para subir de faixa ao vivo</span>
       </div>
 
     </div>
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- CONTAINER PRINCIPAL                                                   -->
-  <!-- ===================================================================== -->
+  <!-- CONTAINER PRINCIPAL -->
   <div id="device-shell" class="w-full flex-1 flex flex-col">
-    
     <div id="device-scroll-area" class="w-full flex-1 flex flex-col">
 
       <!-- Barra amarela de admin -->
@@ -195,19 +167,15 @@
         <span>Você efetuou login com uma conta administradora.</span>
       </div>
 
-      <!-- ================================================================= -->
-      <!-- HEADER OFICIAL AQUI ADS                                           -->
-      <!-- ================================================================= -->
+      <!-- HEADER OFICIAL AQUI ADS -->
       <header class="border-b border-slate-100 bg-white sticky top-0 z-30 shrink-0">
         <div class="max-w-[1380px] mx-auto px-3.5 py-2.5 flex items-center justify-between gap-2">
-          
           <a href="javascript:void(0)" onclick="switchScreen('vitrine')" class="flex items-center gap-0.5 select-none shrink-0">
             <span class="text-xl font-extrabold tracking-tight text-orange-500">Aqui</span>
             <span class="text-xl font-normal tracking-tight text-amber-500">ads</span>
             <span class="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full border-2 border-orange-500 text-[8px] font-bold text-orange-600 -mt-2.5 ml-0.5">+</span>
           </a>
 
-          <!-- Center Navigation Tabs (Desktop) -->
           <nav id="header-channel-tabs-desktop" class="hidden items-center gap-6">
             <button onclick="switchScreen('vitrine')" class="flex items-center gap-2 border-b-2 border-slate-900 text-slate-900 font-semibold text-sm pb-1 transition">
               <span class="w-6 h-6 rounded bg-orange-500 text-white flex items-center justify-center shadow-sm">
@@ -227,21 +195,8 @@
               </span>
               <span>TV</span>
             </button>
-            <button class="flex items-center gap-2 border-b-2 border-transparent text-slate-400 hover:text-slate-700 font-medium text-sm pb-1 transition">
-              <span class="w-6 h-6 rounded bg-orange-500/90 text-white flex items-center justify-center">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg>
-              </span>
-              <span>Rádio</span>
-            </button>
-            <button class="flex items-center gap-2 border-b-2 border-transparent text-slate-400 hover:text-slate-700 font-medium text-sm pb-1 transition">
-              <span class="w-6 h-6 rounded bg-orange-500/90 text-white flex items-center justify-center">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8a2 2 0 001.3 1.3L21 12l-5.8 1.9a2 2 0 00-1.3 1.3L12 21l-1.9-5.8a2 2 0 00-1.3-1.3L3 12l5.8-1.9a2 2 0 001.3-1.3L12 3z"/></svg>
-              </span>
-              <span>Combos</span>
-            </button>
           </nav>
 
-          <!-- Right User Actions -->
           <div class="flex items-center gap-2.5 text-xs">
             <button class="inline-flex items-center gap-1 text-slate-700 hover:text-slate-900 font-medium">
               <span id="header-ai-label">Assistente de anúncios</span>
@@ -252,55 +207,34 @@
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
               </svg>
-              <span id="header-cart-badge" class="hidden absolute -top-1 -right-1 bg-orange-500 text-white text-[10px] font-bold px-1.5 rounded-full min-w-[17px] text-center shadow">
-                0
-              </span>
+              <span id="header-cart-badge" class="hidden absolute -top-1 -right-1 bg-orange-500 text-white text-[10px] font-bold px-1.5 rounded-full min-w-[17px] text-center shadow">0</span>
             </button>
 
             <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200/80 rounded-full py-1 pl-1.5 pr-2">
               <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-700 font-bold text-[10px] flex items-center justify-center">N</span>
               <span id="header-user-name" class="text-xs font-medium text-slate-700">Olá, Natalia!</span>
             </div>
-
-            <button class="text-slate-600 hover:text-slate-900">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-            </button>
           </div>
-
         </div>
 
-        <!-- Mobile Channel Tabs Bar -->
         <div id="header-channel-tabs-mobile" class="hidden border-t border-slate-100 px-3.5 py-2 overflow-x-auto no-scrollbar flex items-center justify-between bg-slate-50/70">
-          <button onclick="switchScreen('vitrine')" class="flex items-center gap-1.5 text-xs font-bold text-orange-600 border-b-2 border-orange-600 pb-0.5 shrink-0">
-            <span>OOH</span>
-          </button>
-          <button onclick="switchScreen('globo')" class="flex items-center gap-1.5 text-xs font-medium text-slate-500 pb-0.5 shrink-0">
-            <span>Digital (Globo)</span>
-          </button>
-          <button onclick="switchScreen('globo')" class="flex items-center gap-1.5 text-xs font-medium text-slate-500 pb-0.5 shrink-0">
-            <span>TV (Globo)</span>
-          </button>
-          <button class="flex items-center gap-1.5 text-xs font-medium text-slate-500 pb-0.5 shrink-0">
-            <span>Rádio</span>
-          </button>
-          <button class="flex items-center gap-1.5 text-xs font-medium text-slate-500 pb-0.5 shrink-0">
-            <span>Combos</span>
-          </button>
+          <button onclick="switchScreen('vitrine')" class="flex items-center gap-1.5 text-xs font-bold text-orange-600 border-b-2 border-orange-600 pb-0.5 shrink-0"><span>OOH</span></button>
+          <button onclick="switchScreen('globo')" class="flex items-center gap-1.5 text-xs font-medium text-slate-500 pb-0.5 shrink-0"><span>Digital (Globo)</span></button>
+          <button onclick="switchScreen('globo')" class="flex items-center gap-1.5 text-xs font-medium text-slate-500 pb-0.5 shrink-0"><span>TV (Globo)</span></button>
+          <button class="flex items-center gap-1.5 text-xs font-medium text-slate-500 pb-0.5 shrink-0"><span>Rádio</span></button>
+          <button class="flex items-center gap-1.5 text-xs font-medium text-slate-500 pb-0.5 shrink-0"><span>Combos</span></button>
         </div>
       </header>
 
       <!-- ================================================================= -->
-      <!-- TELA 1: VITRINE OOH (SEM BANNER REPETIDO NO TOPO — SÓ EMBAIXO)    -->
+      <!-- TELA 1: VITRINE OOH (ESTÍMULO APENAS EMBAIXO NO RODAPÉ ESCURO)    -->
       <!-- ================================================================= -->
       <main id="screen-vitrine" class="hidden max-w-[1380px] w-full mx-auto px-3.5 pt-3.5 pb-8 flex-1">
-        
         <div id="search-bar-desktop" class="max-w-2xl mx-auto mb-4">
           <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-slate-200/90 p-2 flex items-center justify-between gap-2">
-            <div class="flex-1 px-3 py-1 border-r border-slate-200 flex items-center justify-between gap-2">
-              <div>
-                <div class="text-[11px] font-bold text-slate-800">Onde</div>
-                <div class="text-xs text-slate-600">R. Fernão Dias, 400 - Pinheiros</div>
-              </div>
+            <div class="flex-1 px-3 py-1 border-r border-slate-200">
+              <div class="text-[11px] font-bold text-slate-800">Onde</div>
+              <div class="text-xs text-slate-600">R. Fernão Dias, 400 - Pinheiros</div>
             </div>
             <div class="px-3 py-1 border-r border-slate-200 shrink-0">
               <div class="text-[11px] font-bold text-slate-800">Período</div>
@@ -338,8 +272,7 @@
             <button class="px-3 py-1.5 rounded-lg bg-slate-600 text-white text-xs font-medium shrink-0">todos</button>
             <button class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium shrink-0">elevadores comerciais</button>
             <button class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium shrink-0">elevadores residenciais</button>
-            <button class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium shrink-0">ponto de ônibus</button>
-            <button class="px-3 py-1.5 rounded-lg bg-slate-200/80 text-slate-800 text-xs font-semibold shrink-0">mais filtros</button>
+            <button class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium shrink-0">relógios de rua</button>
           </div>
 
           <button id="mobile-map-toggle-btn" onclick="toggleMobileMap()" class="hidden px-3 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-semibold shrink-0 items-center gap-1.5 shadow-sm">
@@ -353,17 +286,11 @@
 
           <div id="ooh-map-wrapper" class="col-span-5 sticky top-20">
             <div id="ooh-map-box" class="w-full h-[520px] rounded-2xl map-bg border border-slate-200 shadow-inner relative overflow-hidden select-none">
-              <div class="absolute top-5 left-3 text-[10px] font-bold text-amber-800/80 bg-amber-100/90 px-2 py-0.5 rounded">
-                Pinheiros · Av. Faria Lima
-              </div>
-              <div class="absolute top-4 left-1/2 -translate-x-1/2 z-10">
-                <button class="bg-white hover:bg-slate-50 text-slate-700 text-[11px] font-medium px-3 py-1.5 rounded-xl shadow-md border border-slate-200 flex items-center gap-1.5 whitespace-nowrap">
-                  <svg class="w-3.5 h-3.5 text-orange-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  <span>pesquisar nessa área</span>
-                </button>
-              </div>
-              <button onclick="togglePointSelection('p1')" class="absolute top-36 right-28 w-9 h-9 rounded-full bg-orange-600 hover:scale-110 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-white transition">2</button>
-              <button onclick="togglePointSelection('p2')" class="absolute bottom-28 right-32 w-10 h-10 rounded-full bg-orange-600 hover:scale-110 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-white transition">16</button>
+              <div class="absolute top-5 left-3 text-[10px] font-bold text-amber-800/80 bg-amber-100/90 px-2 py-0.5 rounded">Pinheiros · Av. Faria Lima</div>
+              <button onclick="togglePointSelection('p1')" class="absolute top-28 right-36 w-9 h-9 rounded-full bg-orange-600 hover:scale-110 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-white transition">1</button>
+              <button onclick="togglePointSelection('p2')" class="absolute top-48 right-24 w-9 h-9 rounded-full bg-orange-600 hover:scale-110 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-white transition">2</button>
+              <button onclick="togglePointSelection('p3')" class="absolute bottom-36 right-32 w-10 h-10 rounded-full bg-orange-600 hover:scale-110 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-white transition">3</button>
+              <button onclick="togglePointSelection('p4')" class="absolute bottom-20 left-28 w-10 h-10 rounded-full bg-orange-600 hover:scale-110 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-white transition">4</button>
               <div class="absolute bottom-2.5 left-2.5 bg-white/80 px-2 py-0.5 rounded text-[10px] font-semibold text-slate-500">© mapbox</div>
             </div>
           </div>
@@ -371,14 +298,12 @@
       </main>
 
       <!-- ================================================================= -->
-      <!-- TELA 2: PÁGINA DE RESULTADOS GLOBO (SEM EXIBIÇÃO DO DESCONTO)     -->
+      <!-- TELA 2: RESULTADOS GLOBO (SEM EXIBIÇÃO DO DESCONTO OOH)           -->
       <!-- ================================================================= -->
       <main id="screen-globo" class="hidden max-w-[1160px] w-full mx-auto px-3.5 pt-5 pb-12 flex-1">
-        <div class="mb-5 flex flex-wrap items-center justify-between gap-2">
-          <div>
-            <h1 class="text-lg font-bold text-slate-900">Digital · Portais Globo</h1>
-            <p class="text-xs text-slate-500">Anuncie nos portais de maior audiência do país (g1, ge, gshow, globo.com e globoplay)</p>
-          </div>
+        <div class="mb-5">
+          <h1 class="text-lg font-bold text-slate-900">Digital · Portais Globo</h1>
+          <p class="text-xs text-slate-500">Anuncie nos portais de maior audiência do país (g1, ge, gshow, globo.com e globoplay)</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -395,7 +320,7 @@
                 <div><span class="text-slate-400 block text-[10px]">investimento</span><strong class="text-slate-900">R$ 1.000,00</strong></div>
               </div>
             </div>
-            <button onclick="toggleDigitalSelection('d1')" id="globo-btn-d1" class="w-full h-10 rounded-xl border border-emerald-600 text-emerald-700 font-semibold text-xs hover:bg-emerald-50 transition">
+            <button onclick="toggleDigitalSelection('d1')" class="w-full h-10 rounded-xl border border-emerald-600 text-emerald-700 font-semibold text-xs hover:bg-emerald-50 transition">
               selecionar formato digital
             </button>
           </div>
@@ -404,10 +329,7 @@
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
                 <span class="font-bold text-sm text-slate-900">Vídeo de 15 segundos - Portais Globo</span>
-                <div class="flex gap-1">
-                  <span class="px-2 py-0.5 rounded bg-emerald-600 text-white text-[10px] font-semibold">sem skip</span>
-                  <span class="px-2 py-0.5 rounded bg-slate-800 text-white text-[10px] font-semibold">vídeo</span>
-                </div>
+                <span class="px-2 py-0.5 rounded bg-emerald-600 text-white text-[10px] font-semibold">sem skip</span>
               </div>
               <p class="text-xs text-slate-500 mb-3">Vídeo completo sem botão de pular antes dos conteúdos em vídeo dos Portais Globo.</p>
               <div class="grid grid-cols-3 gap-2 bg-slate-50 p-2.5 rounded-xl text-xs mb-4">
@@ -416,7 +338,7 @@
                 <div><span class="text-slate-400 block text-[10px]">investimento</span><strong class="text-slate-900">R$ 1.000,00</strong></div>
               </div>
             </div>
-            <button onclick="toggleDigitalSelection('d2')" id="globo-btn-d2" class="w-full h-10 rounded-xl border border-emerald-600 text-emerald-700 font-semibold text-xs hover:bg-emerald-50 transition">
+            <button onclick="toggleDigitalSelection('d2')" class="w-full h-10 rounded-xl border border-emerald-600 text-emerald-700 font-semibold text-xs hover:bg-emerald-50 transition">
               selecionar formato digital
             </button>
           </div>
@@ -427,7 +349,6 @@
       <!-- TELA 3: PLANO DE MÍDIA                                            -->
       <!-- ================================================================= -->
       <main id="screen-plano" class="max-w-[1160px] w-full mx-auto px-3 pt-4 pb-10 flex-1">
-        
         <button onclick="switchScreen('vitrine')" class="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-orange-600 mb-2.5 transition">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           <span>voltar</span>
@@ -437,11 +358,9 @@
           <h1 class="text-lg font-bold text-slate-900 tracking-tight">Plano de mídia</h1>
           <div class="flex items-center gap-2">
             <button class="px-2.5 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-[11px] font-medium text-slate-700 flex items-center gap-1.5 shadow-sm">
-              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
               <span>salvar como rascunho</span>
             </button>
             <button class="px-2.5 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-[11px] font-medium text-slate-700 flex items-center gap-1.5 shadow-sm">
-              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
               <span>compartilhar proposta</span>
             </button>
           </div>
@@ -449,34 +368,25 @@
 
         <div id="plano-split-grid" class="grid grid-cols-12 gap-6 items-start">
           
-          <!-- COLUNA ESQUERDA: ACORDEÕES -->
+          <!-- COLUNA ESQUERDA: ITENS DO PLANO -->
           <div id="plano-left-col" class="col-span-6 space-y-3.5">
-            
-            <!-- 1. Digital -->
             <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4">
               <div class="flex items-center justify-between mb-3">
                 <div class="flex items-center gap-2 font-bold text-slate-800 text-sm">
                   <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
                   <span>Digital</span>
                 </div>
-                <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-xs">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-                </span>
               </div>
-
               <div id="digital-items-container" class="divide-y divide-slate-100"></div>
             </div>
 
-            <!-- 2. OOH -->
             <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4">
-              <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center gap-1.5 font-bold text-slate-800 text-sm">
                   <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                   <span>OOH | Out of Home</span>
                 </div>
-                <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-xs">
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-                </span>
+                <span class="text-[11px] text-slate-400">Marque/desmarque para testar faixas</span>
               </div>
               <div id="plano-ooh-items-container" class="divide-y divide-slate-100"></div>
             </div>
@@ -484,124 +394,83 @@
             <button onclick="switchScreen('vitrine')" class="w-full py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-800 shadow-sm transition">
               contratar mais produtos
             </button>
-
           </div>
 
           <!-- COLUNA DIREITA: CONFIGURE -> PERFORMANCE -> VALOR -->
           <div id="plano-right-col" class="col-span-6">
             <div id="plano-right-card" class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4">
               
-              <!-- 1. CONFIGURE SEU ANÚNCIO -->
               <div class="pb-4 mb-4 border-b border-slate-100">
                 <h2 class="text-sm font-bold text-slate-800 mb-3">Configure seu anúncio</h2>
-
                 <div class="mb-2.5">
                   <label class="block text-[11px] text-slate-500 mb-1">Nome da campanha</label>
-                  <input type="text" value="Campanha-sem_nome-2026-10-21" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs text-slate-800 font-medium focus:outline-none focus:border-orange-500" />
+                  <input type="text" value="Campanha-sem_nome-2026-10-29" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs text-slate-800 font-medium focus:outline-none focus:border-orange-500" />
                 </div>
-
-                <div class="grid grid-cols-3 gap-2 mb-3">
+                <div class="grid grid-cols-3 gap-2">
                   <div>
                     <label class="block text-[10px] text-slate-500 mb-1">duração</label>
-                    <div class="rounded-xl border border-slate-200 px-2.5 py-1.5 text-[11px] font-medium text-slate-700 whitespace-nowrap">
-                      4 semanas
-                    </div>
+                    <div class="rounded-xl border border-slate-200 px-2.5 py-1.5 text-[11px] font-medium text-slate-700">4 semanas</div>
                   </div>
                   <div>
                     <label class="block text-[10px] text-slate-500 mb-1">Início</label>
-                    <div class="rounded-xl border border-slate-200 px-2.5 py-1.5 text-[11px] font-medium text-slate-700 whitespace-nowrap">
-                      26/10/2026
-                    </div>
+                    <div class="rounded-xl border border-slate-200 px-2.5 py-1.5 text-[11px] font-medium text-slate-700">29/10/2026</div>
                   </div>
                   <div>
                     <label class="block text-[10px] text-slate-500 mb-1">Fim</label>
-                    <div class="rounded-xl border border-slate-200 px-2.5 py-1.5 text-[11px] font-medium text-slate-500 bg-slate-50 whitespace-nowrap">
-                      22/11/2026
-                    </div>
+                    <div class="rounded-xl border border-slate-200 px-2.5 py-1.5 text-[11px] font-medium text-slate-500 bg-slate-50">26/11/2026</div>
                   </div>
-                </div>
-
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px] font-medium">Elevadores Residenciais</span>
-                  <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px] font-medium">Elevadores Comerciais</span>
-                  <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px] font-medium">Digital</span>
                 </div>
               </div>
 
-              <!-- 2. PERFORMANCE PROJETADA -->
               <div class="pb-4 mb-4 border-b border-slate-100">
                 <h3 class="text-sm font-bold text-slate-800 mb-2.5">Performance projetada</h3>
-                
-                <div class="mb-3 pb-3 border-b border-slate-100">
-                  <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-xs font-bold text-slate-700">Digital</span>
-                    <span class="text-xs font-bold text-slate-900">124 mil impressões</span>
-                  </div>
-                  <div class="flex flex-wrap gap-1">
-                    <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-red-600 text-white">g1</span>
-                    <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-600 text-white">ge</span>
-                    <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-orange-500 text-white">gshow</span>
-                    <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-fuchsia-700 text-white">receitas</span>
-                    <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-blue-600 text-white">globo.com</span>
-                  </div>
-                </div>
-
-                <div>
-                  <div class="text-xs font-bold text-slate-700 mb-2">OOH | Out of Home</div>
-                  <div class="grid grid-cols-3 gap-2.5 text-xs bg-slate-50 p-2.5 rounded-xl">
-                    <div>
-                      <div class="text-[10px] text-slate-400">exibições</div>
-                      <div class="font-bold text-slate-900 whitespace-nowrap">208,27 mil</div>
-                    </div>
-                    <div>
-                      <div class="text-[10px] text-slate-400">alcance</div>
-                      <div class="font-bold text-slate-900 whitespace-nowrap">43,15 mil</div>
-                    </div>
-                    <div>
-                      <div class="text-[10px] text-slate-400">impacto</div>
-                      <div class="font-bold text-slate-900 whitespace-nowrap">283,15 mil</div>
-                    </div>
-                  </div>
+                <div class="grid grid-cols-3 gap-2.5 text-xs bg-slate-50 p-2.5 rounded-xl">
+                  <div><div class="text-[10px] text-slate-400">exibições OOH</div><div class="font-bold text-slate-900">208,27 mil</div></div>
+                  <div><div class="text-[10px] text-slate-400">alcance OOH</div><div class="font-bold text-slate-900">43,15 mil</div></div>
+                  <div><div class="text-[10px] text-slate-400">impacto OOH</div><div class="font-bold text-slate-900">283,15 mil</div></div>
                 </div>
               </div>
 
               <!-- ========================================================= -->
-              <!-- 3. SEÇÃO "VALOR" (ESTÍMULO APENAS EMBAIXO, SEM %)         -->
+              <!-- 3. SEÇÃO "VALOR" — CARD PRETO VENCEDOR (5 FAIXAS OOH)     -->
               <!-- ========================================================= -->
               <div id="secao-valor-anchor">
-                
-                <!-- Header Valor + Controle de Cupom -->
                 <div class="flex items-center justify-between gap-2 mb-2.5">
                   <h3 class="text-base font-bold text-slate-900">Valor</h3>
                   
-                  <!-- Estado padrão: sem cupom manual -->
                   <div id="coupon-header-default" class="text-xs text-slate-500">
                     Possui cupom? <button onclick="setCouponScenario('smaller')" class="text-emerald-600 hover:underline font-semibold ml-0.5">Adicionar</button>
                   </div>
 
-                  <!-- Estado com cupom inserido pelo usuário -->
                   <div id="coupon-header-active" class="hidden flex items-center gap-1.5">
-                    <span id="coupon-badge-code" class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-[11px] font-bold text-slate-700">
-                      PARCEIRO200
-                    </span>
-                    <button onclick="setCouponScenario('none')" class="text-[11px] text-slate-400 hover:text-red-600 underline">
-                      remover
-                    </button>
+                    <span id="coupon-badge-code" class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-[11px] font-bold text-slate-700">PARCEIRO200</span>
+                    <button onclick="setCouponScenario('none')" class="text-[11px] text-slate-400 hover:text-red-600 underline">remover</button>
                   </div>
                 </div>
 
-                <!-- ===================================================== -->
-                <!-- BOX DE ESTÍMULO (SEM BARRA DE %, SEM REPETIÇÃO ACIMA) -->
-                <!-- ===================================================== -->
-                <div id="valor-opt-compact" class="rounded-xl p-3.5 mb-3.5 border transition-all">
-                  <div class="flex items-start gap-2.5">
-                    <span id="vcompact-icon" class="shrink-0 mt-0.5"></span>
-                    <div class="min-w-0 flex-1">
-                      <div id="vcompact-title" class="text-xs font-bold leading-snug"></div>
-                      <div id="vcompact-rule" class="text-[11px] leading-snug mt-1">
-                        Aplicado apenas em OOH · Válido até 31/10 · Uso único por conta
+                <!-- CARD PRETO (DARK) DE ESTÍMULO PROGRESSIVO EM 5 FAIXAS -->
+                <div id="valor-dark-box" class="rounded-xl p-3.5 mb-3.5 bg-slate-900 text-white border border-slate-800 border-l-4 border-l-orange-500 shadow-md transition-all">
+                  
+                  <!-- Linha Principal: Ícone + Mensagem Direta da Faixa Atual/Próxima -->
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="flex items-start gap-2 min-w-0 flex-1">
+                      <span id="vdark-icon" class="text-orange-400 shrink-0 mt-0.5"></span>
+                      <div class="min-w-0 flex-1">
+                        <div id="vdark-headline" class="text-xs font-extrabold text-white leading-snug"></div>
+                        <div id="vdark-subline" class="text-[11px] text-slate-300 leading-snug mt-0.5"></div>
                       </div>
                     </div>
+                    <button id="vdark-toggle-btn" onclick="toggleTiersTable()" class="hidden shrink-0 text-[10px] font-bold text-orange-400 hover:text-orange-300 underline whitespace-nowrap mt-0.5">
+                      ver 5 faixas
+                    </button>
+                  </div>
+
+                  <!-- Trilha Visual das 5 Faixas (Zero %, Apenas Valores Reais em R$) -->
+                  <div id="vdark-tiers-strip" class="grid grid-cols-5 gap-1 mt-3 pt-2.5 border-t border-slate-800"></div>
+
+                  <!-- Disclaimer Enxuto -->
+                  <div id="vdark-disclaimer" class="text-[10px] text-slate-400 leading-snug mt-2">
+                    Aplicado apenas em OOH · 1 cupom por pedido · Válido até 31/10
                   </div>
                 </div>
 
@@ -612,7 +481,6 @@
                     <span id="plano-digital-val" class="font-medium text-slate-700">R$ 2.000,00</span>
                   </div>
                   
-                  <!-- Linha de Campanha Out of Home -->
                   <div class="flex justify-between items-baseline text-slate-600">
                     <span>Campanha Out of Home</span>
                     <div class="text-right">
@@ -629,15 +497,15 @@
                   <!-- Linha de Desconto OOH -->
                   <div id="plano-discount-row" class="flex justify-between items-center text-emerald-700 font-semibold hidden">
                     <span id="plano-discount-label">Desconto OOH</span>
-                    <span id="plano-discount-val">- R$ 500,00</span>
+                    <span id="plano-discount-val" class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-extrabold text-xs">- R$ 100,00</span>
                   </div>
 
                   <!-- Linha Total -->
                   <div class="flex justify-between items-baseline pt-2.5 pb-1 border-t border-slate-100">
                     <span class="text-sm font-bold text-slate-900">Total</span>
                     <div class="text-right flex items-baseline gap-2">
-                      <span id="plano-total-old-val" class="text-xs text-slate-400 line-through hidden">R$ 3.295,68</span>
-                      <span id="plano-final-price" class="text-xl font-extrabold text-slate-900">R$ 2.400,00</span>
+                      <span id="plano-total-old-val" class="text-xs text-slate-400 line-through hidden">R$ 2.400,00</span>
+                      <span id="plano-final-price" class="text-xl font-black text-emerald-700">R$ 2.300,00</span>
                     </div>
                   </div>
                 </div>
@@ -663,33 +531,35 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- STICKY FOOTER NA VITRINE OOH (APENAS EMBAIXO, SEM PROGRESSÃO/%)     -->
+    <!-- STICKY FOOTER NA VITRINE OOH (TEMA PRETO VENCEDOR — 5 FAIXAS)       -->
     <!-- =================================================================== -->
     <footer id="sticky-footer" class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] shrink-0 hidden">
       
-      <!-- Faixa de Estímulo embaixo (SOMENTE na Vitrine OOH!) -->
-      <div id="footer-promo-strip" class="w-full transition-all duration-300">
+      <!-- Faixa Preta de Estímulo embaixo (SOMENTE na Vitrine OOH) -->
+      <div id="footer-promo-strip" class="w-full bg-slate-900 text-white border-b border-slate-800 transition-all duration-300">
         <div class="max-w-[1380px] mx-auto px-3.5 py-2.5">
-          <div class="flex items-start gap-2.5 min-w-0">
-            <span id="footer-strip-icon" class="shrink-0 mt-0.5"></span>
-            <div class="min-w-0 flex-1">
-              <p id="footer-strip-text" class="text-xs font-bold leading-snug"></p>
-              <p id="footer-strip-subtext" class="text-[11px] leading-snug mt-0.5"></p>
+          <div class="flex items-start justify-between gap-2">
+            <div class="flex items-start gap-2 min-w-0 flex-1">
+              <span id="footer-strip-icon" class="text-orange-400 shrink-0 mt-0.5"></span>
+              <div class="min-w-0 flex-1">
+                <p id="footer-strip-text" class="text-xs font-extrabold text-white leading-snug"></p>
+                <p id="footer-strip-subtext" class="text-[11px] text-slate-300 leading-snug mt-0.5"></p>
+              </div>
             </div>
           </div>
+          <!-- Trilha das 5 faixas no rodapé da Vitrine -->
+          <div id="footer-tiers-strip" class="grid grid-cols-5 gap-1 mt-2 pt-2 border-t border-slate-800"></div>
         </div>
       </div>
 
       <!-- Bloco de Checkout -->
-      <div id="footer-checkout-bar" class="hidden max-w-[1380px] mx-auto px-3.5 py-2.5 flex items-center justify-between gap-3 border-t border-slate-200/80 bg-white">
+      <div id="footer-checkout-bar" class="hidden max-w-[1380px] mx-auto px-3.5 py-2.5 flex items-center justify-between gap-3 bg-white">
         <div class="flex-1 min-w-0">
-          <div id="footer-selected-count" class="text-[11px] text-slate-500 font-medium leading-snug">
-            3 produtos selecionados
-          </div>
+          <div id="footer-selected-count" class="text-[11px] text-slate-500 font-medium leading-snug">3 produtos selecionados</div>
           <div class="flex items-baseline gap-1.5 flex-wrap mt-0.5">
             <span class="text-xs font-bold text-slate-900">Total</span>
-            <span id="footer-old-total" class="text-xs text-slate-400 line-through hidden">R$ 3.295,68</span>
-            <span id="footer-final-total" class="text-base font-extrabold text-slate-900">R$ 2.795,68</span>
+            <span id="footer-old-total" class="text-xs text-slate-400 line-through hidden">R$ 2.400,00</span>
+            <span id="footer-final-total" class="text-base font-extrabold text-emerald-700">R$ 2.300,00</span>
           </div>
         </div>
 
@@ -702,52 +572,32 @@
 
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- MOTOR DE REGRAS DE NEGÓCIO (JAVASCRIPT)                               -->
-  <!-- ===================================================================== -->
+  <!-- MOTOR DE REGRAS DAS 5 FAIXAS PROGRESSIVAS OOH -->
   <script>
-    const PROMO_RULES = {
-      minSpend: 1000.00,
-      discountOOH: 500.00,
-      disclaimer: 'Aplicado apenas em OOH · Válido até 31/10 · Uso único por conta'
-    };
+    const OOH_TIERS = [
+      { id: 1, min: 200,   max: 999.99,  discount: 100,  offLabel: '-R$ 100',   minLabel: 'R$ 200+' },
+      { id: 2, min: 1000,  max: 2999.99, discount: 500,  offLabel: '-R$ 500',   minLabel: 'R$ 1 mil+' },
+      { id: 3, min: 3000,  max: 4999.99, discount: 1000, offLabel: '-R$ 1 mil', minLabel: 'R$ 3 mil+' },
+      { id: 4, min: 5000,  max: 9999.99, discount: 1500, offLabel: '-R$ 1,5 mil', minLabel: 'R$ 5 mil+' },
+      { id: 5, min: 10000, max: Infinity, discount: 2000, offLabel: '-R$ 2 mil', minLabel: 'R$ 10 mil+' }
+    ];
 
     const COUPON_SCENARIOS = {
       none: null,
-      smaller: {
-        code: 'PARCEIRO200',
-        amount: 200.00
-      },
-      larger: {
-        code: 'VIP800',
-        amount: 800.00
-      }
+      smaller: { code: 'PARCEIRO200', amount: 200.00 },
+      larger:  { code: 'VIP800',      amount: 800.00 }
     };
 
-    const SVG_TAG_ICON = `
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
-      </svg>
-    `;
-
-    const SVG_CHECK_ICON = `
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
-    `;
-
-    const SVG_INFO_ICON = `
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
-      </svg>
-    `;
+    const SVG_TAG_ICON = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>`;
+    const SVG_CHECK_ICON = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+    const SVG_INFO_ICON = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`;
 
     let currentScreen = 'plano';
     let viewportMode = 'mobile';
-    let visualStyle = 'chamativo'; // 'sutil' | 'chamativo' | 'dark-ticket'
+    let darkVariant = 'steps'; // 'steps' | 'compact'
+    let compactExpanded = false;
     let showMobileMap = false;
     let couponScenario = 'none';
-    let hybridRuleMode = 'strict-ooh';
 
     const oohCatalog = [
       {
@@ -757,95 +607,91 @@
         typeBadge: 'elevadores residenciais',
         distance: '82 m',
         address: 'Rua Fernão Dias, 323, Pinheiros, São Paulo, SP',
-        views: '38,98 mil',
-        reach: '680',
-        freq: '55',
-        screens: 4,
+        views: '38,98 mil', reach: '680', freq: '55', screens: 4,
         price: 400.00,
         selected: true,
         image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80'
       },
       {
         id: 'p2',
-        name: 'Maria Cristina',
+        name: 'Maria Cristina Center',
         shortType: 'comercial',
         typeBadge: 'elevadores comerciais',
         distance: '100 m',
-        address: 'Avenida Brigadeiro Faria Lima, Pinheiros, São Paulo, SP',
-        views: '14,4 mil',
-        reach: '2,11 mil',
-        freq: '4',
-        screens: 3,
-        price: 895.68,
+        address: 'Av. Brig. Faria Lima, Pinheiros, São Paulo, SP',
+        views: '54,4 mil', reach: '2,11 mil', freq: '12', screens: 3,
+        price: 895.00,
         selected: false,
         image: 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=600&q=80'
       },
       {
         id: 'p3',
-        name: 'Edifício Corporate Pinheiros',
+        name: 'Corporate Faria Lima Plaza',
         shortType: 'comercial',
         typeBadge: 'elevadores comerciais',
-        distance: '208 m',
-        address: 'Avenida Brigadeiro Faria Lima, 1100, Pinheiros, SP',
-        views: '28,2 mil',
-        reach: '3,40 mil',
-        freq: '8',
-        screens: 4,
-        price: 1150.00,
+        distance: '210 m',
+        address: 'Av. Brig. Faria Lima, 1800, Pinheiros, SP',
+        views: '142,0 mil', reach: '18,5 mil', freq: '14', screens: 8,
+        price: 2150.00,
         selected: false,
         image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'p4',
+        name: 'Circuito Relógios Pinheiros / Rebouças',
+        shortType: 'mobiliário urbano',
+        typeBadge: 'relógios de rua',
+        distance: '340 m',
+        address: 'Eixo Av. Rebouças x Largo da Batata, SP',
+        views: '390,0 mil', reach: '95,0 mil', freq: '9', screens: 6,
+        price: 2400.00,
+        selected: false,
+        image: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=600&q=80'
+      },
+      {
+        id: 'p5',
+        name: ' Circuito Empresarial Itaim & Faria Lima',
+        shortType: 'comercial',
+        typeBadge: 'elevadores comerciais',
+        distance: '650 m',
+        address: 'Av. Brig. Faria Lima, 3400, Itaim Bibi, SP',
+        views: '680,0 mil', reach: '140,0 mil', freq: '16', screens: 18,
+        price: 4500.00,
+        selected: false,
+        image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=600&q=80'
       }
     ];
 
     const digitalCatalog = [
-      {
-        id: 'd1',
-        name: 'Display - Portais Globo',
-        badges: [{ text: 'display', style: 'bg-slate-800 text-white' }],
-        impressions: '110.000',
-        cpm: '9.09',
-        price: 1000.00,
-        selected: true
-      },
-      {
-        id: 'd2',
-        name: 'Vídeo de 15 segundos - Portais Globo',
-        badges: [
-          { text: 'sem skip', style: 'bg-emerald-600 text-white' },
-          { text: 'vídeo', style: 'bg-slate-800 text-white' }
-        ],
-        impressions: '14.000',
-        cpm: '71.42',
-        price: 1000.00,
-        selected: true
-      }
+      { id: 'd1', name: 'Display - Portais Globo', badges: [{ text: 'display', style: 'bg-slate-800 text-white' }], impressions: '110.000', cpm: '9.09', price: 1000.00, selected: true },
+      { id: 'd2', name: 'Vídeo de 15 segundos - Portais Globo', badges: [{ text: 'sem skip', style: 'bg-emerald-600 text-white' }, { text: 'vídeo', style: 'bg-slate-800 text-white' }], impressions: '14.000', cpm: '71.42', price: 1000.00, selected: true }
     ];
 
     function formatBRL(value) {
       return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
-    function setVisualStyle(style) {
-      visualStyle = style;
-      const btnSutil = document.getElementById('style-btn-sutil');
-      const btnChamativo = document.getElementById('style-btn-chamativo');
-      const btnDark = document.getElementById('style-btn-dark-ticket');
+    function formatBRLShort(value) {
+      if (value % 1 === 0) {
+        return 'R$ ' + value.toLocaleString('pt-BR');
+      }
+      return formatBRL(value);
+    }
 
-      btnSutil.className = style === 'sutil'
-        ? 'px-2.5 py-1 rounded-md font-bold transition bg-slate-600 text-white shadow'
+    function setDarkVariant(variant) {
+      darkVariant = variant;
+      compactExpanded = false;
+      document.getElementById('dark-btn-steps').className = variant === 'steps'
+        ? 'px-2.5 py-1 rounded-md font-bold transition bg-orange-600 text-white shadow'
         : 'px-2.5 py-1 rounded-md font-semibold transition text-slate-300 hover:text-white';
-      btnChamativo.className = style === 'chamativo'
-        ? 'px-2.5 py-1 rounded-md font-bold transition bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow'
+      document.getElementById('dark-btn-compact').className = variant === 'compact'
+        ? 'px-2.5 py-1 rounded-md font-bold transition bg-orange-600 text-white shadow'
         : 'px-2.5 py-1 rounded-md font-semibold transition text-slate-300 hover:text-white';
-      btnDark.className = style === 'dark-ticket'
-        ? 'px-2.5 py-1 rounded-md font-bold transition bg-indigo-600 text-white shadow'
-        : 'px-2.5 py-1 rounded-md font-semibold transition text-slate-300 hover:text-white';
-
       renderAll();
     }
 
-    function changeHybridRule(val) {
-      hybridRuleMode = val;
+    function toggleTiersTable() {
+      compactExpanded = !compactExpanded;
       renderAll();
     }
 
@@ -858,66 +704,286 @@
       const digSum = +selectedDigital.reduce((acc, item) => acc + item.price, 0).toFixed(2);
       const subtotal = +(oohSum + digSum).toFixed(2);
 
-      const isEmpty = count === 0;
-      const hasOOH = oohSum > 0;
+      // Identificar faixa atual e próxima faixa
+      let currentTier = null;
+      let nextTier = OOH_TIERS[0];
 
-      let oohUnlocked = false;
-      let missingOOH = 0;
-      let rawOohPromoVal = 0;
-      let isCappedByOoh = false;
-
-      if (hybridRuleMode === 'strict-ooh') {
-        oohUnlocked = oohSum >= PROMO_RULES.minSpend;
-        missingOOH = oohUnlocked ? 0 : +(PROMO_RULES.minSpend - oohSum).toFixed(2);
-        rawOohPromoVal = oohUnlocked ? Math.min(oohSum, PROMO_RULES.discountOOH) : 0;
-      } else {
-        oohUnlocked = hasOOH && (subtotal >= PROMO_RULES.minSpend);
-        missingOOH = oohUnlocked ? 0 : +(PROMO_RULES.minSpend - subtotal).toFixed(2);
-        if (oohUnlocked) {
-          rawOohPromoVal = Math.min(oohSum, PROMO_RULES.discountOOH);
-          isCappedByOoh = oohSum < PROMO_RULES.discountOOH;
+      for (let i = 0; i < OOH_TIERS.length; i++) {
+        if (oohSum >= OOH_TIERS[i].min) {
+          currentTier = OOH_TIERS[i];
+          nextTier = OOH_TIERS[i + 1] || null;
         }
       }
 
+      const missingForNext = nextTier ? +(nextTier.min - oohSum).toFixed(2) : 0;
+      const progressiveDiscount = currentTier ? currentTier.discount : 0;
+
+      // Resolver conflito com cupom manual se houver
       const activeCoupon = COUPON_SCENARIOS[couponScenario];
       let appliedType = 'none';
       let appliedDiscount = 0;
 
-      if (rawOohPromoVal > 0 && activeCoupon) {
-        if (activeCoupon.amount > PROMO_RULES.discountOOH) {
+      if (oohSum > 0) {
+        if (activeCoupon && activeCoupon.amount > progressiveDiscount) {
           appliedType = 'coupon';
           appliedDiscount = Math.min(oohSum, activeCoupon.amount);
-        } else {
-          appliedType = 'ooh_promo';
-          appliedDiscount = rawOohPromoVal;
+        } else if (progressiveDiscount > 0) {
+          appliedType = 'progressive';
+          appliedDiscount = Math.min(oohSum, progressiveDiscount);
+        } else if (activeCoupon) {
+          appliedType = 'coupon';
+          appliedDiscount = Math.min(oohSum, activeCoupon.amount);
         }
-      } else if (rawOohPromoVal > 0) {
-        appliedType = 'ooh_promo';
-        appliedDiscount = rawOohPromoVal;
-      } else if (activeCoupon && hasOOH) {
-        appliedType = 'coupon';
-        appliedDiscount = Math.min(oohSum, activeCoupon.amount);
       }
 
       const netOOH = Math.max(0, +(oohSum - appliedDiscount).toFixed(2));
       const finalTotal = +(digSum + netOOH).toFixed(2);
 
       return {
-        isEmpty,
-        hasOOH,
-        isCappedByOoh,
+        isEmpty: count === 0,
+        hasOOH: oohSum > 0,
         count,
         digSum,
         oohSum,
         netOOH,
         subtotal,
-        oohUnlocked,
-        missingOOH,
+        currentTier,
+        nextTier,
+        missingForNext,
+        progressiveDiscount,
         activeCoupon,
         appliedType,
         appliedDiscount,
         finalTotal
       };
+    }
+
+    function buildTiersStripHTML(summary) {
+      return OOH_TIERS.map(tier => {
+        const isCurrent = summary.currentTier && summary.currentTier.id === tier.id;
+        const isPassed = summary.currentTier && summary.currentTier.id > tier.id;
+        const isNextTarget = (!summary.currentTier && tier.id === 1) || (summary.nextTier && summary.nextTier.id === tier.id);
+
+        let boxClass = 'bg-slate-800/80 border-slate-700/80 text-slate-400';
+        let discountClass = 'text-slate-300 font-bold';
+        let minClass = 'text-slate-500';
+
+        if (isCurrent) {
+          boxClass = 'bg-emerald-500/20 border-emerald-400 text-white ring-1 ring-emerald-400/50';
+          discountClass = 'text-emerald-300 font-extrabold';
+          minClass = 'text-emerald-200 font-semibold';
+        } else if (isPassed) {
+          boxClass = 'bg-emerald-950/60 border-emerald-700/60 text-emerald-400/80';
+          discountClass = 'text-emerald-400 font-bold';
+          minClass = 'text-emerald-500/80';
+        } else if (isNextTarget) {
+          boxClass = 'bg-orange-500/20 border-orange-500 text-white ring-1 ring-orange-500/40';
+          discountClass = 'text-orange-300 font-extrabold';
+          minClass = 'text-orange-200/90 font-medium';
+        }
+
+        return `
+          <div class="rounded-lg border px-1 py-1.5 text-center transition-all ${boxClass}">
+            <div class="text-[10px] leading-tight whitespace-nowrap ${discountClass}">${tier.offLabel}</div>
+            <div class="text-[9px] leading-tight mt-0.5 whitespace-nowrap ${minClass}">${tier.minLabel}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateAllPromoVisuals() {
+      const summary = getCartSummary();
+
+      // Destacar botão de faixa ativa na barra de testes
+      const activeTierNum = summary.currentTier ? summary.currentTier.id : 0;
+      [0, 1, 2, 3, 4, 5].forEach(num => {
+        const btn = document.getElementById(`tier-btn-${num}`);
+        if (!btn) return;
+        btn.className = (num === activeTierNum)
+          ? 'px-2 py-1 rounded-md bg-orange-600 text-white border border-orange-500 font-semibold transition'
+          : 'px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition';
+      });
+
+      const cartBadge = document.getElementById('header-cart-badge');
+      cartBadge.textContent = summary.count;
+      cartBadge.classList.toggle('hidden', summary.isEmpty);
+
+      // Textos dinâmicos da progressão das 5 faixas (sem %!)
+      let headlineHTML = '';
+      let sublineHTML = '';
+      let iconHTML = SVG_TAG_ICON;
+      let iconColorClass = 'text-orange-400 shrink-0 mt-0.5';
+      let leftBorderClass = 'border-l-orange-500';
+
+      if (summary.appliedType === 'coupon' && summary.activeCoupon) {
+        // Caso o usuário tenha um cupom VIP maior que a faixa atual
+        iconHTML = SVG_INFO_ICON;
+        iconColorClass = 'text-indigo-400 shrink-0 mt-0.5';
+        leftBorderClass = 'border-l-indigo-400';
+        headlineHTML = `Cupom ${summary.activeCoupon.code} ativo (-${formatBRLShort(summary.appliedDiscount)} em OOH)`;
+        if (summary.nextTier && summary.nextTier.discount > summary.activeCoupon.amount) {
+          sublineHTML = `Adicione +${formatBRL(summary.missingForNext)} em OOH para destravar <strong class="text-orange-300">${formatBRLShort(summary.nextTier.discount)} OFF</strong> (até R$ 2 mil OFF)`;
+        } else {
+          sublineHTML = `Maior que a faixa atual de ${formatBRLShort(summary.progressiveDiscount)} OFF (1 cupom por pedido)`;
+        }
+      } else if (!summary.currentTier) {
+        // Abaixo de R$ 200 em OOH
+        iconHTML = SVG_TAG_ICON;
+        iconColorClass = 'text-orange-400 shrink-0 mt-0.5';
+        leftBorderClass = 'border-l-orange-500';
+        if (summary.oohSum === 0) {
+          headlineHTML = `Desconto progressivo: até <span class="text-orange-400">R$ 2.000 OFF</span> em OOH`;
+          sublineHTML = `A partir de R$ 200 em OOH você já ganha <strong class="text-emerald-300">R$ 100 OFF</strong>`;
+        } else {
+          headlineHTML = `Faltam <span class="text-orange-400">${formatBRL(summary.missingForNext)}</span> em OOH para <span class="text-emerald-300">R$ 100 OFF</span>`;
+          sublineHTML = `Desconto progressivo em 5 faixas: chega a <strong class="text-white">R$ 2.000 OFF</strong>`;
+        }
+      } else if (summary.nextTier) {
+        // Entre Faixa 1 e Faixa 4 (Já ganhou desconto e tem próxima faixa para estimular!)
+        iconHTML = SVG_CHECK_ICON;
+        iconColorClass = 'text-emerald-400 shrink-0 mt-0.5';
+        leftBorderClass = 'border-l-emerald-400';
+        headlineHTML = `Você já ganhou <span class="text-emerald-300">${formatBRLShort(summary.currentTier.discount)} OFF</span> em OOH`;
+        sublineHTML = `Faltam <strong class="text-orange-300">${formatBRL(summary.missingForNext)}</strong> em OOH para subir para <strong class="text-orange-300">${formatBRLShort(summary.nextTier.discount)} OFF</strong>`;
+        if (summary.activeCoupon && summary.activeCoupon.amount <= summary.progressiveDiscount) {
+          sublineHTML += ` · Substitui cupom ${summary.activeCoupon.code}`;
+        }
+      } else {
+        // Faixa 5 Máxima (R$ 10.000+ em OOH -> R$ 2.000 OFF)
+        iconHTML = SVG_CHECK_ICON;
+        iconColorClass = 'text-emerald-400 shrink-0 mt-0.5';
+        leftBorderClass = 'border-l-emerald-400';
+        headlineHTML = `Desconto máximo atingido: <span class="text-emerald-300">R$ 2.000 OFF</span> em OOH`;
+        sublineHTML = `Você desbloqueou a maior faixa do cupom progressivo OOH`;
+      }
+
+      const tiersStripHTML = buildTiersStripHTML(summary);
+
+      // =====================================================================
+      // 1. ATUALIZAR STICKY FOOTER DA VITRINE OOH (APENAS EMBAIXO)
+      // =====================================================================
+      const footerPromoStrip = document.getElementById('footer-promo-strip');
+      const footerCheckoutBar = document.getElementById('footer-checkout-bar');
+      const footerStripIcon = document.getElementById('footer-strip-icon');
+      const footerStripText = document.getElementById('footer-strip-text');
+      const footerStripSubtext = document.getElementById('footer-strip-subtext');
+      const footerTiersStrip = document.getElementById('footer-tiers-strip');
+
+      if (currentScreen === 'globo') {
+        footerPromoStrip.classList.add('hidden');
+        footerCheckoutBar.classList.toggle('hidden', summary.isEmpty);
+      } else if (currentScreen === 'vitrine') {
+        footerPromoStrip.classList.remove('hidden');
+        footerStripIcon.className = iconColorClass;
+        footerStripIcon.innerHTML = iconHTML;
+        footerStripText.innerHTML = headlineHTML;
+        footerStripSubtext.innerHTML = sublineHTML;
+        footerTiersStrip.innerHTML = tiersStripHTML;
+        footerTiersStrip.classList.toggle('hidden', darkVariant === 'compact' && !compactExpanded);
+        footerCheckoutBar.classList.toggle('hidden', summary.isEmpty);
+      }
+
+      document.getElementById('footer-selected-count').textContent = `${summary.count} ${summary.count === 1 ? 'produto selecionado' : 'produtos selecionados'}`;
+      const footerOldTotal = document.getElementById('footer-old-total');
+      const footerFinalTotal = document.getElementById('footer-final-total');
+      if (summary.appliedDiscount > 0 && currentScreen !== 'globo') {
+        footerOldTotal.textContent = formatBRL(summary.subtotal);
+        footerOldTotal.classList.remove('hidden');
+        footerFinalTotal.textContent = formatBRL(summary.finalTotal);
+        footerFinalTotal.className = 'text-base font-extrabold text-emerald-700';
+      } else {
+        footerOldTotal.classList.add('hidden');
+        footerFinalTotal.textContent = formatBRL(summary.subtotal);
+        footerFinalTotal.className = 'text-base font-extrabold text-slate-900';
+      }
+
+      // =====================================================================
+      // 2. ATUALIZAR SEÇÃO "VALOR" NO PLANO DE MÍDIA
+      // =====================================================================
+      const couponHeaderDefault = document.getElementById('coupon-header-default');
+      const couponHeaderActive = document.getElementById('coupon-header-active');
+      const couponBadgeCode = document.getElementById('coupon-badge-code');
+
+      if (summary.activeCoupon) {
+        couponHeaderDefault.classList.add('hidden');
+        couponHeaderActive.classList.remove('hidden');
+        couponBadgeCode.textContent = `Cupom: ${summary.activeCoupon.code}`;
+      } else {
+        couponHeaderDefault.classList.remove('hidden');
+        couponHeaderActive.classList.add('hidden');
+      }
+
+      const valorDarkBox = document.getElementById('valor-dark-box');
+      const vdarkIcon = document.getElementById('vdark-icon');
+      const vdarkHeadline = document.getElementById('vdark-headline');
+      const vdarkSubline = document.getElementById('vdark-subline');
+      const vdarkTiersStrip = document.getElementById('vdark-tiers-strip');
+      const vdarkToggleBtn = document.getElementById('vdark-toggle-btn');
+
+      document.getElementById('plano-digital-val').textContent = formatBRL(summary.digSum);
+      document.getElementById('plano-subtotal').textContent = formatBRL(summary.subtotal);
+
+      const planoDiscountRow = document.getElementById('plano-discount-row');
+      const planoDiscountLabel = document.getElementById('plano-discount-label');
+      const planoDiscountVal = document.getElementById('plano-discount-val');
+      const planoOohOldVal = document.getElementById('plano-ooh-old-val');
+      const planoOohVal = document.getElementById('plano-ooh-val');
+      const planoTotalOldVal = document.getElementById('plano-total-old-val');
+      const planoFinalPrice = document.getElementById('plano-final-price');
+
+      planoFinalPrice.textContent = formatBRL(summary.finalTotal);
+
+      // Se o carrinho só tem Globo (zero OOH e não vazio), oculta o card ou mostra convite OOH se vazio
+      if (!summary.hasOOH && !summary.isEmpty) {
+        valorDarkBox.classList.add('hidden');
+        planoDiscountRow.classList.add('hidden');
+        planoOohOldVal.classList.add('hidden');
+        planoTotalOldVal.classList.add('hidden');
+        planoOohVal.textContent = formatBRL(0);
+        planoFinalPrice.className = 'text-xl font-extrabold text-slate-900';
+        return;
+      }
+
+      valorDarkBox.classList.remove('hidden');
+      valorDarkBox.className = `rounded-xl p-3.5 mb-3.5 bg-slate-900 text-white border border-slate-800 border-l-4 ${leftBorderClass} shadow-md transition-all`;
+      vdarkIcon.className = iconColorClass;
+      vdarkIcon.innerHTML = iconHTML;
+      vdarkHeadline.innerHTML = headlineHTML;
+      vdarkSubline.innerHTML = sublineHTML;
+      vdarkTiersStrip.innerHTML = tiersStripHTML;
+
+      if (darkVariant === 'compact') {
+        vdarkToggleBtn.classList.remove('hidden');
+        vdarkToggleBtn.textContent = compactExpanded ? 'ocultar faixas' : 'ver 5 faixas';
+        vdarkTiersStrip.classList.toggle('hidden', !compactExpanded);
+      } else {
+        vdarkToggleBtn.classList.add('hidden');
+        vdarkTiersStrip.classList.remove('hidden');
+      }
+
+      if (summary.appliedDiscount > 0) {
+        planoDiscountRow.classList.remove('hidden');
+        planoDiscountLabel.textContent = summary.appliedType === 'coupon'
+          ? `Desconto OOH (${summary.activeCoupon.code})`
+          : `Desconto progressivo OOH (Faixa ${summary.currentTier.id})`;
+        planoDiscountVal.textContent = `- ${formatBRL(summary.appliedDiscount)}`;
+
+        planoOohOldVal.textContent = formatBRL(summary.oohSum);
+        planoOohOldVal.classList.remove('hidden');
+        planoOohVal.textContent = formatBRL(summary.netOOH);
+        planoOohVal.className = 'font-bold text-emerald-700';
+
+        planoTotalOldVal.textContent = formatBRL(summary.subtotal);
+        planoTotalOldVal.classList.remove('hidden');
+        planoFinalPrice.className = 'text-xl font-black text-emerald-700';
+      } else {
+        planoDiscountRow.classList.add('hidden');
+        planoOohOldVal.classList.add('hidden');
+        planoTotalOldVal.classList.add('hidden');
+        planoOohVal.textContent = formatBRL(summary.oohSum);
+        planoOohVal.className = 'font-medium text-slate-700';
+        planoFinalPrice.className = 'text-xl font-extrabold text-slate-900';
+      }
     }
 
     function setCouponScenario(scenario) {
@@ -926,33 +992,42 @@
         const btn = document.getElementById(`coupon-btn-${key}`);
         if (btn) {
           btn.className = key === scenario
-            ? 'px-2.5 py-1 rounded-md bg-orange-600 text-white font-semibold transition'
-            : 'px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition';
+            ? 'px-2 py-1 rounded-md bg-orange-600 text-white font-semibold transition'
+            : 'px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition';
         }
       });
       renderAll();
     }
 
-    function highlightPresetBtns() {
-      const summary = getCartSummary();
-      const map = {
-        empty: document.getElementById('preset-btn-empty'),
-        hybridLow: document.getElementById('preset-btn-hybrid-low'),
-        hybridUnlocked: document.getElementById('preset-btn-hybrid-unlocked'),
-        onlyglobo: document.getElementById('preset-btn-onlyglobo')
-      };
-      Object.values(map).forEach(btn => {
-        if (btn) btn.className = 'px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition';
-      });
-      if (summary.isEmpty) {
-        map.empty.className = 'px-2 py-1 rounded-md bg-orange-600 text-white border border-orange-500 font-semibold transition';
-      } else if (!summary.hasOOH && summary.digSum > 0) {
-        map.onlyglobo.className = 'px-2 py-1 rounded-md bg-indigo-600 text-white border border-indigo-500 font-semibold transition';
-      } else if (summary.oohSum >= 1000) {
-        map.hybridUnlocked.className = 'px-2 py-1 rounded-md bg-emerald-600 text-white border border-emerald-500 font-semibold transition';
-      } else {
-        map.hybridLow.className = 'px-2 py-1 rounded-md bg-amber-600 text-white border border-amber-500 font-semibold transition';
+    function applyTierPreset(tierNumber) {
+      oohCatalog.forEach(p => p.selected = false);
+      digitalCatalog.forEach(d => d.selected = true);
+
+      if (tierNumber === 0) {
+        digitalCatalog.forEach(d => d.selected = false);
+      } else if (tierNumber === 1) {
+        // R$ 400 OOH -> Faixa 1 (-R$ 100)
+        oohCatalog[0].selected = true;
+      } else if (tierNumber === 2) {
+        // R$ 1.295 OOH -> Faixa 2 (-R$ 500)
+        oohCatalog[0].selected = true;
+        oohCatalog[1].selected = true;
+      } else if (tierNumber === 3) {
+        // R$ 3.445 OOH -> Faixa 3 (-R$ 1.000)
+        oohCatalog[0].selected = true;
+        oohCatalog[1].selected = true;
+        oohCatalog[2].selected = true;
+      } else if (tierNumber === 4) {
+        // R$ 5.845 OOH -> Faixa 4 (-R$ 1.500)
+        oohCatalog[0].selected = true;
+        oohCatalog[1].selected = true;
+        oohCatalog[2].selected = true;
+        oohCatalog[3].selected = true;
+      } else if (tierNumber === 5) {
+        // R$ 10.345 OOH -> Faixa 5 (-R$ 2.000 MÁX)
+        oohCatalog.forEach(p => p.selected = true);
       }
+      setViewportMode(viewportMode);
     }
 
     function setViewportMode(mode) {
@@ -964,13 +1039,10 @@
       const scrollArea = document.getElementById('device-scroll-area');
       const stickyFooter = document.getElementById('sticky-footer');
 
-      const btnDesktop = document.getElementById('btn-mode-desktop');
-      const btnMobile = document.getElementById('btn-mode-mobile');
-
-      btnDesktop.className = isMob
+      document.getElementById('btn-mode-desktop').className = isMob
         ? 'px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 text-slate-300 hover:text-white'
         : 'px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 bg-orange-600 text-white';
-      btnMobile.className = isMob
+      document.getElementById('btn-mode-mobile').className = isMob
         ? 'px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 bg-orange-600 text-white'
         : 'px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 text-slate-300 hover:text-white';
 
@@ -986,7 +1058,7 @@
           : 'hidden';
       } else {
         body.classList.remove('mobile-mode-bg');
-        shell.className = showFooter ? 'w-full flex-1 flex flex-col pb-32' : 'w-full flex-1 flex flex-col pb-12';
+        shell.className = showFooter ? 'w-full flex-1 flex flex-col pb-40' : 'w-full flex-1 flex flex-col pb-12';
         scrollArea.className = 'w-full flex-1 flex flex-col';
         stickyFooter.className = showFooter
           ? 'fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]'
@@ -1054,9 +1126,7 @@
         const isSelected = item.selected;
         return `
           <div class="rounded-2xl border transition-all duration-200 overflow-hidden flex flex-col justify-between ${
-            isSelected 
-              ? 'bg-emerald-50/50 border-emerald-500 shadow-sm' 
-              : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'
+            isSelected ? 'bg-emerald-50/50 border-emerald-500 shadow-sm' : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'
           }">
             <div>
               <div class="relative h-36 w-full bg-slate-200 overflow-hidden">
@@ -1145,256 +1215,6 @@
       `).join('');
     }
 
-    function updateAllPromoVisuals() {
-      const summary = getCartSummary();
-      const isLoud = visualStyle !== 'sutil';
-      const isDarkTicket = visualStyle === 'dark-ticket';
-
-      highlightPresetBtns();
-
-      const cartBadge = document.getElementById('header-cart-badge');
-      cartBadge.textContent = summary.count;
-      cartBadge.classList.toggle('hidden', summary.isEmpty);
-
-      // =====================================================================
-      // 1. VITRINE OOH: APENAS STICKY FOOTER EMBAIXO (SEM BANNER REPETIDO ACIMA E SEM %)
-      // =====================================================================
-      const footerPromoStrip = document.getElementById('footer-promo-strip');
-      const footerCheckoutBar = document.getElementById('footer-checkout-bar');
-      const footerStripIcon = document.getElementById('footer-strip-icon');
-      const footerStripText = document.getElementById('footer-strip-text');
-      const footerStripSubtext = document.getElementById('footer-strip-subtext');
-
-      if (currentScreen === 'globo') {
-        footerPromoStrip.classList.add('hidden');
-        footerCheckoutBar.classList.toggle('hidden', summary.isEmpty);
-      } else if (currentScreen === 'vitrine') {
-        footerPromoStrip.classList.remove('hidden');
-
-        if (!summary.hasOOH) {
-          if (isLoud) {
-            footerPromoStrip.className = isDarkTicket
-              ? 'w-full transition-all duration-300 bg-slate-900 text-white border-b border-slate-700'
-              : 'w-full transition-all duration-300 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white';
-            footerStripIcon.className = isDarkTicket ? 'text-orange-400 shrink-0 mt-0.5' : 'text-white shrink-0 mt-0.5';
-            footerStripIcon.innerHTML = SVG_TAG_ICON;
-            footerStripText.innerHTML = `<span class="text-white font-extrabold">Ganhe R$ 500 OFF acima de R$ 1.000 em OOH</span>`;
-            footerStripSubtext.className = 'text-[11px] text-white/90 leading-snug mt-0.5';
-          } else {
-            footerPromoStrip.className = 'w-full transition-all duration-300 bg-orange-50/95 border-b border-orange-200/80';
-            footerStripIcon.className = 'text-orange-600 shrink-0 mt-0.5';
-            footerStripIcon.innerHTML = SVG_TAG_ICON;
-            footerStripText.innerHTML = `Ganhe <span class="text-emerald-700 font-extrabold">R$ 500 OFF</span> acima de R$ 1.000 em OOH`;
-            footerStripSubtext.className = 'text-[11px] text-slate-600 leading-snug mt-0.5';
-          }
-          footerStripSubtext.textContent = PROMO_RULES.disclaimer;
-          footerCheckoutBar.classList.toggle('hidden', summary.isEmpty);
-        } else if (summary.oohUnlocked) {
-          if (isLoud) {
-            footerPromoStrip.className = isDarkTicket
-              ? 'w-full transition-all duration-300 bg-slate-900 text-white border-b border-emerald-500/40'
-              : 'w-full transition-all duration-300 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-white';
-            footerStripIcon.className = isDarkTicket ? 'text-emerald-400 shrink-0 mt-0.5' : 'text-white shrink-0 mt-0.5';
-            footerStripIcon.innerHTML = SVG_CHECK_ICON;
-            footerStripText.innerHTML = `<span class="text-white font-extrabold">Você ganhou R$ 500 OFF em OOH</span>`;
-            footerStripSubtext.className = 'text-[11px] text-white/90 leading-snug mt-0.5';
-          } else {
-            footerPromoStrip.className = 'w-full transition-all duration-300 bg-emerald-50 border-b border-emerald-200';
-            footerStripIcon.className = 'text-emerald-600 shrink-0 mt-0.5';
-            footerStripIcon.innerHTML = SVG_CHECK_ICON;
-            footerStripText.innerHTML = `<span class="text-emerald-950 font-bold">Você ganhou R$ 500 OFF em OOH</span>`;
-            footerStripSubtext.className = 'text-[11px] text-slate-600 leading-snug mt-0.5';
-          }
-          footerStripSubtext.textContent = PROMO_RULES.disclaimer;
-          footerCheckoutBar.classList.remove('hidden');
-        } else {
-          if (isLoud) {
-            footerPromoStrip.className = isDarkTicket
-              ? 'w-full transition-all duration-300 bg-slate-900 text-white border-b border-orange-500/40'
-              : 'w-full transition-all duration-300 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white';
-            footerStripIcon.className = isDarkTicket ? 'text-orange-400 shrink-0 mt-0.5' : 'text-white shrink-0 mt-0.5';
-            footerStripIcon.innerHTML = SVG_TAG_ICON;
-            footerStripText.innerHTML = `<span class="text-white font-extrabold">Faltam ${formatBRL(summary.missingOOH)} em OOH para R$ 500 OFF</span>`;
-            footerStripSubtext.className = 'text-[11px] text-white/90 leading-snug mt-0.5';
-          } else {
-            footerPromoStrip.className = 'w-full transition-all duration-300 bg-orange-50/95 border-b border-orange-200/80';
-            footerStripIcon.className = 'text-orange-600 shrink-0 mt-0.5';
-            footerStripIcon.innerHTML = SVG_TAG_ICON;
-            footerStripText.innerHTML = `Faltam <span class="text-orange-700 font-extrabold">${formatBRL(summary.missingOOH)}</span> em OOH para <span class="text-emerald-700 font-extrabold">R$ 500 OFF</span>`;
-            footerStripSubtext.className = 'text-[11px] text-slate-600 leading-snug mt-0.5';
-          }
-          footerStripSubtext.textContent = PROMO_RULES.disclaimer;
-          footerCheckoutBar.classList.remove('hidden');
-        }
-      }
-
-      document.getElementById('footer-selected-count').textContent = `${summary.count} ${summary.count === 1 ? 'produto selecionado' : 'produtos selecionados'}`;
-      const footerOldTotal = document.getElementById('footer-old-total');
-      const footerFinalTotal = document.getElementById('footer-final-total');
-      if (summary.appliedDiscount > 0 && currentScreen !== 'globo') {
-        footerOldTotal.textContent = formatBRL(summary.subtotal);
-        footerOldTotal.classList.remove('hidden');
-        footerFinalTotal.textContent = formatBRL(summary.finalTotal);
-        footerFinalTotal.className = 'text-base font-extrabold text-emerald-700';
-      } else {
-        footerOldTotal.classList.add('hidden');
-        footerFinalTotal.textContent = formatBRL(summary.subtotal);
-        footerFinalTotal.className = 'text-base font-extrabold text-slate-900';
-      }
-
-      // =====================================================================
-      // 2. SEÇÃO "VALOR" (ESTÍMULO APENAS EMBAIXO, SEM PROGRESSÃO/%)
-      // =====================================================================
-      const couponHeaderDefault = document.getElementById('coupon-header-default');
-      const couponHeaderActive = document.getElementById('coupon-header-active');
-      const couponBadgeCode = document.getElementById('coupon-badge-code');
-
-      if (summary.activeCoupon) {
-        couponHeaderDefault.classList.add('hidden');
-        couponHeaderActive.classList.remove('hidden');
-        couponBadgeCode.textContent = `Cupom: ${summary.activeCoupon.code}`;
-      } else {
-        couponHeaderDefault.classList.remove('hidden');
-        couponHeaderActive.classList.add('hidden');
-      }
-
-      const optCompact = document.getElementById('valor-opt-compact');
-      const vcompactIcon = document.getElementById('vcompact-icon');
-      const vcompactTitle = document.getElementById('vcompact-title');
-      const vcompactRule = document.getElementById('vcompact-rule');
-
-      const planoDiscountRow = document.getElementById('plano-discount-row');
-      const planoDiscountLabel = document.getElementById('plano-discount-label');
-      const planoDiscountVal = document.getElementById('plano-discount-val');
-      const planoOohOldVal = document.getElementById('plano-ooh-old-val');
-      const planoOohVal = document.getElementById('plano-ooh-val');
-      const planoTotalOldVal = document.getElementById('plano-total-old-val');
-      const planoFinalPrice = document.getElementById('plano-final-price');
-
-      document.getElementById('plano-digital-val').textContent = formatBRL(summary.digSum);
-      document.getElementById('plano-subtotal').textContent = formatBRL(summary.subtotal);
-      planoFinalPrice.textContent = formatBRL(summary.finalTotal);
-
-      if (!summary.hasOOH) {
-        optCompact.classList.add('hidden');
-        planoDiscountRow.classList.add('hidden');
-        planoOohOldVal.classList.add('hidden');
-        planoTotalOldVal.classList.add('hidden');
-        planoOohVal.textContent = formatBRL(0);
-        return;
-      }
-
-      optCompact.classList.remove('hidden');
-
-      // Estado 1: Cupom Maior que R$ 500 OFF (ex: VIP800)
-      if (summary.activeCoupon && summary.activeCoupon.amount >= PROMO_RULES.discountOOH) {
-        if (isLoud) {
-          optCompact.className = isDarkTicket
-            ? 'rounded-xl p-3.5 mb-3.5 border-l-4 border-l-indigo-400 border border-slate-800 bg-slate-900 text-white shadow-md transition-all'
-            : 'rounded-xl p-3.5 mb-3.5 border border-indigo-600 bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-md shadow-indigo-500/20 transition-all';
-          vcompactIcon.className = 'text-white shrink-0 mt-0.5';
-          vcompactIcon.innerHTML = SVG_INFO_ICON;
-          vcompactTitle.className = 'text-xs font-extrabold text-white leading-snug';
-          vcompactTitle.textContent = `Cupom ${summary.activeCoupon.code} aplicado (-${formatBRL(summary.appliedDiscount)} em OOH)`;
-          vcompactRule.className = 'text-[11px] text-white/90 leading-snug mt-1';
-          vcompactRule.textContent = 'Maior que os R$ 500 OFF em OOH (não cumulativo)';
-        } else {
-          optCompact.className = 'rounded-xl p-3 mb-3.5 border transition-all bg-indigo-50/90 border-indigo-200';
-          vcompactIcon.className = 'text-indigo-600 shrink-0 mt-0.5';
-          vcompactIcon.innerHTML = SVG_INFO_ICON;
-          vcompactTitle.className = 'text-xs font-bold text-indigo-950 leading-snug';
-          vcompactTitle.textContent = `Cupom ${summary.activeCoupon.code} aplicado (-${formatBRL(summary.appliedDiscount)} em OOH)`;
-          vcompactRule.className = 'text-[11px] text-indigo-800 leading-snug mt-1';
-          vcompactRule.textContent = 'Maior que os R$ 500 OFF em OOH (não cumulativo)';
-        }
-      }
-      // Estado 2: Desconto OOH Liberado (com ou sem cupom menor PARCEIRO200)
-      else if (summary.oohUnlocked) {
-        const discountFormatted = summary.isCappedByOoh ? formatBRL(summary.appliedDiscount) : 'R$ 500';
-        const subText = summary.activeCoupon
-          ? `Maior que o cupom ${summary.activeCoupon.code} (não cumulativo) · Até 31/10 · Uso único`
-          : PROMO_RULES.disclaimer;
-
-        if (isLoud) {
-          optCompact.className = isDarkTicket
-            ? 'rounded-xl p-3.5 mb-3.5 border-l-4 border-l-emerald-400 border border-slate-800 bg-slate-900 text-white shadow-md transition-all'
-            : 'rounded-xl p-3.5 mb-3.5 border border-emerald-600 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-600/20 transition-all';
-          vcompactIcon.className = isDarkTicket ? 'text-emerald-400 shrink-0 mt-0.5' : 'text-white shrink-0 mt-0.5';
-          vcompactIcon.innerHTML = SVG_CHECK_ICON;
-          vcompactTitle.className = 'text-xs font-extrabold text-white leading-snug';
-          vcompactTitle.textContent = `Você ganhou ${discountFormatted} OFF em OOH`;
-          vcompactRule.className = 'text-[11px] text-white/90 leading-snug mt-1';
-          vcompactRule.textContent = subText;
-        } else {
-          optCompact.className = 'rounded-xl p-3 mb-3.5 border transition-all bg-emerald-50/80 border-emerald-200';
-          vcompactIcon.className = 'text-emerald-600 shrink-0 mt-0.5';
-          vcompactIcon.innerHTML = SVG_CHECK_ICON;
-          vcompactTitle.className = 'text-xs font-bold text-emerald-950 leading-snug';
-          vcompactTitle.textContent = `Você ganhou ${discountFormatted} OFF em OOH`;
-          vcompactRule.className = 'text-[11px] text-emerald-800 leading-snug mt-1';
-          vcompactRule.textContent = subText;
-        }
-      }
-      // Estado 3: Em progresso (< R$ 1.000 em OOH) — Sem progressão com % e sem repetição acima
-      else {
-        const subText = summary.activeCoupon
-          ? `Substitui o cupom ${summary.activeCoupon.code} (-${formatBRL(summary.activeCoupon.amount)}) · Aplicado apenas em OOH`
-          : PROMO_RULES.disclaimer;
-
-        if (isLoud) {
-          optCompact.className = isDarkTicket
-            ? 'rounded-xl p-3.5 mb-3.5 border-l-4 border-l-orange-500 border border-slate-800 bg-slate-900 text-white shadow-md transition-all'
-            : 'rounded-xl p-3.5 mb-3.5 border border-orange-600 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/20 transition-all';
-          vcompactIcon.className = isDarkTicket ? 'text-orange-400 shrink-0 mt-0.5' : 'text-white shrink-0 mt-0.5';
-          vcompactIcon.innerHTML = SVG_TAG_ICON;
-          vcompactTitle.className = 'text-xs font-extrabold text-white leading-snug';
-          vcompactTitle.innerHTML = `Faltam <span class="underline decoration-2 underline-offset-2">${formatBRL(summary.missingOOH)}</span> em OOH para R$ 500 OFF`;
-          vcompactRule.className = 'text-[11px] text-white/95 leading-snug mt-1';
-          vcompactRule.textContent = subText;
-        } else {
-          optCompact.className = 'rounded-xl p-3 mb-3.5 border transition-all bg-orange-50/80 border-orange-200';
-          vcompactIcon.className = 'text-orange-600 shrink-0 mt-0.5';
-          vcompactIcon.innerHTML = SVG_TAG_ICON;
-          vcompactTitle.className = 'text-xs font-bold text-slate-900 leading-snug';
-          vcompactTitle.innerHTML = `Faltam <span class="text-orange-700 font-extrabold">${formatBRL(summary.missingOOH)}</span> em OOH para <span class="text-emerald-700 font-extrabold">R$ 500 OFF</span>`;
-          vcompactRule.className = 'text-[11px] text-slate-600 leading-snug mt-1';
-          vcompactRule.textContent = subText;
-        }
-      }
-
-      // Atualização da tabela de valores
-      if (summary.appliedDiscount > 0) {
-        planoDiscountRow.classList.remove('hidden');
-        planoDiscountLabel.textContent = summary.appliedType === 'coupon'
-          ? `Desconto OOH (${summary.activeCoupon.code})`
-          : 'Desconto OOH';
-
-        if (isLoud) {
-          planoDiscountVal.className = 'px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-extrabold text-xs';
-          planoTotalOldVal.textContent = formatBRL(summary.subtotal);
-          planoTotalOldVal.classList.remove('hidden');
-          planoFinalPrice.className = 'text-xl font-black text-emerald-700';
-        } else {
-          planoDiscountVal.className = 'font-semibold text-emerald-700';
-          planoTotalOldVal.classList.add('hidden');
-          planoFinalPrice.className = 'text-xl font-extrabold text-slate-900';
-        }
-        planoDiscountVal.textContent = `- ${formatBRL(summary.appliedDiscount)}`;
-
-        planoOohOldVal.textContent = formatBRL(summary.oohSum);
-        planoOohOldVal.classList.remove('hidden');
-        planoOohVal.textContent = formatBRL(summary.netOOH);
-        planoOohVal.className = 'font-bold text-emerald-700';
-      } else {
-        planoDiscountRow.classList.add('hidden');
-        planoOohOldVal.classList.add('hidden');
-        planoTotalOldVal.classList.add('hidden');
-        planoOohVal.textContent = formatBRL(summary.oohSum);
-        planoOohVal.className = 'font-medium text-slate-700';
-        planoFinalPrice.className = 'text-xl font-extrabold text-slate-900';
-      }
-    }
-
     function togglePointSelection(id) {
       const item = oohCatalog.find(p => p.id === id);
       if (item) item.selected = !item.selected;
@@ -1404,28 +1224,6 @@
     function toggleDigitalSelection(id) {
       const item = digitalCatalog.find(d => d.id === id);
       if (item) item.selected = !item.selected;
-      setViewportMode(viewportMode);
-    }
-
-    function applyPreset(presetName) {
-      oohCatalog.forEach(p => p.selected = false);
-      digitalCatalog.forEach(d => d.selected = false);
-
-      if (presetName === 'empty') {
-        // 0 itens
-      } else if (presetName === 'hybrid-low') {
-        oohCatalog[0].selected = true; // R$ 400,00 OOH
-        digitalCatalog[0].selected = true; // R$ 1.000,00 Globo
-        digitalCatalog[1].selected = true; // R$ 1.000,00 Globo
-      } else if (presetName === 'hybrid-unlocked') {
-        oohCatalog[0].selected = true; // R$ 400,00 OOH
-        oohCatalog[1].selected = true; // R$ 895,68 OOH
-        digitalCatalog[0].selected = true; // R$ 1.000,00 Globo
-        digitalCatalog[1].selected = true; // R$ 1.000,00 Globo
-      } else if (presetName === 'onlyglobo') {
-        digitalCatalog[0].selected = true;
-        digitalCatalog[1].selected = true;
-      }
       setViewportMode(viewportMode);
     }
 
@@ -1454,9 +1252,8 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      applyPreset('hybrid-low');
+      applyTierPreset(1);
       switchScreen('plano');
-      setVisualStyle('chamativo');
       setViewportMode('mobile');
       setTimeout(() => {
         const valorEl = document.getElementById('secao-valor-anchor');
