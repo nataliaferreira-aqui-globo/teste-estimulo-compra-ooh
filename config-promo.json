@@ -7,11 +7,11 @@
   "excludeGloboPages": true,
   "showSpendThresholdBelowTrack": false,
   "tiers": [
-    { "tier": 1, "minSpend": 200.00, "maxSpend": 999.99, "discount": 100.00, "shortLabel": "R$ 100 OFF", "desktopLabel": "Desconto: R$ 100 OFF", "thresholdLabel": "R$ 200" },
-    { "tier": 2, "minSpend": 1000.00, "maxSpend": 2999.99, "discount": 500.00, "shortLabel": "R$ 500 OFF", "desktopLabel": "Desconto: R$ 500 OFF", "thresholdLabel": "R$ 1 mil" },
-    { "tier": 3, "minSpend": 3000.00, "maxSpend": 4999.99, "discount": 1000.00, "shortLabel": "R$ 1 mil OFF", "desktopLabel": "Desconto: R$ 1 mil OFF", "thresholdLabel": "R$ 3 mil" },
-    { "tier": 4, "minSpend": 5000.00, "maxSpend": 9999.99, "discount": 1500.00, "shortLabel": "R$ 1,5 mil OFF", "desktopLabel": "Desconto: R$ 1,5 mil OFF", "thresholdLabel": "R$ 5 mil" },
-    { "tier": 5, "minSpend": 10000.00, "maxSpend": null, "discount": 2000.00, "shortLabel": "R$ 2 mil OFF", "desktopLabel": "Desconto: R$ 2 mil OFF", "thresholdLabel": "R$ 10 mil" }
+    { "tier": 1, "minSpend": 200.00, "maxSpend": 999.99, "discount": 100.00, "shortLabel": "-R$ 100", "thresholdLabel": "R$ 200" },
+    { "tier": 2, "minSpend": 1000.00, "maxSpend": 2999.99, "discount": 500.00, "shortLabel": "-R$ 500", "thresholdLabel": "R$ 1 mil" },
+    { "tier": 3, "minSpend": 3000.00, "maxSpend": 4999.99, "discount": 1000.00, "shortLabel": "-R$ 1 mil", "thresholdLabel": "R$ 3 mil" },
+    { "tier": 4, "minSpend": 5000.00, "maxSpend": 9999.99, "discount": 1500.00, "shortLabel": "-R$ 1,5 mil", "thresholdLabel": "R$ 5 mil" },
+    { "tier": 5, "minSpend": 10000.00, "maxSpend": null, "discount": 2000.00, "shortLabel": "-R$ 2 mil", "thresholdLabel": "R$ 10 mil" }
   ],
   "couponConflictScenarios": {
     "smallerCoupon": {
