@@ -117,7 +117,7 @@
         </div>
       </div>
 
-      <!-- Linha 2: Simulador das 5 Faixas Progressivas -->
+      <!-- Linha 2: Simulador das 5 Faixas Progressivas + Controle Colapsável Mobile -->
       <div class="flex flex-wrap items-center justify-between gap-1.5 pt-1 border-t border-slate-800">
         <div class="flex items-center gap-1.5 flex-wrap">
           <span class="text-amber-400 font-bold uppercase tracking-wider text-[10px]">Simular Faixas OOH:</span>
@@ -138,6 +138,16 @@
           </button>
           <button id="tier-btn-5" onclick="applyTierPreset(5)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
             F5: R$ 10.345 (R$ 2 mil OFF)
+          </button>
+        </div>
+
+        <div class="flex items-center gap-1.5">
+          <span class="text-emerald-400 font-bold uppercase tracking-wider text-[10px]">Barra Mobile:</span>
+          <button id="btn-mob-collapsed" onclick="setMobilePromoCollapsed(true)" class="px-2 py-0.5 rounded bg-[#F05A22] text-white border border-orange-500 font-semibold transition">
+            Recolhida (Compacta)
+          </button>
+          <button id="btn-mob-expanded" onclick="setMobilePromoCollapsed(false)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+            Expandida (5 Faixas)
           </button>
         </div>
       </div>
@@ -520,15 +530,25 @@
     <!-- =================================================================== -->
     <footer id="sticky-footer" class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] shrink-0 hidden">
       
-      <!-- Faixa Preta Chamativa de Estímulo (SOMENTE na Página Principal de Resultados OOH — Compacta em Altura: Tag+Título à esquerda e Progressão à direita no Desktop) -->
-      <div id="footer-promo-strip" class="w-full bg-[#18181B] text-white border-b border-zinc-800 transition-all duration-300">
+      <!-- Faixa Preta Chamativa de Estímulo (SOMENTE na Página Principal de Resultados OOH — Colapsável no Mobile para não atrapalhar a navegação) -->
+      <div id="footer-promo-strip" class="w-full bg-[#18181B] text-white border-b border-zinc-800 transition-all duration-300 relative">
         <div id="footer-promo-inner" class="max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-8">
           
-          <!-- Bloco Esquerdo: Tag no canto superior esquerdo + Título logo abaixo -->
-          <div id="footer-promo-header" class="shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-zinc-800 md:pr-6">
-            <div class="flex items-center gap-1.5 mb-1">
-              <span id="footer-strip-icon" class="text-[#F05A22] shrink-0"></span>
-              <span id="footer-strip-badge" class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold"></span>
+          <!-- Bloco Esquerdo / Topo Mobile (Clicável no Mobile para expandir/recolher) -->
+          <div id="footer-promo-header" onclick="if (viewportMode === 'mobile') toggleMobilePromoCollapse()" class="shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-zinc-800 md:pr-6 select-none">
+            <div id="footer-promo-toprow" class="flex items-center justify-between gap-2 mb-1">
+              <div class="flex items-center gap-1.5 min-w-0">
+                <span id="footer-strip-icon" class="text-[#F05A22] shrink-0"></span>
+                <span id="footer-strip-badge" class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold shrink-0"></span>
+                <!-- Resumo inline ultracompacto exibido apenas quando recolhido no Mobile -->
+                <span id="footer-strip-collapsed-hint" class="hidden text-[11px] font-medium text-zinc-200 truncate"></span>
+              </div>
+
+              <!-- Botão Colapsar/Expandir (Exclusivo Mobile) -->
+              <button type="button" id="mobile-collapse-pill" class="hidden shrink-0 px-2 py-0.5 rounded-md bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-[10px] font-semibold text-zinc-200 items-center gap-1 transition">
+                <span id="mobile-collapse-label">Ver faixas</span>
+                <svg id="mobile-collapse-chevron" class="w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+              </button>
             </div>
             <p id="footer-strip-text" class="text-[13px] sm:text-[14px] font-semibold text-white leading-snug"></p>
           </div>
@@ -536,6 +556,11 @@
           <!-- Bloco Direito: Trilha Contínua Real das 5 Faixas ocupando todo o espaço restante -->
           <div id="footer-stepper" class="w-full md:flex-1 min-w-0"></div>
 
+        </div>
+
+        <!-- Mini barra de progresso contínua (3px) exibida na base da tarja preta quando recolhida no Mobile -->
+        <div id="footer-collapsed-mini-bar" class="hidden w-full h-[3px] bg-zinc-800 overflow-hidden">
+          <div id="footer-collapsed-mini-fill" class="h-full bg-gradient-to-r from-emerald-400 to-[#F05A22] transition-all duration-300" style="width: 0%"></div>
         </div>
       </div>
 
@@ -584,6 +609,7 @@
     let viewportMode = 'mobile';
     let showMobileMap = false;
     let couponScenario = 'none';
+    let isMobilePromoCollapsed = true;
 
     const oohCatalog = [
       {
@@ -1002,6 +1028,74 @@
         document.getElementById('footer-strip-badge').textContent = darkBadgeText;
         document.getElementById('footer-stepper').innerHTML = darkBodyHTML;
         footerCheckoutBar.classList.toggle('hidden', summary.isEmpty);
+
+        // Estado Colapsável no Mobile (para não atrapalhar a navegação do usuário)
+        const isMob = viewportMode === 'mobile';
+        const collapsedOnMob = isMob && isMobilePromoCollapsed;
+        const topRow = document.getElementById('footer-promo-toprow');
+        const collapsedHint = document.getElementById('footer-strip-collapsed-hint');
+        const collapsePill = document.getElementById('mobile-collapse-pill');
+        const collapseLabel = document.getElementById('mobile-collapse-label');
+        const collapseChevron = document.getElementById('mobile-collapse-chevron');
+        const stripText = document.getElementById('footer-strip-text');
+        const stepperEl = document.getElementById('footer-stepper');
+        const miniBar = document.getElementById('footer-collapsed-mini-bar');
+        const miniFill = document.getElementById('footer-collapsed-mini-fill');
+        const promoInner = document.getElementById('footer-promo-inner');
+        const promoHeader = document.getElementById('footer-promo-header');
+
+        // Texto curto quando recolhido no Mobile (ex: "Faltam R$ 600 p/ R$ 500 OFF")
+        let shortCollapsedText = '';
+        if (isSuperiorCoupon) {
+          shortCollapsedText = `Cupom ${summary.activeCoupon.code} aplicado`;
+        } else if (!summary.currentTier) {
+          const needed = summary.oohSum === 0 ? 200 : summary.missingForNext;
+          shortCollapsedText = `+${formatBRLShort(needed)} para R$ 100 OFF`;
+        } else if (summary.nextTier) {
+          shortCollapsedText = `+${formatBRLShort(summary.missingForNext)} para ${formatBRLShort(summary.nextTier.discount)} OFF`;
+        } else {
+          shortCollapsedText = `Máximo aplicado em OOH`;
+        }
+        if (collapsedHint) collapsedHint.textContent = shortCollapsedText;
+
+        if (isMob) {
+          if (promoHeader) promoHeader.classList.add('cursor-pointer');
+          if (collapsePill) {
+            collapsePill.classList.remove('hidden');
+            collapsePill.classList.add('inline-flex');
+          }
+          if (collapsedOnMob) {
+            if (promoInner) promoInner.className = 'px-3.5 py-2 flex flex-col';
+            if (topRow) topRow.className = 'flex items-center justify-between gap-2 mb-0';
+            if (collapsedHint) collapsedHint.classList.remove('hidden');
+            if (stripText) stripText.classList.add('hidden');
+            if (stepperEl) stepperEl.classList.add('hidden');
+            if (collapseLabel) collapseLabel.textContent = 'Ver faixas';
+            if (collapseChevron) collapseChevron.style.transform = 'rotate(0deg)';
+            if (miniBar) miniBar.classList.remove('hidden');
+            if (miniFill) miniFill.style.width = `${calculateTrackProgressPercent(summary.oohSum)}%`;
+          } else {
+            if (promoInner) promoInner.className = 'px-3.5 py-2.5 flex flex-col gap-2';
+            if (topRow) topRow.className = 'flex items-center justify-between gap-2 mb-1';
+            if (collapsedHint) collapsedHint.classList.add('hidden');
+            if (stripText) stripText.classList.remove('hidden');
+            if (stepperEl) stepperEl.classList.remove('hidden');
+            if (collapseLabel) collapseLabel.textContent = 'Recolher';
+            if (collapseChevron) collapseChevron.style.transform = 'rotate(180deg)';
+            if (miniBar) miniBar.classList.add('hidden');
+          }
+        } else {
+          if (promoHeader) promoHeader.classList.remove('cursor-pointer');
+          if (collapsePill) {
+            collapsePill.classList.add('hidden');
+            collapsePill.classList.remove('inline-flex');
+          }
+          if (topRow) topRow.className = 'flex items-center justify-between gap-2 mb-1';
+          if (collapsedHint) collapsedHint.classList.add('hidden');
+          if (stripText) stripText.classList.remove('hidden');
+          if (stepperEl) stepperEl.classList.remove('hidden');
+          if (miniBar) miniBar.classList.add('hidden');
+        }
       }
 
       document.getElementById('footer-selected-count').textContent = `${summary.count} ${summary.count === 1 ? 'produto selecionado' : 'produtos selecionados'}`;
@@ -1343,6 +1437,29 @@
       setViewportMode(viewportMode);
     }
 
+    function setMobilePromoCollapsed(collapsed) {
+      isMobilePromoCollapsed = collapsed;
+      const btnCollapsed = document.getElementById('btn-mob-collapsed');
+      const btnExpanded = document.getElementById('btn-mob-expanded');
+      if (btnCollapsed && btnExpanded) {
+        btnCollapsed.className = collapsed
+          ? 'px-2 py-0.5 rounded bg-[#F05A22] text-white border border-orange-500 font-semibold transition'
+          : 'px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition';
+        btnExpanded.className = !collapsed
+          ? 'px-2 py-0.5 rounded bg-[#F05A22] text-white border border-orange-500 font-semibold transition'
+          : 'px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition';
+      }
+      if (viewportMode !== 'mobile') {
+        setViewportMode('mobile');
+      } else {
+        updateAllPromoVisuals();
+      }
+    }
+
+    function toggleMobilePromoCollapse() {
+      setMobilePromoCollapsed(!isMobilePromoCollapsed);
+    }
+
     function switchScreen(screen) {
       currentScreen = screen;
       document.getElementById('screen-vitrine').classList.toggle('hidden', screen !== 'vitrine');
@@ -1370,7 +1487,18 @@
     window.addEventListener('DOMContentLoaded', () => {
       applyTierPreset(1);
       switchScreen('vitrine');
-      setViewportMode('desktop');
+      setViewportMode('mobile');
+      setMobilePromoCollapsed(true);
+
+      // Recolhe automaticamente a barra ao rolar a lista de resultados no Mobile para não atrapalhar a navegação
+      const scrollArea = document.getElementById('device-scroll-area');
+      if (scrollArea) {
+        scrollArea.addEventListener('scroll', () => {
+          if (viewportMode === 'mobile' && currentScreen === 'vitrine' && !isMobilePromoCollapsed && scrollArea.scrollTop > 45) {
+            setMobilePromoCollapsed(true);
+          }
+        }, { passive: true });
+      }
     });
   </script>
 </body>
