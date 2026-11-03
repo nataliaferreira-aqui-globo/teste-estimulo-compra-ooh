@@ -457,7 +457,7 @@
                   </div>
 
                   <!-- 2. Título logo abaixo da tag (100% da largura, zero aperto) -->
-                  <div id="vsoft-headline" class="text-[13px] font-semibold text-slate-900 leading-snug mb-4"></div>
+                  <div id="vsoft-headline" class="text-[13px] font-semibold text-slate-900 leading-snug mb-5"></div>
 
                   <!-- 3. Trilha Contínua Real das 5 Faixas (com maior respiro acima e abaixo) -->
                   <div id="vsoft-stepper" class="w-full"></div>
@@ -532,7 +532,7 @@
       
       <!-- Faixa Preta Chamativa de Estímulo (SOMENTE na Página Principal de Resultados OOH — Colapsável no Mobile para não atrapalhar a navegação) -->
       <div id="footer-promo-strip" class="w-full bg-[#18181B] text-white border-b border-zinc-800 transition-all duration-300 relative">
-        <div id="footer-promo-inner" class="max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-8">
+        <div id="footer-promo-inner" class="max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-8">
           
           <!-- Bloco Esquerdo / Topo Mobile (Clicável no Mobile para expandir/recolher) -->
           <div id="footer-promo-header" onclick="if (viewportMode === 'mobile') toggleMobilePromoCollapse()" class="shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-zinc-800 md:pr-6 select-none">
@@ -785,8 +785,9 @@
     /**
      * Constrói a Trilha de 5 Faixas ocupando espaço amplo de ponta a ponta:
      * - Distribuição ampla (justify-between) ocupando quase 100% da largura horizontal do container
-     * - Barra contínua mais espessa (h-1.5 / 6px no rodapé da vitrine e h-1 / 4px no card de resumo)
-     * - Bolinhas maiores com check interno nas faixas conquistadas e tipografia legível (WCAG AA)
+     * - Apenas os 5 rótulos de desconto acima da barra contínua com peso tipográfico regular (font-normal),
+     *   sem bold e sem os valores de faixas de compra embaixo
+     * - Bolinhas com check interno nas faixas conquistadas e cores semânticas (WCAG AA)
      */
     function buildConnectedStepperHTML(summary, theme) {
       const isDark = theme === 'dark';
@@ -803,9 +804,8 @@
         : 'bg-[#F05A22]';
 
       const topFontSize = isMob ? 'text-[11px]' : (isDark ? 'text-[13px]' : 'text-xs');
-      const subFontSize = isMob ? 'text-[11px]' : 'text-xs';
       const nodeWidth = isMob ? 'w-[54px]' : (isDark ? 'w-[80px]' : 'w-[68px]');
-      const trackInset = isMob ? 'left-[27px] right-[27px] top-[30px]' : (isDark ? 'left-[40px] right-[40px] top-[30px]' : 'left-[34px] right-[34px] top-[30px]');
+      const trackInset = isMob ? 'left-[27px] right-[27px] top-[32px]' : (isDark ? 'left-[40px] right-[40px] top-[32px]' : 'left-[34px] right-[34px] top-[32px]');
 
       let nodesHTML = '';
 
@@ -816,34 +816,29 @@
         const isNext = i === activeIdx + 1;
 
         let topTextClass = '';
-        let subTextClass = '';
         let dotClass = '';
         let dotInner = '';
 
         if (isDark) {
           if (isCurrent) {
-            topTextClass = 'text-emerald-400 font-extrabold';
-            subTextClass = 'text-white font-semibold';
+            topTextClass = 'text-emerald-400 font-normal';
             dotClass = isMob
               ? 'w-4 h-4 bg-emerald-400 border-2 border-[#18181B] ring-2 ring-emerald-400 shadow'
               : 'w-5 h-5 bg-emerald-400 border-2 border-[#18181B] ring-2 ring-emerald-400 shadow';
             dotInner = `<svg class="w-2.5 h-2.5 text-[#18181B]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`;
           } else if (isReached) {
-            topTextClass = 'text-emerald-400 font-bold';
-            subTextClass = 'text-zinc-300 font-medium';
+            topTextClass = 'text-emerald-400 font-normal';
             dotClass = isMob
               ? 'w-3.5 h-3.5 bg-emerald-400 border-2 border-[#18181B]'
               : 'w-4 h-4 bg-emerald-400 border-2 border-[#18181B]';
             dotInner = `<svg class="w-2 h-2 text-[#18181B]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`;
           } else if (isNext) {
-            topTextClass = 'text-[#FF7A45] font-extrabold';
-            subTextClass = 'text-white font-semibold';
+            topTextClass = 'text-[#FF7A45] font-normal';
             dotClass = isMob
               ? 'w-4 h-4 bg-[#F05A22] border-2 border-[#18181B] ring-2 ring-[#F05A22]/70 shadow'
               : 'w-5 h-5 bg-[#F05A22] border-2 border-[#18181B] ring-2 ring-[#F05A22]/70 shadow';
           } else {
-            topTextClass = 'text-zinc-200 font-semibold';
-            subTextClass = 'text-zinc-300 font-medium';
+            topTextClass = 'text-zinc-300 font-normal';
             dotClass = isMob
               ? 'w-3 h-3 bg-zinc-600 border-2 border-[#18181B]'
               : 'w-3.5 h-3.5 bg-zinc-600 border-2 border-[#18181B]';
@@ -851,33 +846,28 @@
         } else {
           // Tema Suave (Prontooh Design System na página de Resumo) — Alto contraste de leitura (WCAG AA)
           if (isCurrent) {
-            topTextClass = 'text-[#15803D] font-extrabold';
-            subTextClass = 'text-slate-900 font-bold';
+            topTextClass = 'text-[#15803D] font-normal';
             dotClass = 'w-4 h-4 bg-[#16A34A] border-2 border-white ring-2 ring-[#16A34A] shadow-sm';
             dotInner = `<svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`;
           } else if (isReached) {
-            topTextClass = 'text-[#15803D] font-bold';
-            subTextClass = 'text-slate-700 font-semibold';
+            topTextClass = 'text-[#15803D] font-normal';
             dotClass = 'w-3.5 h-3.5 bg-[#16A34A] border-2 border-white';
             dotInner = `<svg class="w-2 h-2 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`;
           } else if (isNext) {
-            topTextClass = 'text-[#D94B16] font-extrabold';
-            subTextClass = 'text-slate-900 font-bold';
+            topTextClass = 'text-[#D94B16] font-normal';
             dotClass = 'w-4 h-4 bg-[#F05A22] border-2 border-white ring-2 ring-[#F05A22]/60 shadow-sm';
           } else {
-            topTextClass = 'text-slate-700 font-semibold';
-            subTextClass = 'text-slate-600 font-medium';
+            topTextClass = 'text-slate-600 font-normal';
             dotClass = 'w-3 h-3 bg-slate-300 border-2 border-[#F8FAFC]';
           }
         }
 
         nodesHTML += `
           <div class="flex flex-col items-center z-10 ${nodeWidth}">
-            <div class="h-4 flex items-center justify-center text-center ${topFontSize} leading-none whitespace-nowrap mb-1 ${topTextClass}">${tier.offLabel}</div>
+            <div class="h-4 flex items-center justify-center text-center ${topFontSize} leading-none whitespace-nowrap mb-1.5 ${topTextClass}">${tier.offLabel}</div>
             <div class="h-5 flex items-center justify-center">
               <span class="rounded-full flex items-center justify-center transition-all duration-300 ${dotClass}">${dotInner}</span>
             </div>
-            <div class="h-4 flex items-center justify-center text-center ${subFontSize} leading-none whitespace-nowrap mt-1 ${subTextClass}">${tier.minLabel}</div>
           </div>
         `;
       }
@@ -937,22 +927,22 @@
         // Caso em que o desconto do cupom (R$ 3.000 OFF) é MUITO SUPERIOR ao valor máximo da promo (R$ 2.000 OFF)
         darkIconHTML = SVG_CHECK_ICON;
         darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
-        darkTextHTML = `Cupom <span class="text-emerald-400 font-bold">${summary.activeCoupon.code} (-${formatBRLShort(summary.activeCoupon.amount)})</span> aplicado em OOH`;
-        darkBadgeText = `-${formatBRLShort(summary.appliedDiscount || summary.activeCoupon.amount)} ativo`;
+        darkTextHTML = `Cupom <span class="text-emerald-400 font-bold">${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF)</span> aplicado em OOH`;
+        darkBadgeText = `Desconto: ${formatBRLShort(summary.appliedDiscount || summary.activeCoupon.amount)} OFF`;
         darkBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 whitespace-nowrap';
 
-        softTextHTML = `Cupom <span class="font-bold text-slate-900">${summary.activeCoupon.code}</span> (<span class="font-bold text-[#15803D]">-${formatBRLShort(summary.activeCoupon.amount)}</span>) aplicado em OOH`;
-        softBadgeText = `-${formatBRLShort(summary.appliedDiscount || summary.activeCoupon.amount)} ativo`;
+        softTextHTML = `Cupom <span class="font-bold text-slate-900">${summary.activeCoupon.code}</span> (<span class="font-bold text-[#15803D]">${formatBRLShort(summary.activeCoupon.amount)} OFF</span>) aplicado em OOH`;
+        softBadgeText = `Desconto: ${formatBRLShort(summary.appliedDiscount || summary.activeCoupon.amount)} OFF`;
         softBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#DCFCE7] text-[#15803D] border border-emerald-300/60 whitespace-nowrap';
       } else if (summary.appliedType === 'coupon' && summary.activeCoupon) {
         darkIconHTML = SVG_CHECK_ICON;
         darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
-        darkTextHTML = `Cupom <span class="text-emerald-400 font-bold">${summary.activeCoupon.code} (-${formatBRLShort(summary.activeCoupon.amount)})</span> ativo · Adicione OOH para subir até R$ 2 mil OFF`;
-        darkBadgeText = `-${formatBRLShort(summary.appliedDiscount)} ativo`;
+        darkTextHTML = `Cupom <span class="text-emerald-400 font-bold">${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF)</span> ativo · Adicione OOH para subir até R$ 2 mil OFF`;
+        darkBadgeText = `Desconto: ${formatBRLShort(summary.appliedDiscount)} OFF`;
         darkBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 whitespace-nowrap';
 
-        softTextHTML = `Cupom <span class="font-bold text-slate-900">${summary.activeCoupon.code} (-${formatBRLShort(summary.activeCoupon.amount)})</span> ativo em OOH`;
-        softBadgeText = `-${formatBRLShort(summary.appliedDiscount)} ativo`;
+        softTextHTML = `Cupom <span class="font-bold text-slate-900">${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF)</span> ativo em OOH`;
+        softBadgeText = `Desconto: ${formatBRLShort(summary.appliedDiscount)} OFF`;
         softBadgeClass = 'shrink-0 px-2 py-0.5 rounded-md text-[11px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200 whitespace-nowrap';
       } else if (!summary.currentTier) {
         const needed = summary.oohSum === 0 ? 200 : summary.missingForNext;
@@ -969,21 +959,21 @@
         darkIconHTML = SVG_CHECK_ICON;
         darkIconColor = 'text-emerald-400 shrink-0';
         darkTextHTML = `Faltam <span class="text-[#FF7A45] font-bold">${formatBRLShort(summary.missingForNext)}</span> em OOH para ganhar <span class="text-white font-bold">${formatBRLShort(summary.nextTier.discount)} OFF</span>`;
-        darkBadgeText = `-${formatBRLShort(summary.currentTier.discount)} ativo`;
+        darkBadgeText = `Desconto: ${formatBRLShort(summary.currentTier.discount)} OFF`;
         darkBadgeClass = 'inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 whitespace-nowrap';
 
         softTextHTML = `Faltam <span class="font-bold text-[#D94B16]">${formatBRLShort(summary.missingForNext)}</span> em OOH para ganhar <span class="font-bold text-slate-900">${formatBRLShort(summary.nextTier.discount)} OFF</span>`;
-        softBadgeText = `-${formatBRLShort(summary.currentTier.discount)} ativo`;
+        softBadgeText = `Desconto: ${formatBRLShort(summary.currentTier.discount)} OFF`;
         softBadgeClass = 'inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#DCFCE7] text-[#15803D] border border-emerald-300/60 whitespace-nowrap';
       } else {
         darkIconHTML = SVG_CHECK_ICON;
         darkIconColor = 'text-emerald-400 shrink-0';
         darkTextHTML = `Desconto máximo de <span class="text-emerald-400 font-bold">R$ 2 mil OFF</span> aplicado em OOH`;
-        darkBadgeText = `-R$ 2 mil ativo`;
+        darkBadgeText = `Desconto: R$ 2 mil OFF`;
         darkBadgeClass = 'inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 whitespace-nowrap';
 
         softTextHTML = `Desconto máximo de <span class="font-bold text-[#15803D]">R$ 2 mil OFF</span> aplicado em OOH`;
-        softBadgeText = `-R$ 2 mil ativo`;
+        softBadgeText = `Desconto: R$ 2 mil OFF`;
         softBadgeClass = 'inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold bg-[#DCFCE7] text-[#15803D] border border-emerald-300/60 whitespace-nowrap';
       }
 
@@ -1038,7 +1028,7 @@
         stepperEl.innerHTML = darkBodyHTML;
         footerCheckoutBar.classList.toggle('hidden', summary.isEmpty);
 
-        // Possibilidade de recolher no Mobile (mantendo o visual expandido anterior por padrão)
+        // Possibilidade de recolher no Mobile mantendo o visual expandido com espaçamento maior entre o título e as faixas
         const isMob = viewportMode === 'mobile';
         const collapsedOnMob = isMob && isMobilePromoCollapsed;
         const topRow = document.getElementById('footer-promo-toprow');
@@ -1051,18 +1041,18 @@
         const promoInner = document.getElementById('footer-promo-inner');
         const promoHeader = document.getElementById('footer-promo-header');
 
-        // Título conciso ao lado da tag curta quando recolhido no Mobile (estimulando o "Ver faixas", zero truncamento)
+        // Título conciso único quando recolhido no Mobile (estimulando o "Ver faixas", zero truncamento)
         let collapsedTitleHTML = '';
         if (isSuperiorCoupon) {
-          collapsedTitleHTML = `Cupom ${summary.activeCoupon.code}`;
+          collapsedTitleHTML = `Cupom <span class="text-emerald-400 font-bold">${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF)</span> ativo`;
         } else if (summary.appliedType === 'coupon' && summary.activeCoupon) {
-          collapsedTitleHTML = `Suba até R$ 2 mil OFF`;
+          collapsedTitleHTML = `Desconto: <span class="text-emerald-400 font-bold">${formatBRLShort(summary.appliedDiscount)} OFF</span> · Até R$ 2 mil`;
         } else if (!summary.currentTier) {
-          collapsedTitleHTML = `Desconto progressivo OOH`;
+          collapsedTitleHTML = `Ganhe até <span class="text-[#FF7A45] font-bold">R$ 2 mil OFF</span> em OOH`;
         } else if (summary.nextTier) {
-          collapsedTitleHTML = `Suba até <span class="text-[#FF7A45] font-bold">R$ 2 mil OFF</span>`;
+          collapsedTitleHTML = `Desconto: <span class="text-emerald-400 font-bold">${formatBRLShort(summary.currentTier.discount)} OFF</span> · Até R$ 2 mil`;
         } else {
-          collapsedTitleHTML = `Desconto máximo OOH`;
+          collapsedTitleHTML = `Desconto: <span class="text-emerald-400 font-bold">R$ 2 mil OFF</span> em OOH`;
         }
         if (collapsedHint) collapsedHint.innerHTML = collapsedTitleHTML;
 
@@ -1075,7 +1065,7 @@
           if (collapsedOnMob) {
             if (promoInner) promoInner.className = 'px-3.5 py-2 flex flex-col';
             if (topRow) topRow.className = 'flex items-center justify-between gap-2 mb-0';
-            if (stripBadge) stripBadge.classList.remove('hidden');
+            if (stripBadge) stripBadge.classList.add('hidden');
             if (collapsedHint) collapsedHint.classList.remove('hidden');
             if (stripText) stripText.classList.add('hidden');
             if (stepperEl) stepperEl.classList.add('hidden');
@@ -1084,7 +1074,7 @@
             if (miniBar) miniBar.classList.remove('hidden');
             if (miniFill) miniFill.style.width = `${calculateTrackProgressPercent(summary.oohSum)}%`;
           } else {
-            if (promoInner) promoInner.className = 'px-3.5 py-2.5 flex flex-col gap-2';
+            if (promoInner) promoInner.className = 'px-3.5 py-3 flex flex-col gap-4';
             if (topRow) topRow.className = 'flex items-center justify-between gap-2 mb-1';
             if (stripBadge) stripBadge.classList.remove('hidden');
             if (collapsedHint) collapsedHint.classList.add('hidden');
@@ -1269,7 +1259,7 @@
         stickyFooter.className = showFooter
           ? 'w-full z-40 bg-white border-t border-slate-200 shadow-[0_-6px_20px_rgba(0,0,0,0.08)] shrink-0'
           : 'hidden';
-        if (footerPromoInner) footerPromoInner.className = 'px-3.5 py-2.5 flex flex-col gap-2';
+        if (footerPromoInner) footerPromoInner.className = 'px-3.5 py-3 flex flex-col gap-4';
         if (footerPromoHeader) footerPromoHeader.className = 'w-full';
       } else {
         body.classList.remove('mobile-mode-bg');
@@ -1278,7 +1268,7 @@
         stickyFooter.className = showFooter
           ? 'fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]'
           : 'hidden';
-        if (footerPromoInner) footerPromoInner.className = 'max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-8';
+        if (footerPromoInner) footerPromoInner.className = 'max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-8';
         if (footerPromoHeader) footerPromoHeader.className = 'shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-zinc-800 md:pr-6';
       }
 
