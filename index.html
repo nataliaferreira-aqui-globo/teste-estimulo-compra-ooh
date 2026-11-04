@@ -141,6 +141,38 @@
       padding-bottom: 16px;
       position: relative;
     }
+    /* Transição suave (fade + recolhimento fluido) da barra de bônus OOH */
+    .promo-collapse-layer {
+      display: grid;
+      grid-template-rows: 1fr;
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        grid-template-rows 520ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 440ms cubic-bezier(0.22, 1, 0.36, 1) 70ms,
+        transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: grid-template-rows, opacity, transform;
+    }
+    .promo-collapse-layer.is-layer-collapsed {
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
+      transition:
+        grid-template-rows 520ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 340ms cubic-bezier(0.4, 0, 0.2, 1),
+        transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .promo-collapse-layer > .promo-collapse-inner {
+      min-height: 0;
+      overflow: hidden;
+    }
+    #footer-promo-strip {
+      transition: box-shadow 550ms ease, border-color 550ms ease;
+    }
+    #footer-promo-strip.tier-up-pulse {
+      box-shadow: 0 -6px 26px rgba(102, 174, 102, 0.28);
+    }
   </style>
 </head>
 <body id="page-body" class="min-h-screen flex flex-col bg-[#F7F8FC]">
@@ -605,43 +637,65 @@
     <!-- =================================================================== -->
     <footer id="sticky-footer" class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E8EAEE] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] shrink-0 hidden">
       
-      <!-- Faixa Preta Chamativa de Estímulo (SOMENTE na Página Principal de Resultados OOH — Colapsa após 10s ou 3º scroll e reabre ao adicionar pontos / subir de faixa) -->
-      <div id="footer-promo-strip" class="w-full bg-[#1A1E24] text-white border-b border-[#2A313A] transition-all duration-300 relative">
-        <div id="footer-promo-inner" class="max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-8">
-          
-          <!-- Bloco Esquerdo / Linha Única quando Colapsado -->
-          <div id="footer-promo-header" onclick="toggleMobilePromoCollapse()" class="shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-[#2A313A] md:pr-6 select-none cursor-pointer">
-            <div id="footer-promo-toprow" class="flex items-start justify-between gap-2.5">
-              <div class="flex items-start gap-2 min-w-0">
-                <span id="footer-strip-icon" class="text-[#66AE66] shrink-0 mt-0.5"></span>
-                <p id="footer-strip-text" class="text-[13px] sm:text-[14px] font-semibold text-white leading-snug"></p>
-                <!-- Título conciso quando colapsado (estimulando "Ver faixas", zero truncamento) -->
-                <span id="footer-strip-collapsed-hint" class="hidden text-[12px] sm:text-[13px] font-semibold text-white leading-tight whitespace-nowrap"></span>
+      <!-- Faixa Preta Chamativa de Estímulo (SOMENTE na Página Principal de Resultados OOH — Colapsa com fade suave após 5s ou 3º scroll e reabre ao adicionar pontos / subir de faixa) -->
+      <div id="footer-promo-strip" class="w-full bg-[#1A1E24] text-white border-b border-[#2A313A] relative overflow-hidden">
+        
+        <!-- CAMADA 1: ESTADO ABERTO / EXPANDIDO (Fade + Grid Height Collapse) -->
+        <div id="footer-expanded-layer" class="promo-collapse-layer">
+          <div class="promo-collapse-inner">
+            <div id="footer-promo-inner" class="max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6">
+              
+              <!-- Bloco Esquerdo: Título da faixa atual -->
+              <div id="footer-promo-header" onclick="toggleMobilePromoCollapse()" class="shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-[#2A313A] md:pr-6 select-none cursor-pointer">
+                <div id="footer-promo-toprow" class="flex items-start justify-between gap-2.5">
+                  <div class="flex items-start gap-2 min-w-0">
+                    <span id="footer-strip-icon" class="text-[#66AE66] shrink-0 mt-0.5"></span>
+                    <p id="footer-strip-text" class="text-[13px] sm:text-[14px] font-semibold text-white leading-snug"></p>
+                  </div>
+
+                  <!-- Botão Recolher (Visível no Mobile quando Aberto) -->
+                  <button type="button" id="mobile-collapse-pill" class="hidden shrink-0 px-2.5 py-0.5 rounded-md bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[10px] sm:text-[11px] font-semibold text-[#E8EAEE] whitespace-nowrap items-center gap-1 transition">
+                    <span id="mobile-collapse-label">Recolher</span>
+                    <svg id="mobile-collapse-chevron" class="w-3 h-3 rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+                  </button>
+                </div>
               </div>
 
-              <!-- Botão Colapsar/Expandir (Visível no Mobile ou quando Colapsado no Web) -->
-              <button type="button" id="mobile-collapse-pill" class="hidden shrink-0 px-2.5 py-0.5 rounded-md bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[10px] sm:text-[11px] font-semibold text-[#E8EAEE] whitespace-nowrap items-center gap-1 transition">
-                <span id="mobile-collapse-label">Recolher</span>
-                <svg id="mobile-collapse-chevron" class="w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+              <!-- Bloco Central/Direito: Trilha Contínua Real das 5 Faixas ocupando todo o espaço restante -->
+              <div id="footer-stepper" class="w-full md:flex-1 min-w-0"></div>
+
+              <!-- Botão Recolher na extrema direita quando Aberto no Web (Desktop) -->
+              <button type="button" id="desktop-collapse-pill" onclick="toggleMobilePromoCollapse()" class="hidden md:inline-flex shrink-0 px-2.5 py-1 rounded-md bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[11px] font-semibold text-[#E8EAEE] whitespace-nowrap items-center gap-1 transition">
+                <span>Recolher</span>
+                <svg class="w-3 h-3 rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
               </button>
+
             </div>
           </div>
-
-          <!-- Bloco Central/Direito: Trilha Contínua Real das 5 Faixas ocupando todo o espaço restante -->
-          <div id="footer-stepper" class="w-full md:flex-1 min-w-0"></div>
-
-          <!-- Botão Recolher na extrema direita quando Aberto no Web (Desktop) -->
-          <button type="button" id="desktop-collapse-pill" onclick="toggleMobilePromoCollapse()" class="hidden shrink-0 px-2.5 py-1 rounded-md bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[11px] font-semibold text-[#E8EAEE] whitespace-nowrap items-center gap-1 transition">
-            <span>Recolher</span>
-            <svg class="w-3 h-3 rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-          </button>
-
         </div>
 
-        <!-- Mini barra de progresso contínua (3px) exibida na base da tarja preta quando colapsada (Web e Mobile) -->
-        <div id="footer-collapsed-mini-bar" class="hidden w-full h-[3px] bg-[#2A313A] overflow-hidden">
-          <div id="footer-collapsed-mini-fill" class="h-full bg-gradient-to-r from-[#339333] to-[#66AE66] transition-all duration-300" style="width: 0%"></div>
+        <!-- CAMADA 2: ESTADO COLAPSADO / RECOLHIDO (Fade + Linha Concisa + Mini Barra 3px) -->
+        <div id="footer-collapsed-layer" class="promo-collapse-layer is-layer-collapsed">
+          <div class="promo-collapse-inner">
+            <div id="footer-collapsed-inner" onclick="toggleMobilePromoCollapse()" class="max-w-[1600px] mx-auto px-4 lg:px-8 py-1.5 flex items-center justify-between gap-4 cursor-pointer select-none">
+              <div class="flex items-center gap-2 min-w-0">
+                <span id="footer-strip-collapsed-icon" class="text-[#66AE66] shrink-0"></span>
+                <span id="footer-strip-collapsed-hint" class="text-[12px] sm:text-[13px] font-semibold text-white leading-tight whitespace-nowrap"></span>
+              </div>
+
+              <button type="button" id="collapsed-expand-pill" class="inline-flex shrink-0 px-2.5 py-0.5 rounded-md bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[10px] sm:text-[11px] font-semibold text-[#E8EAEE] whitespace-nowrap items-center gap-1 transition">
+                <span>Ver faixas</span>
+                <svg class="w-3 h-3 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+              </button>
+            </div>
+
+            <!-- Mini barra de progresso contínua (3px) exibida na base da tarja preta quando colapsada (Web e Mobile) -->
+            <div id="footer-collapsed-mini-bar" class="w-full h-[3px] bg-[#2A313A] overflow-hidden">
+              <div id="footer-collapsed-mini-fill" class="h-full bg-gradient-to-r from-[#339333] to-[#66AE66] transition-all duration-500" style="width: 0%"></div>
+            </div>
+          </div>
         </div>
+
       </div>
 
       <!-- Bloco de Checkout Prontooh (Largura 1600px alinhada à grid de resultados) -->
@@ -1232,21 +1286,24 @@
         stripIcon.className = darkIconColor;
         stripIcon.innerHTML = darkIconHTML;
         stripText.innerHTML = darkTextHTML;
-        stepperEl.innerHTML = darkBodyHTML;
+        if (stepperEl.dataset.lastHtml !== darkBodyHTML) {
+          stepperEl.innerHTML = darkBodyHTML;
+          stepperEl.dataset.lastHtml = darkBodyHTML;
+        }
         footerCheckoutBar.classList.toggle('hidden', summary.isEmpty);
 
-        // Dinâmica de recolhimento (Web + Mobile):
-        // - Na 1ª visita fica aberta por 10s ou até o 3º scroll do mouse, quando colapsa automaticamente
-        // - Sempre que adicionar pontos / atingir um próximo tier, abre novamente para demonstrar ao usuário
+        // Dinâmica de recolhimento com fade suave (Web + Mobile):
+        // - Na 1ª visita fica aberta por 5s ou até o 3º scroll do mouse, quando colapsa suavemente (fade + glide)
+        // - Sempre que adicionar pontos / atingir um próximo tier, reabre suavemente para demonstrar ao usuário
         const isMob = viewportMode === 'mobile';
         const isCollapsed = isMobilePromoCollapsed;
-        const topRow = document.getElementById('footer-promo-toprow');
+        const expandedLayer = document.getElementById('footer-expanded-layer');
+        const collapsedLayer = document.getElementById('footer-collapsed-layer');
+        const collapsedIcon = document.getElementById('footer-strip-collapsed-icon');
         const collapsedHint = document.getElementById('footer-strip-collapsed-hint');
+        const collapsedInner = document.getElementById('footer-collapsed-inner');
         const collapsePill = document.getElementById('mobile-collapse-pill');
         const desktopCollapsePill = document.getElementById('desktop-collapse-pill');
-        const collapseLabel = document.getElementById('mobile-collapse-label');
-        const collapseChevron = document.getElementById('mobile-collapse-chevron');
-        const miniBar = document.getElementById('footer-collapsed-mini-bar');
         const miniFill = document.getElementById('footer-collapsed-mini-fill');
         const promoInner = document.getElementById('footer-promo-inner');
         const promoHeader = document.getElementById('footer-promo-header');
@@ -1279,22 +1336,15 @@
             collapsedTitleHTML = `Bônus máximo de <span class="text-[#66AE66] font-bold">R$ 2 mil OFF</span> aplicado em OOH`;
           }
         }
+        if (collapsedIcon) collapsedIcon.innerHTML = darkIconHTML;
         if (collapsedHint) collapsedHint.innerHTML = collapsedTitleHTML;
+        if (miniFill) miniFill.style.width = `${calculateTrackProgressPercent(summary.oohSum)}%`;
 
-        if (isCollapsed) {
-          // Estado Colapsado (Web ou Mobile): linha única enxuta + botão "Ver faixas" + barra de 3px na base
-          if (promoInner) {
-            promoInner.className = isMob
-              ? 'px-3.5 py-2 flex flex-col'
-              : 'max-w-[1600px] mx-auto px-4 lg:px-8 py-1.5 flex items-center justify-between gap-4';
-          }
-          if (promoHeader) {
-            promoHeader.className = 'w-full select-none cursor-pointer';
-          }
-          if (topRow) topRow.className = 'flex items-center justify-between gap-2 mb-0 w-full';
-          if (collapsedHint) collapsedHint.classList.remove('hidden');
-          if (stripText) stripText.classList.add('hidden');
-          if (stepperEl) stepperEl.classList.add('hidden');
+        // Classes responsivas fixas por viewport (sem mutar layout durante o fade de recolhimento)
+        if (isMob) {
+          if (promoInner) promoInner.className = 'px-3.5 py-3 flex flex-col gap-3.5';
+          if (promoHeader) promoHeader.className = 'w-full select-none cursor-pointer';
+          if (collapsedInner) collapsedInner.className = 'px-3.5 py-2 flex items-center justify-between gap-2 cursor-pointer select-none';
           if (collapsePill) {
             collapsePill.classList.remove('hidden');
             collapsePill.classList.add('inline-flex');
@@ -1303,43 +1353,23 @@
             desktopCollapsePill.classList.add('hidden');
             desktopCollapsePill.classList.remove('md:inline-flex');
           }
-          if (collapseLabel) collapseLabel.textContent = 'Ver faixas';
-          if (collapseChevron) collapseChevron.style.transform = 'rotate(0deg)';
-          if (miniBar) miniBar.classList.remove('hidden');
-          if (miniFill) miniFill.style.width = `${calculateTrackProgressPercent(summary.oohSum)}%`;
         } else {
-          // Estado Aberto / Expandido (Web ou Mobile)
-          if (isMob) {
-            if (promoInner) promoInner.className = 'px-3.5 py-3 flex flex-col gap-3.5';
-            if (promoHeader) promoHeader.className = 'w-full select-none cursor-pointer';
-            if (collapsePill) {
-              collapsePill.classList.remove('hidden');
-              collapsePill.classList.add('inline-flex');
-            }
-            if (desktopCollapsePill) {
-              desktopCollapsePill.classList.add('hidden');
-              desktopCollapsePill.classList.remove('md:inline-flex');
-            }
-            if (collapseLabel) collapseLabel.textContent = 'Recolher';
-            if (collapseChevron) collapseChevron.style.transform = 'rotate(180deg)';
-          } else {
-            if (promoInner) promoInner.className = 'max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6';
-            if (promoHeader) promoHeader.className = 'shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-[#2A313A] md:pr-6 select-none cursor-pointer';
-            if (collapsePill) {
-              collapsePill.classList.add('hidden');
-              collapsePill.classList.remove('inline-flex');
-            }
-            if (desktopCollapsePill) {
-              desktopCollapsePill.classList.remove('hidden');
-              desktopCollapsePill.classList.add('md:inline-flex');
-            }
+          if (promoInner) promoInner.className = 'max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6';
+          if (promoHeader) promoHeader.className = 'shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-[#2A313A] md:pr-6 select-none cursor-pointer';
+          if (collapsedInner) collapsedInner.className = 'max-w-[1600px] mx-auto px-4 lg:px-8 py-1.5 flex items-center justify-between gap-4 cursor-pointer select-none';
+          if (collapsePill) {
+            collapsePill.classList.add('hidden');
+            collapsePill.classList.remove('inline-flex');
           }
-          if (topRow) topRow.className = 'flex items-start justify-between gap-2.5';
-          if (collapsedHint) collapsedHint.classList.add('hidden');
-          if (stripText) stripText.classList.remove('hidden');
-          if (stepperEl) stepperEl.classList.remove('hidden');
-          if (miniBar) miniBar.classList.add('hidden');
+          if (desktopCollapsePill) {
+            desktopCollapsePill.classList.remove('hidden');
+            desktopCollapsePill.classList.add('md:inline-flex');
+          }
         }
+
+        // Cross-fade + recolhimento suave entre a camada expandida e a camada colapsada
+        if (expandedLayer) expandedLayer.classList.toggle('is-layer-collapsed', isCollapsed);
+        if (collapsedLayer) collapsedLayer.classList.toggle('is-layer-collapsed', !isCollapsed);
       }
 
       document.getElementById('footer-selected-count').textContent = `${summary.count} ${summary.count === 1 ? 'produto selecionado' : 'produtos selecionados'}`;
@@ -1787,6 +1817,16 @@
           ? 'px-2 py-0.5 rounded bg-[#F15A22] text-white border border-[#F37445] font-semibold transition'
           : 'px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition';
       }
+      const stripEl = document.getElementById('footer-promo-strip');
+      if (stripEl) {
+        if (!collapsed && reason === 'tier-up') {
+          stripEl.classList.add('tier-up-pulse');
+          setTimeout(() => stripEl.classList.remove('tier-up-pulse'), 850);
+        } else {
+          stripEl.classList.remove('tier-up-pulse');
+        }
+      }
+
       updateAutoCollapseTelemetry();
       updateAllPromoVisuals();
     }

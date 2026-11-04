@@ -10,7 +10,8 @@
     "openOnFirstVisit": true,
     "autoCollapseAfterSeconds": 5,
     "autoCollapseAfterMouseScrolls": 3,
-    "reopenOnPointAdditionOrNextTier": true
+    "reopenOnPointAdditionOrNextTier": true,
+    "transitionStyle": "smooth-crossfade-grid-collapse-520ms"
   },
   "tiers": [
     { "tier": 1, "minSpend": 200.00, "maxSpend": 999.99, "discount": 100.00, "shortLabel": "R$ 100", "thresholdLabel": "R$ 200" },
