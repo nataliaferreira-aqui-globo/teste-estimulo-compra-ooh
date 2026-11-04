@@ -6,6 +6,12 @@
   "singleUsePerOrder": true,
   "excludeGloboPages": true,
   "showSpendThresholdBelowTrack": false,
+  "webCollapseDynamics": {
+    "openOnFirstVisit": true,
+    "autoCollapseAfterSeconds": 10,
+    "autoCollapseAfterMouseScrolls": 3,
+    "reopenOnPointAdditionOrNextTier": true
+  },
   "tiers": [
     { "tier": 1, "minSpend": 200.00, "maxSpend": 999.99, "discount": 100.00, "shortLabel": "R$ 100", "thresholdLabel": "R$ 200" },
     { "tier": 2, "minSpend": 1000.00, "maxSpend": 2999.99, "discount": 500.00, "shortLabel": "R$ 500", "thresholdLabel": "R$ 1 mil" },
