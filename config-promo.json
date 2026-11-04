@@ -7,6 +7,7 @@
   "excludeGloboPages": true,
   "showSpendThresholdBelowTrack": false,
   "webCollapseDynamics": {
+    "appliesTo": ["web", "mobile"],
     "openOnFirstVisit": true,
     "autoCollapseAfterSeconds": 5,
     "autoCollapseAfterMouseScrolls": 3,
