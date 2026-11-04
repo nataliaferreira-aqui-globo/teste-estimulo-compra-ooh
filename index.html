@@ -14,34 +14,109 @@
         extend: {
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            ph: {
+              green: {
+                80: '#002900',
+                100: '#003C00',
+                200: '#004B00',
+                300: '#005A00',
+                400: '#006900',
+                500: '#007800',
+                600: '#339333',
+                700: '#66AE66',
+                800: '#A2CEA2',
+                900: '#CCE4CC',
+                1000: '#F5FAF5',
+              },
+              neutral: {
+                black: '#1A1E24',
+                80: '#232931',
+                100: '#2A313A',
+                200: '#313944',
+                300: '#38414E',
+                400: '#3F4957',
+                500: '#465161',
+                600: '#6B7481',
+                700: '#818EA1',
+                800: '#B3BBC7',
+                900: '#E8EAEE',
+                1000: '#F7F8FC',
+                white: '#FFFFFF',
+              },
+              pumpkin: {
+                300: '#C1481B',
+                400: '#D9511F',
+                500: '#F15A22',
+                600: '#F37445',
+                700: '#F68F69',
+              },
+              gold: {
+                500: '#F7990F',
+              },
+              yellow: {
+                600: '#FFD033',
+              },
+              cassis: {
+                400: '#694DB5',
+              }
+            }
           }
         }
       }
     }
   </script>
   <style>
+    :root {
+      /* Prontooh / Aqui Ads Design System — Primitive & Theme Color Tokens */
+      --ph-color-green-400: #006900;
+      --ph-color-green-500: #007800;
+      --ph-color-green-600: #339333;
+      --ph-color-green-700: #66AE66;
+      --ph-color-green-800: #A2CEA2;
+      --ph-color-green-900: #CCE4CC;
+      --ph-color-green-1000: #F5FAF5;
+      --ph-color-neutral-black: #1A1E24;
+      --ph-color-neutral-80: #232931;
+      --ph-color-neutral-100: #2A313A;
+      --ph-color-neutral-200: #313944;
+      --ph-color-neutral-300: #38414E;
+      --ph-color-neutral-400: #3F4957;
+      --ph-color-neutral-500: #465161;
+      --ph-color-neutral-600: #6B7481;
+      --ph-color-neutral-700: #818EA1;
+      --ph-color-neutral-800: #B3BBC7;
+      --ph-color-neutral-900: #E8EAEE;
+      --ph-color-neutral-1000: #F7F8FC;
+      --ph-color-pumpkin-400: #D9511F;
+      --ph-color-pumpkin-500: #F15A22;
+      --ph-color-gold-500: #F7990F;
+      --ph-color-yellow-600: #FFD033;
+      --ph-color-cassis-400: #694DB5;
+    }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #FAFAFA;
-      color: #1E293B;
+      background-color: #F7F8FC;
+      color: #2A313A;
       -webkit-font-smoothing: antialiased;
     }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #F1F5F9; }
-    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 9999px; }
+    ::-webkit-scrollbar-track { background: #F7F8FC; }
+    ::-webkit-scrollbar-thumb { background: #B3BBC7; border-radius: 9999px; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .map-bg {
-      background-color: #E5E7EB;
+      background-color: #E8EAEE;
       background-image: 
         linear-gradient(115deg, transparent 48%, #FFFFFF 48%, #FFFFFF 51%, transparent 51%),
         linear-gradient(25deg, transparent 62%, #FFFFFF 62%, #FFFFFF 64%, transparent 64%),
-        linear-gradient(72deg, transparent 30%, #F3F4F6 30%, #F3F4F6 33%, transparent 33%),
-        radial-gradient(#D1D5DB 1px, transparent 1px);
+        linear-gradient(72deg, transparent 30%, #F7F8FC 30%, #F7F8FC 33%, transparent 33%),
+        radial-gradient(#B3BBC7 1px, transparent 1px);
       background-size: 280px 280px, 220px 220px, 180px 180px, 24px 24px;
     }
     body.mobile-mode-bg {
-      background-color: #0F172A;
+      background-color: #1A1E24;
       padding-bottom: 20px;
     }
     .phone-frame {
@@ -50,8 +125,8 @@
       height: calc(100vh - 96px);
       max-height: 860px;
       margin: 8px auto 0 auto;
-      background: #FAFAFA;
-      border: 10px solid #1E293B;
+      background: #F7F8FC;
+      border: 10px solid #2A313A;
       border-radius: 40px;
       box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255,255,255,0.12);
       display: flex;
@@ -68,35 +143,35 @@
     }
   </style>
 </head>
-<body id="page-body" class="min-h-screen flex flex-col bg-[#FAFAFA]">
+<body id="page-body" class="min-h-screen flex flex-col bg-[#F7F8FC]">
 
   <!-- BARRA DE CONTROLE DO PROTÓTIPO -->
-  <div id="pantheon-lab-bar" class="sticky top-0 z-50 bg-slate-900 text-white border-b border-slate-700 shadow-lg">
+  <div id="pantheon-lab-bar" class="sticky top-0 z-50 bg-[#1A1E24] text-white border-b border-[#38414E] shadow-lg">
     <div class="max-w-[1440px] mx-auto px-3 py-2 flex flex-col gap-1.5 text-xs">
       
       <div class="flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-2 flex-wrap">
           <!-- Toggle Desktop vs Mobile -->
-          <div class="inline-flex rounded-lg bg-slate-800 p-0.5 border border-slate-600">
-            <button onclick="setViewportMode('desktop')" id="btn-mode-desktop" class="px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 text-slate-300 hover:text-white">
+          <div class="inline-flex rounded-lg bg-[#2A313A] p-0.5 border border-[#3F4957]">
+            <button onclick="setViewportMode('desktop')" id="btn-mode-desktop" class="px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 text-[#B3BBC7] hover:text-white">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
               <span>Desktop</span>
             </button>
-            <button onclick="setViewportMode('mobile')" id="btn-mode-mobile" class="px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 bg-[#F05A22] text-white">
+            <button onclick="setViewportMode('mobile')" id="btn-mode-mobile" class="px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 bg-[#F15A22] text-white">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
               <span>Mobile</span>
             </button>
           </div>
 
           <!-- Navegação entre as páginas -->
-          <div class="inline-flex rounded-lg bg-slate-800 p-0.5 border border-slate-700">
-            <button onclick="switchScreen('vitrine')" id="tab-screen-vitrine" class="px-2.5 py-1 rounded-md font-semibold transition-all text-slate-300 hover:text-white">
+          <div class="inline-flex rounded-lg bg-[#2A313A] p-0.5 border border-[#38414E]">
+            <button onclick="switchScreen('vitrine')" id="tab-screen-vitrine" class="px-2.5 py-1 rounded-md font-semibold transition-all text-[#B3BBC7] hover:text-white">
               1. Resultados OOH (Forte / Preto)
             </button>
-            <button onclick="switchScreen('globo')" id="tab-screen-globo" class="px-2.5 py-1 rounded-md font-semibold transition-all text-slate-300 hover:text-white">
+            <button onclick="switchScreen('globo')" id="tab-screen-globo" class="px-2.5 py-1 rounded-md font-semibold transition-all text-[#B3BBC7] hover:text-white">
               2. Resultados Globo (Sem Promo)
             </button>
-            <button onclick="switchScreen('plano')" id="tab-screen-plano" class="px-2.5 py-1 rounded-md font-semibold transition-all bg-[#F05A22] text-white">
+            <button onclick="switchScreen('plano')" id="tab-screen-plano" class="px-2.5 py-1 rounded-md font-semibold transition-all bg-[#F15A22] text-white">
               3. Resumo / Plano de Mídia (Suave)
             </button>
           </div>
@@ -104,49 +179,49 @@
 
         <!-- Conflito de Cupom -->
         <div class="flex items-center gap-1.5 flex-wrap">
-          <span class="text-slate-400 text-[10px] uppercase font-bold">Cupom:</span>
-          <button id="coupon-btn-none" onclick="setCouponScenario('none')" class="px-2 py-1 rounded-md bg-[#F05A22] text-white font-semibold transition">
+          <span class="text-[#818EA1] text-[10px] uppercase font-bold">Cupom:</span>
+          <button id="coupon-btn-none" onclick="setCouponScenario('none')" class="px-2 py-1 rounded-md bg-[#F15A22] text-white font-semibold transition">
             Progressivo (Padrão)
           </button>
-          <button id="coupon-btn-smaller" onclick="setCouponScenario('smaller')" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+          <button id="coupon-btn-smaller" onclick="setCouponScenario('smaller')" class="px-2 py-1 rounded-md bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition">
             Cupom Menor (R$ 300)
           </button>
-          <button id="coupon-btn-larger" onclick="setCouponScenario('larger')" class="px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+          <button id="coupon-btn-larger" onclick="setCouponScenario('larger')" class="px-2 py-1 rounded-md bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition">
             Cupom Superior (R$ 3 mil)
           </button>
         </div>
       </div>
 
       <!-- Linha 2: Simulador das 5 Faixas Progressivas + Controle Colapsável Mobile -->
-      <div class="flex flex-wrap items-center justify-between gap-1.5 pt-1 border-t border-slate-800">
+      <div class="flex flex-wrap items-center justify-between gap-1.5 pt-1 border-t border-[#2A313A]">
         <div class="flex items-center gap-1.5 flex-wrap">
-          <span class="text-emerald-400 font-bold uppercase tracking-wider text-[10px]">Simular Faixas de Bônus OOH:</span>
-          <button id="tier-btn-0" onclick="applyTierPreset(0)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+          <span class="text-[#66AE66] font-bold uppercase tracking-wider text-[10px]">Simular Faixas de Bônus OOH:</span>
+          <button id="tier-btn-0" onclick="applyTierPreset(0)" class="px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition">
             0. R$ 0
           </button>
-          <button id="tier-btn-1" onclick="applyTierPreset(1)" class="px-2 py-0.5 rounded bg-[#F05A22] text-white border border-orange-500 font-semibold transition">
+          <button id="tier-btn-1" onclick="applyTierPreset(1)" class="px-2 py-0.5 rounded bg-[#F15A22] text-white border border-[#F37445] font-semibold transition">
             F1: R$ 400 (Bônus R$ 100)
           </button>
-          <button id="tier-btn-2" onclick="applyTierPreset(2)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+          <button id="tier-btn-2" onclick="applyTierPreset(2)" class="px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition">
             F2: R$ 1.295 (Bônus R$ 500)
           </button>
-          <button id="tier-btn-3" onclick="applyTierPreset(3)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+          <button id="tier-btn-3" onclick="applyTierPreset(3)" class="px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition">
             F3: R$ 3.445 (Bônus R$ 1 mil)
           </button>
-          <button id="tier-btn-4" onclick="applyTierPreset(4)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+          <button id="tier-btn-4" onclick="applyTierPreset(4)" class="px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition">
             F4: R$ 5.845 (Bônus R$ 1,5 mil)
           </button>
-          <button id="tier-btn-5" onclick="applyTierPreset(5)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+          <button id="tier-btn-5" onclick="applyTierPreset(5)" class="px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition">
             F5: R$ 10.345 (Bônus R$ 2 mil)
           </button>
         </div>
 
         <div class="flex items-center gap-1.5">
-          <span class="text-emerald-400 font-bold uppercase tracking-wider text-[10px]">Barra Mobile:</span>
-          <button id="btn-mob-expanded" onclick="setMobilePromoCollapsed(false)" class="px-2 py-0.5 rounded bg-[#F05A22] text-white border border-orange-500 font-semibold transition">
+          <span class="text-[#66AE66] font-bold uppercase tracking-wider text-[10px]">Barra Mobile:</span>
+          <button id="btn-mob-expanded" onclick="setMobilePromoCollapsed(false)" class="px-2 py-0.5 rounded bg-[#F15A22] text-white border border-[#F37445] font-semibold transition">
             Expandida (Padrão)
           </button>
-          <button id="btn-mob-collapsed" onclick="setMobilePromoCollapsed(true)" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition">
+          <button id="btn-mob-collapsed" onclick="setMobilePromoCollapsed(true)" class="px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition">
             Recolhida (Ver faixas)
           </button>
         </div>
@@ -160,37 +235,37 @@
     <div id="device-scroll-area" class="w-full flex-1 flex flex-col">
 
       <!-- Barra amarela de admin do Prontooh -->
-      <div class="w-full bg-[#FBBF24] text-slate-900 text-[10px] font-medium px-3 py-1 flex items-center justify-end gap-1.5 shrink-0">
-        <svg class="w-3.5 h-3.5 text-slate-900 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <div class="w-full bg-[#FFD033] text-[#1A1E24] text-[10px] font-medium px-3 py-1 flex items-center justify-end gap-1.5 shrink-0">
+        <svg class="w-3.5 h-3.5 text-[#1A1E24] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
         </svg>
         <span>Você efetuou login com uma conta administradora.</span>
       </div>
 
       <!-- HEADER OFICIAL PRONTOOH / AQUI ADS -->
-      <header class="border-b border-slate-100 bg-white sticky top-0 z-30 shrink-0">
+      <header class="border-b border-[#E8EAEE] bg-white sticky top-0 z-30 shrink-0">
         <div class="max-w-[1380px] mx-auto px-3.5 py-2.5 flex items-center justify-between gap-2">
           <a href="javascript:void(0)" onclick="switchScreen('vitrine')" class="flex items-center gap-0.5 select-none shrink-0">
-            <span class="text-xl font-extrabold tracking-tight text-[#F05A22]">Aqui</span>
-            <span class="text-xl font-normal tracking-tight text-amber-500">ads</span>
-            <span class="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full border-2 border-[#F05A22] text-[8px] font-bold text-[#F05A22] -mt-2.5 ml-0.5">+</span>
+            <span class="text-xl font-extrabold tracking-tight text-[#F15A22]">Aqui</span>
+            <span class="text-xl font-normal tracking-tight text-[#F7990F]">ads</span>
+            <span class="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full border-2 border-[#F15A22] text-[8px] font-bold text-[#F15A22] -mt-2.5 ml-0.5">+</span>
           </a>
 
           <nav id="header-channel-tabs-desktop" class="hidden items-center gap-6">
-            <button onclick="switchScreen('vitrine')" class="flex items-center gap-2 border-b-2 border-slate-900 text-slate-900 font-semibold text-sm pb-1 transition">
-              <span class="w-6 h-6 rounded bg-[#F05A22] text-white flex items-center justify-center shadow-sm">
+            <button onclick="switchScreen('vitrine')" class="flex items-center gap-2 border-b-2 border-[#1A1E24] text-[#1A1E24] font-semibold text-sm pb-1 transition">
+              <span class="w-6 h-6 rounded bg-[#F15A22] text-white flex items-center justify-center shadow-sm">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M12 17h.01"/></svg>
               </span>
               <span>OOH</span>
             </button>
-            <button onclick="switchScreen('globo')" class="flex items-center gap-2 border-b-2 border-transparent text-slate-400 hover:text-slate-700 font-medium text-sm pb-1 transition">
-              <span class="w-6 h-6 rounded bg-[#F05A22]/90 text-white flex items-center justify-center">
+            <button onclick="switchScreen('globo')" class="flex items-center gap-2 border-b-2 border-transparent text-[#818EA1] hover:text-[#38414E] font-medium text-sm pb-1 transition">
+              <span class="w-6 h-6 rounded bg-[#F15A22]/90 text-white flex items-center justify-center">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/></svg>
               </span>
               <span>Digital</span>
             </button>
-            <button onclick="switchScreen('globo')" class="flex items-center gap-2 border-b-2 border-transparent text-slate-400 hover:text-slate-700 font-medium text-sm pb-1 transition">
-              <span class="w-6 h-6 rounded bg-[#F05A22]/90 text-white flex items-center justify-center">
+            <button onclick="switchScreen('globo')" class="flex items-center gap-2 border-b-2 border-transparent text-[#818EA1] hover:text-[#38414E] font-medium text-sm pb-1 transition">
+              <span class="w-6 h-6 rounded bg-[#F15A22]/90 text-white flex items-center justify-center">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
               </span>
               <span>TV</span>
@@ -198,31 +273,31 @@
           </nav>
 
           <div class="flex items-center gap-2.5 text-xs">
-            <button class="inline-flex items-center gap-1 text-slate-700 hover:text-slate-900 font-medium">
+            <button class="inline-flex items-center gap-1 text-[#38414E] hover:text-[#1A1E24] font-medium">
               <span id="header-ai-label">Assistente de anúncios</span>
-              <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8a2 2 0 001.3 1.3L21 12l-5.8 1.9a2 2 0 00-1.3 1.3L12 21l-1.9-5.8a2 2 0 00-1.3-1.3L3 12l5.8-1.9a2 2 0 001.3-1.3L12 3z"/></svg>
+              <svg class="w-4 h-4 text-[#694DB5]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8a2 2 0 001.3 1.3L21 12l-5.8 1.9a2 2 0 00-1.3 1.3L12 21l-1.9-5.8a2 2 0 00-1.3-1.3L3 12l5.8-1.9a2 2 0 001.3-1.3L12 3z"/></svg>
             </button>
 
-            <button onclick="switchScreen('plano')" class="relative p-1.5 text-slate-700 hover:text-[#F05A22] transition">
+            <button onclick="switchScreen('plano')" class="relative p-1.5 text-[#38414E] hover:text-[#F15A22] transition">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
               </svg>
-              <span id="header-cart-badge" class="hidden absolute -top-1 -right-1 bg-[#F05A22] text-white text-[10px] font-bold px-1.5 rounded-full min-w-[17px] text-center shadow">0</span>
+              <span id="header-cart-badge" class="hidden absolute -top-1 -right-1 bg-[#F15A22] text-white text-[10px] font-bold px-1.5 rounded-full min-w-[17px] text-center shadow">0</span>
             </button>
 
-            <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200/80 rounded-full py-1 pl-1.5 pr-2">
-              <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-700 font-bold text-[10px] flex items-center justify-center">N</span>
-              <span id="header-user-name" class="text-xs font-medium text-slate-700">Olá, Natalia!</span>
+            <div class="flex items-center gap-1.5 bg-[#F7F8FC] border border-[#E8EAEE] rounded-full py-1 pl-1.5 pr-2">
+              <span class="w-5 h-5 rounded-full bg-[#E8EAEE] text-[#38414E] font-bold text-[10px] flex items-center justify-center">N</span>
+              <span id="header-user-name" class="text-xs font-medium text-[#38414E]">Olá, Natalia!</span>
             </div>
           </div>
         </div>
 
-        <div id="header-channel-tabs-mobile" class="hidden border-t border-slate-100 px-3.5 py-2 overflow-x-auto no-scrollbar flex items-center justify-between bg-slate-50/70">
-          <button onclick="switchScreen('vitrine')" class="flex items-center gap-1.5 text-xs font-bold text-[#F05A22] border-b-2 border-[#F05A22] pb-0.5 shrink-0"><span>OOH</span></button>
-          <button onclick="switchScreen('globo')" class="flex items-center gap-1.5 text-xs font-medium text-slate-500 pb-0.5 shrink-0"><span>Digital (Globo)</span></button>
-          <button onclick="switchScreen('globo')" class="flex items-center gap-1.5 text-xs font-medium text-slate-500 pb-0.5 shrink-0"><span>TV (Globo)</span></button>
-          <button class="flex items-center gap-1.5 text-xs font-medium text-slate-500 pb-0.5 shrink-0"><span>Rádio</span></button>
-          <button class="flex items-center gap-1.5 text-xs font-medium text-slate-500 pb-0.5 shrink-0"><span>Combos</span></button>
+        <div id="header-channel-tabs-mobile" class="hidden border-t border-[#E8EAEE] px-3.5 py-2 overflow-x-auto no-scrollbar flex items-center justify-between bg-[#F7F8FC]">
+          <button onclick="switchScreen('vitrine')" class="flex items-center gap-1.5 text-xs font-bold text-[#F15A22] border-b-2 border-[#F15A22] pb-0.5 shrink-0"><span>OOH</span></button>
+          <button onclick="switchScreen('globo')" class="flex items-center gap-1.5 text-xs font-medium text-[#6B7481] pb-0.5 shrink-0"><span>Digital (Globo)</span></button>
+          <button onclick="switchScreen('globo')" class="flex items-center gap-1.5 text-xs font-medium text-[#6B7481] pb-0.5 shrink-0"><span>TV (Globo)</span></button>
+          <button class="flex items-center gap-1.5 text-xs font-medium text-[#6B7481] pb-0.5 shrink-0"><span>Rádio</span></button>
+          <button class="flex items-center gap-1.5 text-xs font-medium text-[#6B7481] pb-0.5 shrink-0"><span>Combos</span></button>
         </div>
       </header>
 
@@ -231,21 +306,21 @@
       <!-- ================================================================= -->
       <main id="screen-vitrine" class="hidden max-w-[1600px] w-full mx-auto px-4 lg:px-8 pt-4 pb-10 flex-1">
         <div id="search-bar-desktop" class="max-w-2xl mx-auto mb-4">
-          <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-slate-200/90 p-2 flex items-center justify-between gap-2">
-            <div class="flex-1 px-3 py-1 border-r border-slate-200">
-              <div class="text-[11px] font-bold text-slate-800">Onde</div>
-              <div class="text-xs text-slate-600">Praça da Sé, São Paulo - SP</div>
+          <div class="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-[#E8EAEE] p-2 flex items-center justify-between gap-2">
+            <div class="flex-1 px-3 py-1 border-r border-[#E8EAEE]">
+              <div class="text-[11px] font-bold text-[#2A313A]">Onde</div>
+              <div class="text-xs text-[#465161]">Praça da Sé, São Paulo - SP</div>
             </div>
-            <div class="px-3 py-1 border-r border-slate-200 shrink-0">
-              <div class="text-[11px] font-bold text-slate-800">Período</div>
-              <div class="text-xs text-slate-600">4 semanas</div>
+            <div class="px-3 py-1 border-r border-[#E8EAEE] shrink-0">
+              <div class="text-[11px] font-bold text-[#2A313A]">Período</div>
+              <div class="text-xs text-[#465161]">4 semanas</div>
             </div>
             <div class="px-3 py-1 flex items-center justify-between gap-3 shrink-0">
               <div>
-                <div class="text-[11px] font-bold text-slate-800">Início</div>
-                <div class="text-xs text-slate-600">28/10/2026</div>
+                <div class="text-[11px] font-bold text-[#2A313A]">Início</div>
+                <div class="text-xs text-[#465161]">28/10/2026</div>
               </div>
-              <button class="w-9 h-9 rounded-xl bg-[#F05A22] hover:bg-[#D94B16] text-white flex items-center justify-center shadow-sm transition">
+              <button class="w-9 h-9 rounded-xl bg-[#F15A22] hover:bg-[#D9511F] text-white flex items-center justify-center shadow-sm transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
               </button>
             </div>
@@ -253,15 +328,15 @@
         </div>
 
         <div id="search-bar-mobile" class="hidden mb-3">
-          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-2.5 flex items-center justify-between gap-2">
+          <div class="bg-white rounded-2xl shadow-sm border border-[#E8EAEE] p-2.5 flex items-center justify-between gap-2">
             <div class="flex items-start gap-2">
-              <svg class="w-4 h-4 text-[#F05A22] mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <svg class="w-4 h-4 text-[#F15A22] mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
               <div>
-                <div class="text-xs font-bold text-slate-800 leading-snug">Praça da Sé, São Paulo - SP</div>
-                <div class="text-[11px] text-slate-500 mt-0.5">Período: 4 semanas · Início: 28/10/2026</div>
+                <div class="text-xs font-bold text-[#2A313A] leading-snug">Praça da Sé, São Paulo - SP</div>
+                <div class="text-[11px] text-[#6B7481] mt-0.5">Período: 4 semanas · Início: 28/10/2026</div>
               </div>
             </div>
-            <button class="w-9 h-9 rounded-xl bg-[#F05A22] text-white flex items-center justify-center shrink-0 shadow-sm">
+            <button class="w-9 h-9 rounded-xl bg-[#F15A22] hover:bg-[#D9511F] text-white flex items-center justify-center shrink-0 shadow-sm">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
             </button>
           </div>
@@ -269,13 +344,13 @@
 
         <div class="flex items-center justify-between gap-2 mb-4">
           <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 flex-1">
-            <button class="px-3 py-1.5 rounded-lg bg-[#525B65] text-white text-xs font-medium shrink-0">todos</button>
-            <button class="px-3 py-1.5 rounded-lg bg-[#F1F5F9] text-slate-700 text-xs font-medium shrink-0">elevadores comerciais</button>
-            <button class="px-3 py-1.5 rounded-lg bg-[#F1F5F9] text-slate-700 text-xs font-medium shrink-0">elevadores residenciais</button>
-            <button class="px-3 py-1.5 rounded-lg bg-[#F1F5F9] text-slate-700 text-xs font-medium shrink-0">ponto de ônibus</button>
+            <button class="px-3 py-1.5 rounded-lg bg-[#465161] text-white text-xs font-medium shrink-0">todos</button>
+            <button class="px-3 py-1.5 rounded-lg bg-[#E8EAEE] text-[#38414E] text-xs font-medium shrink-0">elevadores comerciais</button>
+            <button class="px-3 py-1.5 rounded-lg bg-[#E8EAEE] text-[#38414E] text-xs font-medium shrink-0">elevadores residenciais</button>
+            <button class="px-3 py-1.5 rounded-lg bg-[#E8EAEE] text-[#38414E] text-xs font-medium shrink-0">ponto de ônibus</button>
           </div>
 
-          <button id="mobile-map-toggle-btn" onclick="toggleMobileMap()" class="hidden px-3 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-semibold shrink-0 items-center gap-1.5 shadow-sm">
+          <button id="mobile-map-toggle-btn" onclick="toggleMobileMap()" class="hidden px-3 py-1.5 rounded-lg bg-[#1A1E24] text-white text-xs font-semibold shrink-0 items-center gap-1.5 shadow-sm">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
             <span id="mobile-map-toggle-text">Mapa</span>
           </button>
@@ -285,14 +360,14 @@
           <div id="ooh-cards-container" class="col-span-7 grid grid-cols-3 gap-4"></div>
 
           <div id="ooh-map-wrapper" class="col-span-5 sticky top-20">
-            <div id="ooh-map-box" class="w-full h-[560px] rounded-2xl map-bg border border-slate-200 shadow-inner relative overflow-hidden select-none">
-              <div class="absolute top-5 left-3 text-[10px] font-bold text-amber-800/80 bg-amber-100/90 px-2 py-0.5 rounded">Praça da Sé · Centro</div>
-              <button onclick="togglePointSelection('p1')" class="absolute top-36 left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[#F05A22] hover:scale-110 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-white transition">
+            <div id="ooh-map-box" class="w-full h-[560px] rounded-2xl map-bg border border-[#E8EAEE] shadow-inner relative overflow-hidden select-none">
+              <div class="absolute top-5 left-3 text-[10px] font-bold text-[#7C4D08] bg-[#FDEBCF]/95 px-2 py-0.5 rounded">Praça da Sé · Centro</div>
+              <button onclick="togglePointSelection('p1')" class="absolute top-36 left-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-[#F15A22] hover:scale-110 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-white transition">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
               </button>
-              <button onclick="togglePointSelection('p2')" class="absolute top-52 right-28 w-8 h-8 rounded-full bg-[#F05A22] hover:scale-110 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-white transition">2</button>
-              <button onclick="togglePointSelection('p3')" class="absolute bottom-36 right-36 w-8 h-8 rounded-full bg-[#F05A22] hover:scale-110 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-white transition">3</button>
-              <div class="absolute bottom-2.5 left-2.5 bg-white/85 px-2 py-0.5 rounded text-[10px] font-semibold text-slate-600 shadow-sm">© mapbox</div>
+              <button onclick="togglePointSelection('p2')" class="absolute top-52 right-28 w-8 h-8 rounded-full bg-[#F15A22] hover:scale-110 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-white transition">2</button>
+              <button onclick="togglePointSelection('p3')" class="absolute bottom-36 right-36 w-8 h-8 rounded-full bg-[#F15A22] hover:scale-110 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-white transition">3</button>
+              <div class="absolute bottom-2.5 left-2.5 bg-white/85 px-2 py-0.5 rounded text-[10px] font-semibold text-[#465161] shadow-sm">© mapbox</div>
             </div>
           </div>
         </div>
@@ -303,43 +378,43 @@
       <!-- ================================================================= -->
       <main id="screen-globo" class="hidden max-w-[1160px] w-full mx-auto px-3.5 pt-5 pb-12 flex-1">
         <div class="mb-5">
-          <h1 class="text-lg font-bold text-slate-900">Digital · Portais Globo</h1>
-          <p class="text-xs text-slate-500">Anuncie nos portais de maior audiência do país (g1, ge, gshow, globo.com e globoplay)</p>
+          <h1 class="text-lg font-bold text-[#1A1E24]">Digital · Portais Globo</h1>
+          <p class="text-xs text-[#6B7481]">Anuncie nos portais de maior audiência do país (g1, ge, gshow, globo.com e globoplay)</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm flex flex-col justify-between">
+          <div class="bg-white rounded-2xl border border-[#E8EAEE] p-4 shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="font-bold text-sm text-slate-900">Display - Portais Globo</span>
-                <span class="px-2 py-0.5 rounded bg-slate-800 text-white text-[10px] font-semibold">display</span>
+                <span class="font-bold text-sm text-[#1A1E24]">Display - Portais Globo</span>
+                <span class="px-2 py-0.5 rounded bg-[#2A313A] text-white text-[10px] font-semibold">display</span>
               </div>
-              <p class="text-xs text-slate-500 mb-3">Banners de alta visibilidade distribuídos em g1, ge, gshow, Receitas e globo.com.</p>
-              <div class="grid grid-cols-3 gap-2 bg-slate-50 p-2.5 rounded-xl text-xs mb-4">
-                <div><span class="text-slate-400 block text-[10px]">impressões</span><strong class="text-slate-800">110.000</strong></div>
-                <div><span class="text-slate-400 block text-[10px]">CPM</span><strong class="text-slate-800">R$ 9,60</strong></div>
-                <div><span class="text-slate-400 block text-[10px]">investimento</span><strong class="text-slate-900">R$ 1.000,00</strong></div>
+              <p class="text-xs text-[#6B7481] mb-3">Banners de alta visibilidade distribuídos em g1, ge, gshow, Receitas e globo.com.</p>
+              <div class="grid grid-cols-3 gap-2 bg-[#F7F8FC] p-2.5 rounded-xl text-xs mb-4">
+                <div><span class="text-[#818EA1] block text-[10px]">impressões</span><strong class="text-[#2A313A]">110.000</strong></div>
+                <div><span class="text-[#818EA1] block text-[10px]">CPM</span><strong class="text-[#2A313A]">R$ 9,60</strong></div>
+                <div><span class="text-[#818EA1] block text-[10px]">investimento</span><strong class="text-[#1A1E24]">R$ 1.000,00</strong></div>
               </div>
             </div>
-            <button onclick="toggleDigitalSelection('d1')" class="w-full h-10 rounded-xl border border-[#16A34A] text-[#15803D] font-semibold text-xs hover:bg-emerald-50 transition">
+            <button onclick="toggleDigitalSelection('d1')" class="w-full h-10 rounded-xl border border-[#339333] text-[#007800] font-semibold text-xs hover:bg-[#F5FAF5] transition">
               selecionar formato digital
             </button>
           </div>
 
-          <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm flex flex-col justify-between">
+          <div class="bg-white rounded-2xl border border-[#E8EAEE] p-4 shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="font-bold text-sm text-slate-900">Vídeo de 15 segundos - Portais Globo</span>
-                <span class="px-2 py-0.5 rounded bg-[#16A34A] text-white text-[10px] font-semibold">sem skip</span>
+                <span class="font-bold text-sm text-[#1A1E24]">Vídeo de 15 segundos - Portais Globo</span>
+                <span class="px-2 py-0.5 rounded bg-[#339333] text-white text-[10px] font-semibold">sem skip</span>
               </div>
-              <p class="text-xs text-slate-500 mb-3">Vídeo completo sem botão de pular antes dos conteúdos em vídeo dos Portais Globo.</p>
-              <div class="grid grid-cols-3 gap-2 bg-slate-50 p-2.5 rounded-xl text-xs mb-4">
-                <div><span class="text-slate-400 block text-[10px]">impressões</span><strong class="text-slate-800">14.000</strong></div>
-                <div><span class="text-slate-400 block text-[10px]">CPM</span><strong class="text-slate-800">R$ 72,00</strong></div>
-                <div><span class="text-slate-400 block text-[10px]">investimento</span><strong class="text-slate-900">R$ 1.000,00</strong></div>
+              <p class="text-xs text-[#6B7481] mb-3">Vídeo completo sem botão de pular antes dos conteúdos em vídeo dos Portais Globo.</p>
+              <div class="grid grid-cols-3 gap-2 bg-[#F7F8FC] p-2.5 rounded-xl text-xs mb-4">
+                <div><span class="text-[#818EA1] block text-[10px]">impressões</span><strong class="text-[#2A313A]">14.000</strong></div>
+                <div><span class="text-[#818EA1] block text-[10px]">CPM</span><strong class="text-[#2A313A]">R$ 72,00</strong></div>
+                <div><span class="text-[#818EA1] block text-[10px]">investimento</span><strong class="text-[#1A1E24]">R$ 1.000,00</strong></div>
               </div>
             </div>
-            <button onclick="toggleDigitalSelection('d2')" class="w-full h-10 rounded-xl border border-[#16A34A] text-[#15803D] font-semibold text-xs hover:bg-emerald-50 transition">
+            <button onclick="toggleDigitalSelection('d2')" class="w-full h-10 rounded-xl border border-[#339333] text-[#007800] font-semibold text-xs hover:bg-[#F5FAF5] transition">
               selecionar formato digital
             </button>
           </div>
@@ -350,18 +425,18 @@
       <!-- TELA 3: PLANO DE MÍDIA / RESUMO (SUAVIZADO E 100% LEGÍVEL)        -->
       <!-- ================================================================= -->
       <main id="screen-plano" class="max-w-[1160px] w-full mx-auto px-3 pt-4 pb-10 flex-1">
-        <button onclick="switchScreen('vitrine')" class="inline-flex items-center gap-1 text-xs font-semibold text-slate-700 hover:text-[#F05A22] mb-2.5 transition">
+        <button onclick="switchScreen('vitrine')" class="inline-flex items-center gap-1 text-xs font-semibold text-[#38414E] hover:text-[#F15A22] mb-2.5 transition">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
           <span>voltar</span>
         </button>
 
         <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <h1 class="text-lg font-bold text-slate-900 tracking-tight">Plano de mídia</h1>
+          <h1 class="text-lg font-bold text-[#1A1E24] tracking-tight">Plano de mídia</h1>
           <div class="flex items-center gap-2">
-            <button class="px-2.5 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-[11px] font-medium text-slate-700 flex items-center gap-1.5 shadow-sm">
+            <button class="px-2.5 py-1.5 rounded-xl border border-[#E8EAEE] bg-white hover:bg-[#F7F8FC] text-[11px] font-medium text-[#38414E] flex items-center gap-1.5 shadow-sm">
               <span>salvar como rascunho</span>
             </button>
-            <button class="px-2.5 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-[11px] font-medium text-slate-700 flex items-center gap-1.5 shadow-sm">
+            <button class="px-2.5 py-1.5 rounded-xl border border-[#E8EAEE] bg-white hover:bg-[#F7F8FC] text-[11px] font-medium text-[#38414E] flex items-center gap-1.5 shadow-sm">
               <span>compartilhar proposta</span>
             </button>
           </div>
@@ -371,63 +446,63 @@
           
           <!-- COLUNA ESQUERDA: ITENS DO PLANO -->
           <div id="plano-left-col" class="col-span-6 space-y-3.5">
-            <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4">
+            <div class="bg-white rounded-2xl border border-[#E8EAEE] shadow-sm p-4">
               <div class="flex items-center justify-between mb-3">
-                <div class="flex items-center gap-2 font-bold text-slate-800 text-sm">
-                  <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                <div class="flex items-center gap-2 font-bold text-[#2A313A] text-sm">
+                  <svg class="w-4 h-4 text-[#465161]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
                   <span>Digital</span>
                 </div>
               </div>
-              <div id="digital-items-container" class="divide-y divide-slate-100"></div>
+              <div id="digital-items-container" class="divide-y divide-[#E8EAEE]"></div>
             </div>
 
-            <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4">
+            <div class="bg-white rounded-2xl border border-[#E8EAEE] shadow-sm p-4">
               <div class="flex items-center justify-between mb-2">
-                <div class="flex items-center gap-1.5 font-bold text-slate-800 text-sm">
-                  <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <div class="flex items-center gap-1.5 font-bold text-[#2A313A] text-sm">
+                  <svg class="w-4 h-4 text-[#465161]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                   <span>OOH | Out of Home</span>
                 </div>
               </div>
-              <div id="plano-ooh-items-container" class="divide-y divide-slate-100"></div>
+              <div id="plano-ooh-items-container" class="divide-y divide-[#E8EAEE]"></div>
             </div>
 
-            <button onclick="switchScreen('vitrine')" class="w-full py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-800 shadow-sm transition">
+            <button onclick="switchScreen('vitrine')" class="w-full py-2.5 rounded-xl border border-[#E8EAEE] bg-white hover:bg-[#F7F8FC] text-xs font-semibold text-[#2A313A] shadow-sm transition">
               contratar mais produtos
             </button>
           </div>
 
           <!-- COLUNA DIREITA: CONFIGURE -> PERFORMANCE -> VALOR -->
           <div id="plano-right-col" class="col-span-6">
-            <div id="plano-right-card" class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4">
+            <div id="plano-right-card" class="bg-white rounded-2xl border border-[#E8EAEE] shadow-sm p-4">
               
-              <div class="pb-4 mb-4 border-b border-slate-100">
-                <h2 class="text-sm font-bold text-slate-800 mb-3">Configure seu anúncio</h2>
+              <div class="pb-4 mb-4 border-b border-[#E8EAEE]">
+                <h2 class="text-sm font-bold text-[#2A313A] mb-3">Configure seu anúncio</h2>
                 <div class="mb-2.5">
-                  <label class="block text-[11px] text-slate-500 mb-1">Nome da campanha</label>
-                  <input type="text" value="Campanha-sem_nome-2026-10-30" class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs text-slate-800 font-medium focus:outline-none focus:border-[#F05A22]" />
+                  <label class="block text-[11px] text-[#6B7481] mb-1">Nome da campanha</label>
+                  <input type="text" value="Campanha-sem_nome-2026-10-30" class="w-full rounded-xl border border-[#E8EAEE] px-3 py-2 text-xs text-[#2A313A] font-medium focus:outline-none focus:border-[#F15A22]" />
                 </div>
                 <div class="grid grid-cols-3 gap-2">
                   <div>
-                    <label class="block text-[10px] text-slate-500 mb-1">duração</label>
-                    <div class="rounded-xl border border-slate-200 px-2.5 py-1.5 text-[11px] font-medium text-slate-700">4 semanas</div>
+                    <label class="block text-[10px] text-[#6B7481] mb-1">duração</label>
+                    <div class="rounded-xl border border-[#E8EAEE] px-2.5 py-1.5 text-[11px] font-medium text-[#38414E]">4 semanas</div>
                   </div>
                   <div>
-                    <label class="block text-[10px] text-slate-500 mb-1">Início</label>
-                    <div class="rounded-xl border border-slate-200 px-2.5 py-1.5 text-[11px] font-medium text-slate-700">30/10/2026</div>
+                    <label class="block text-[10px] text-[#6B7481] mb-1">Início</label>
+                    <div class="rounded-xl border border-[#E8EAEE] px-2.5 py-1.5 text-[11px] font-medium text-[#38414E]">30/10/2026</div>
                   </div>
                   <div>
-                    <label class="block text-[10px] text-slate-500 mb-1">Fim</label>
-                    <div class="rounded-xl border border-slate-200 px-2.5 py-1.5 text-[11px] font-medium text-slate-500 bg-slate-50">27/11/2026</div>
+                    <label class="block text-[10px] text-[#6B7481] mb-1">Fim</label>
+                    <div class="rounded-xl border border-[#E8EAEE] px-2.5 py-1.5 text-[11px] font-medium text-[#6B7481] bg-[#F7F8FC]">27/11/2026</div>
                   </div>
                 </div>
               </div>
 
-              <div class="pb-4 mb-4 border-b border-slate-100">
-                <h3 class="text-sm font-bold text-slate-800 mb-2.5">Performance projetada</h3>
-                <div class="grid grid-cols-3 gap-2.5 text-xs bg-[#F8FAFC] p-2.5 rounded-xl">
-                  <div><div class="text-[10px] text-slate-500">exibições OOH</div><div class="font-bold text-slate-900">208,27 mil</div></div>
-                  <div><div class="text-[10px] text-slate-500">alcance OOH</div><div class="font-bold text-slate-900">43,15 mil</div></div>
-                  <div><div class="text-[10px] text-slate-500">impacto OOH</div><div class="font-bold text-slate-900">283,15 mil</div></div>
+              <div class="pb-4 mb-4 border-b border-[#E8EAEE]">
+                <h3 class="text-sm font-bold text-[#2A313A] mb-2.5">Performance projetada</h3>
+                <div class="grid grid-cols-3 gap-2.5 text-xs bg-[#F7F8FC] p-2.5 rounded-xl">
+                  <div><div class="text-[10px] text-[#6B7481]">exibições OOH</div><div class="font-bold text-[#1A1E24]">208,27 mil</div></div>
+                  <div><div class="text-[10px] text-[#6B7481]">alcance OOH</div><div class="font-bold text-[#1A1E24]">43,15 mil</div></div>
+                  <div><div class="text-[10px] text-[#6B7481]">impacto OOH</div><div class="font-bold text-[#1A1E24]">283,15 mil</div></div>
                 </div>
               </div>
 
@@ -436,75 +511,75 @@
               <!-- ========================================================= -->
               <div id="secao-valor-anchor">
                 <div class="flex items-center justify-between gap-2 mb-2.5">
-                  <h3 class="text-base font-bold text-slate-900">Valor</h3>
+                  <h3 class="text-base font-bold text-[#1A1E24]">Valor</h3>
                   
-                  <div id="coupon-header-default" class="text-xs text-slate-600">
-                    Possui cupom? <button onclick="setCouponScenario('larger')" class="text-[#16A34A] hover:underline font-semibold ml-0.5">Adicionar</button>
+                  <div id="coupon-header-default" class="text-xs text-[#465161]">
+                    Possui cupom? <button onclick="setCouponScenario('larger')" class="text-[#007800] hover:underline font-semibold ml-0.5">Adicionar</button>
                   </div>
 
                   <div id="coupon-header-active" class="hidden flex items-center gap-1.5">
-                    <span id="coupon-badge-code" class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-[11px] font-bold text-slate-700">VIP3000</span>
-                    <button onclick="setCouponScenario('none')" class="text-[11px] text-slate-500 hover:text-red-600 underline">remover</button>
+                    <span id="coupon-badge-code" class="px-2 py-0.5 rounded bg-[#F7F8FC] border border-[#E8EAEE] text-[11px] font-bold text-[#38414E]">VIP3000</span>
+                    <button onclick="setCouponScenario('none')" class="text-[11px] text-[#6B7481] hover:text-[#D13633] underline">remover</button>
                   </div>
                 </div>
 
                 <!-- BLOCO SUAVIZADO DO PRONTOOH NA PÁGINA DE RESUMO (SEM TAG POLUINDO: DIRETO TÍTULO -> ESPAÇAMENTO -> PROGRESSÃO) -->
-                <div id="valor-soft-box" class="rounded-xl p-3.5 mb-3.5 bg-[#F8FAFC] border border-slate-200/90 transition-all">
+                <div id="valor-soft-box" class="rounded-xl p-3.5 mb-3.5 bg-[#F7F8FC] border border-[#E8EAEE] transition-all">
                   
                   <!-- 1. Título direto no topo (100% da largura, zero poluição visual e card mais enxuto) -->
-                  <div id="vsoft-headline" class="text-[13px] font-semibold text-slate-900 leading-snug mb-4"></div>
+                  <div id="vsoft-headline" class="text-[13px] font-semibold text-[#1A1E24] leading-snug mb-4"></div>
 
                   <!-- 2. Trilha Contínua Real das 5 Faixas -->
                   <div id="vsoft-stepper" class="w-full"></div>
 
-                  <!-- 3. Regra legível (11px text-slate-600) -->
-                  <div id="vsoft-disclaimer" class="text-[11px] text-slate-600 font-medium leading-snug mt-3 pt-2 border-t border-slate-200/70">
+                  <!-- 3. Regra legível (11px #465161) -->
+                  <div id="vsoft-disclaimer" class="text-[11px] text-[#465161] font-medium leading-snug mt-3 pt-2 border-t border-[#E8EAEE]">
                     Aplicado apenas em OOH · 1 bônus por pedido · Válido até 31/10
                   </div>
                 </div>
 
                 <!-- Relação de Valores no padrão Prontooh -->
                 <div class="space-y-2 text-xs pt-1">
-                  <div class="flex justify-between text-slate-600">
+                  <div class="flex justify-between text-[#465161]">
                     <span>Campanha Digital</span>
-                    <span id="plano-digital-val" class="font-medium text-slate-800">R$ 2.000,00</span>
+                    <span id="plano-digital-val" class="font-medium text-[#2A313A]">R$ 2.000,00</span>
                   </div>
                   
-                  <div class="flex justify-between items-baseline text-slate-600">
+                  <div class="flex justify-between items-baseline text-[#465161]">
                     <span>Campanha Out of Home</span>
                     <div class="text-right">
-                      <span id="plano-ooh-old-val" class="text-[11px] text-slate-400 line-through mr-1 hidden">R$ 400,00</span>
-                      <span id="plano-ooh-val" class="font-medium text-slate-800">R$ 300,00</span>
+                      <span id="plano-ooh-old-val" class="text-[11px] text-[#818EA1] line-through mr-1 hidden">R$ 400,00</span>
+                      <span id="plano-ooh-val" class="font-medium text-[#2A313A]">R$ 300,00</span>
                     </div>
                   </div>
 
-                  <div class="flex justify-between text-slate-800 font-bold pt-1">
+                  <div class="flex justify-between text-[#2A313A] font-bold pt-1">
                     <span>Subtotal</span>
                     <span id="plano-subtotal">R$ 2.400,00</span>
                   </div>
 
                   <!-- Linha de Bônus OOH -->
-                  <div id="plano-discount-row" class="flex justify-between items-center text-[#15803D] font-semibold hidden">
+                  <div id="plano-discount-row" class="flex justify-between items-center text-[#007800] font-semibold hidden">
                     <span id="plano-discount-label">Bônus OOH</span>
                     <span id="plano-discount-val">R$ 100,00 OFF</span>
                   </div>
 
                   <!-- Linha Total -->
-                  <div class="flex justify-between items-baseline pt-2.5 pb-1 border-t border-slate-100">
-                    <span class="text-sm font-bold text-slate-900">Total</span>
+                  <div class="flex justify-between items-baseline pt-2.5 pb-1 border-t border-[#E8EAEE]">
+                    <span class="text-sm font-bold text-[#1A1E24]">Total</span>
                     <div class="text-right flex items-baseline gap-1.5">
-                      <span id="plano-total-old-val" class="text-xs text-slate-400 line-through hidden">R$ 2.400,00</span>
-                      <span id="plano-final-price" class="text-lg font-extrabold text-slate-900">R$ 2.300,00</span>
+                      <span id="plano-total-old-val" class="text-xs text-[#818EA1] line-through hidden">R$ 2.400,00</span>
+                      <span id="plano-final-price" class="text-lg font-extrabold text-[#1A1E24]">R$ 2.300,00</span>
                     </div>
                   </div>
                 </div>
 
                 <!-- Botões Finais Prontooh -->
                 <div class="grid grid-cols-2 gap-2.5 mt-3.5">
-                  <button class="h-10 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-800 transition">
+                  <button class="h-10 rounded-xl border border-[#E8EAEE] bg-white hover:bg-[#F7F8FC] text-xs font-semibold text-[#2A313A] transition">
                     enviar criativo
                   </button>
-                  <button class="h-10 rounded-xl bg-[#F05A22] hover:bg-[#D94B16] text-white text-xs font-semibold shadow-sm transition">
+                  <button class="h-10 rounded-xl bg-[#F15A22] hover:bg-[#D9511F] text-white text-xs font-semibold shadow-sm transition">
                     realizar pagamento
                   </button>
                 </div>
@@ -523,24 +598,24 @@
     <!-- STICKY FOOTER NA PÁGINA PRINCIPAL (RESULTADOS OOH)                  -->
     <!-- Destaque Forte (Preto Prontooh) + Barra Contínua Real entre os itens-->
     <!-- =================================================================== -->
-    <footer id="sticky-footer" class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] shrink-0 hidden">
+    <footer id="sticky-footer" class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E8EAEE] shadow-[0_-8px_30px_rgba(0,0,0,0.08)] shrink-0 hidden">
       
       <!-- Faixa Preta Chamativa de Estímulo (SOMENTE na Página Principal de Resultados OOH — Sem tag extra, mais enxuta e colapsável no Mobile) -->
-      <div id="footer-promo-strip" class="w-full bg-[#18181B] text-white border-b border-zinc-800 transition-all duration-300 relative">
+      <div id="footer-promo-strip" class="w-full bg-[#1A1E24] text-white border-b border-[#2A313A] transition-all duration-300 relative">
         <div id="footer-promo-inner" class="max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-8">
           
           <!-- Bloco Esquerdo / Topo Mobile (Sem tag extra: ícone + título direto + botão recolher no Mobile) -->
-          <div id="footer-promo-header" onclick="if (viewportMode === 'mobile') toggleMobilePromoCollapse()" class="shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-zinc-800 md:pr-6 select-none">
+          <div id="footer-promo-header" onclick="if (viewportMode === 'mobile') toggleMobilePromoCollapse()" class="shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-[#2A313A] md:pr-6 select-none">
             <div id="footer-promo-toprow" class="flex items-start justify-between gap-2.5">
               <div class="flex items-start gap-2 min-w-0">
-                <span id="footer-strip-icon" class="text-emerald-400 shrink-0 mt-0.5"></span>
+                <span id="footer-strip-icon" class="text-[#66AE66] shrink-0 mt-0.5"></span>
                 <p id="footer-strip-text" class="text-[13px] sm:text-[14px] font-semibold text-white leading-snug"></p>
                 <!-- Título conciso quando recolhido no Mobile (estimulando "Ver faixas", zero truncamento) -->
                 <span id="footer-strip-collapsed-hint" class="hidden text-[12px] font-semibold text-white leading-tight whitespace-nowrap"></span>
               </div>
 
               <!-- Botão Colapsar/Expandir (Exclusivo Mobile) -->
-              <button type="button" id="mobile-collapse-pill" class="hidden shrink-0 px-2 py-0.5 rounded-md bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-[10px] font-semibold text-zinc-200 whitespace-nowrap items-center gap-1 transition">
+              <button type="button" id="mobile-collapse-pill" class="hidden shrink-0 px-2 py-0.5 rounded-md bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[10px] font-semibold text-[#E8EAEE] whitespace-nowrap items-center gap-1 transition">
                 <span id="mobile-collapse-label">Recolher</span>
                 <svg id="mobile-collapse-chevron" class="w-3 h-3 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
               </button>
@@ -553,23 +628,23 @@
         </div>
 
         <!-- Mini barra de progresso contínua (3px) exibida na base da tarja preta quando recolhida no Mobile -->
-        <div id="footer-collapsed-mini-bar" class="hidden w-full h-[3px] bg-zinc-800 overflow-hidden">
-          <div id="footer-collapsed-mini-fill" class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 transition-all duration-300" style="width: 0%"></div>
+        <div id="footer-collapsed-mini-bar" class="hidden w-full h-[3px] bg-[#2A313A] overflow-hidden">
+          <div id="footer-collapsed-mini-fill" class="h-full bg-gradient-to-r from-[#339333] to-[#66AE66] transition-all duration-300" style="width: 0%"></div>
         </div>
       </div>
 
       <!-- Bloco de Checkout Prontooh (Largura 1600px alinhada à grid de resultados) -->
       <div id="footer-checkout-bar" class="hidden max-w-[1600px] mx-auto px-4 lg:px-8 py-2 flex items-center justify-between gap-3 bg-white">
         <div class="flex-1 min-w-0">
-          <div id="footer-selected-count" class="text-[11px] text-slate-600 font-medium leading-tight">3 produtos selecionados</div>
+          <div id="footer-selected-count" class="text-[11px] text-[#465161] font-medium leading-tight">3 produtos selecionados</div>
           <div class="flex items-baseline gap-1.5 flex-wrap">
-            <span class="text-xs font-bold text-slate-900">Total</span>
-            <span id="footer-old-total" class="text-xs text-slate-400 line-through hidden">R$ 2.400,00</span>
-            <span id="footer-final-total" class="text-base font-extrabold text-slate-900">R$ 2.300,00</span>
+            <span class="text-xs font-bold text-[#1A1E24]">Total</span>
+            <span id="footer-old-total" class="text-xs text-[#818EA1] line-through hidden">R$ 2.400,00</span>
+            <span id="footer-final-total" class="text-base font-extrabold text-[#1A1E24]">R$ 2.300,00</span>
           </div>
         </div>
 
-        <button onclick="switchScreen('plano')" class="h-10 px-5 rounded-xl bg-[#F05A22] hover:bg-[#D94B16] text-white font-semibold text-xs flex items-center gap-1.5 shadow-sm transition shrink-0">
+        <button onclick="switchScreen('plano')" class="h-10 px-5 rounded-xl bg-[#F15A22] hover:bg-[#D9511F] text-white font-semibold text-xs flex items-center gap-1.5 shadow-sm transition shrink-0">
           <span>continuar</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
@@ -681,8 +756,8 @@
     ];
 
     const digitalCatalog = [
-      { id: 'd1', name: 'Display - Portais Globo', badges: [{ text: 'display', style: 'bg-slate-800 text-white' }], impressions: '110.000', cpm: '9.09', price: 1000.00, selected: true },
-      { id: 'd2', name: 'Vídeo de 15 segundos - Portais Globo', badges: [{ text: 'sem skip', style: 'bg-[#16A34A] text-white' }, { text: 'vídeo', style: 'bg-slate-800 text-white' }], impressions: '14.000', cpm: '71.42', price: 1000.00, selected: true }
+      { id: 'd1', name: 'Display - Portais Globo', badges: [{ text: 'display', style: 'bg-[#2A313A] text-white' }], impressions: '110.000', cpm: '9.09', price: 1000.00, selected: true },
+      { id: 'd2', name: 'Vídeo de 15 segundos - Portais Globo', badges: [{ text: 'sem skip', style: 'bg-[#339333] text-white' }, { text: 'vídeo', style: 'bg-[#2A313A] text-white' }], impressions: '14.000', cpm: '71.42', price: 1000.00, selected: true }
     ];
 
     function formatBRL(value) {
@@ -780,7 +855,7 @@
      * Constrói a Trilha de 5 Faixas ocupando espaço amplo de ponta a ponta:
      * - Distribuição ampla (justify-between) ocupando quase 100% da largura horizontal do container
      * - Apenas os 5 rótulos de bônus acima da barra contínua (sem o sinal "-" e sem bold, usando font-normal)
-     * - Progressão 100% em tons de verde ("tudo verdinho"), sem evolução para vermelho/laranja
+     * - Progressão 100% em tons de verde do Prontooh Design System ("tudo verdinho"), sem evolução para vermelho/laranja
      */
     function buildConnectedStepperHTML(summary, theme) {
       const isDark = theme === 'dark';
@@ -788,13 +863,13 @@
       const activeIdx = summary.currentTier ? summary.currentTier.id - 1 : -1;
       const fillPct = calculateTrackProgressPercent(summary.oohSum);
 
-      const trackBg = isDark ? 'bg-zinc-700' : 'bg-slate-300';
+      const trackBg = isDark ? 'bg-[#38414E]' : 'bg-[#B3BBC7]';
       const trackHeight = isDark
         ? (isMob ? 'h-[4px]' : 'h-[6px]')
         : (isMob ? 'h-[4px]' : 'h-[5px]');
       const fillBg = isDark
-        ? 'bg-gradient-to-r from-emerald-500 to-emerald-400'
-        : 'bg-gradient-to-r from-[#15803D] to-[#22C55E]';
+        ? 'bg-gradient-to-r from-[#339333] to-[#66AE66]'
+        : 'bg-gradient-to-r from-[#007800] to-[#339333]';
 
       const topFontSize = isMob ? 'text-[11px]' : (isDark ? 'text-[13px]' : 'text-xs');
       const nodeWidth = isMob ? 'w-[54px]' : (isDark ? 'w-[80px]' : 'w-[68px]');
@@ -814,46 +889,46 @@
 
         if (isDark) {
           if (isCurrent) {
-            topTextClass = 'text-emerald-400 font-normal';
+            topTextClass = 'text-[#66AE66] font-normal';
             dotClass = isMob
-              ? 'w-4 h-4 bg-emerald-400 border-2 border-[#18181B] ring-2 ring-emerald-400 shadow'
-              : 'w-5 h-5 bg-emerald-400 border-2 border-[#18181B] ring-2 ring-emerald-400 shadow';
-            dotInner = `<svg class="w-2.5 h-2.5 text-[#18181B]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`;
+              ? 'w-4 h-4 bg-[#66AE66] border-2 border-[#1A1E24] ring-2 ring-[#66AE66] shadow'
+              : 'w-5 h-5 bg-[#66AE66] border-2 border-[#1A1E24] ring-2 ring-[#66AE66] shadow';
+            dotInner = `<svg class="w-2.5 h-2.5 text-[#1A1E24]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`;
           } else if (isReached) {
-            topTextClass = 'text-emerald-400 font-normal';
+            topTextClass = 'text-[#66AE66] font-normal';
             dotClass = isMob
-              ? 'w-3.5 h-3.5 bg-emerald-400 border-2 border-[#18181B]'
-              : 'w-4 h-4 bg-emerald-400 border-2 border-[#18181B]';
-            dotInner = `<svg class="w-2 h-2 text-[#18181B]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`;
+              ? 'w-3.5 h-3.5 bg-[#66AE66] border-2 border-[#1A1E24]'
+              : 'w-4 h-4 bg-[#66AE66] border-2 border-[#1A1E24]';
+            dotInner = `<svg class="w-2 h-2 text-[#1A1E24]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`;
           } else if (isNext) {
-            topTextClass = 'text-emerald-300 font-normal';
+            topTextClass = 'text-[#A2CEA2] font-normal';
             dotClass = isMob
-              ? 'w-4 h-4 bg-[#18181B] border-2 border-emerald-400 ring-2 ring-emerald-400/40 shadow'
-              : 'w-5 h-5 bg-[#18181B] border-2 border-emerald-400 ring-2 ring-emerald-400/40 shadow';
-            dotInner = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>`;
+              ? 'w-4 h-4 bg-[#1A1E24] border-2 border-[#66AE66] ring-2 ring-[#66AE66]/40 shadow'
+              : 'w-5 h-5 bg-[#1A1E24] border-2 border-[#66AE66] ring-2 ring-[#66AE66]/40 shadow';
+            dotInner = `<span class="w-1.5 h-1.5 rounded-full bg-[#66AE66]"></span>`;
           } else {
-            topTextClass = 'text-zinc-300 font-normal';
+            topTextClass = 'text-[#B3BBC7] font-normal';
             dotClass = isMob
-              ? 'w-3 h-3 bg-zinc-600 border-2 border-[#18181B]'
-              : 'w-3.5 h-3.5 bg-zinc-600 border-2 border-[#18181B]';
+              ? 'w-3 h-3 bg-[#465161] border-2 border-[#1A1E24]'
+              : 'w-3.5 h-3.5 bg-[#465161] border-2 border-[#1A1E24]';
           }
         } else {
           // Tema Suave (Prontooh Design System na página de Resumo) — Tudo verdinho com alto contraste (WCAG AA)
           if (isCurrent) {
-            topTextClass = 'text-[#15803D] font-normal';
-            dotClass = 'w-4 h-4 bg-[#16A34A] border-2 border-white ring-2 ring-[#16A34A] shadow-sm';
+            topTextClass = 'text-[#007800] font-normal';
+            dotClass = 'w-4 h-4 bg-[#339333] border-2 border-white ring-2 ring-[#339333] shadow-sm';
             dotInner = `<svg class="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`;
           } else if (isReached) {
-            topTextClass = 'text-[#15803D] font-normal';
-            dotClass = 'w-3.5 h-3.5 bg-[#16A34A] border-2 border-white';
+            topTextClass = 'text-[#007800] font-normal';
+            dotClass = 'w-3.5 h-3.5 bg-[#339333] border-2 border-white';
             dotInner = `<svg class="w-2 h-2 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>`;
           } else if (isNext) {
-            topTextClass = 'text-[#15803D] font-normal';
-            dotClass = 'w-4 h-4 bg-white border-2 border-[#16A34A] ring-2 ring-[#16A34A]/30 shadow-sm';
-            dotInner = `<span class="w-1.5 h-1.5 rounded-full bg-[#16A34A]"></span>`;
+            topTextClass = 'text-[#007800] font-normal';
+            dotClass = 'w-4 h-4 bg-white border-2 border-[#339333] ring-2 ring-[#339333]/30 shadow-sm';
+            dotInner = `<span class="w-1.5 h-1.5 rounded-full bg-[#339333]"></span>`;
           } else {
-            topTextClass = 'text-slate-600 font-normal';
-            dotClass = 'w-3 h-3 bg-slate-300 border-2 border-[#F8FAFC]';
+            topTextClass = 'text-[#465161] font-normal';
+            dotClass = 'w-3 h-3 bg-[#B3BBC7] border-2 border-[#F7F8FC]';
           }
         }
 
@@ -891,8 +966,8 @@
         const btn = document.getElementById(`tier-btn-${num}`);
         if (!btn) return;
         btn.className = (num === activeTierNum)
-          ? 'px-2 py-0.5 rounded bg-[#F05A22] text-white border border-orange-500 font-semibold transition'
-          : 'px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition';
+          ? 'px-2 py-0.5 rounded bg-[#F15A22] text-white border border-[#F37445] font-semibold transition'
+          : 'px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition';
       });
 
       const cartBadge = document.getElementById('header-cart-badge');
@@ -902,7 +977,7 @@
       // Textos completos (zero truncamento, evolução 100% verde, sem tag extra poluindo e nomenclatura "bônus")
       let darkTextHTML = '';
       let darkIconHTML = SVG_TAG_ICON;
-      let darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
+      let darkIconColor = 'text-[#66AE66] shrink-0 mt-0.5';
 
       let softTextHTML = '';
 
@@ -917,35 +992,35 @@
       if (isSuperiorCoupon) {
         // Caso em que o desconto do cupom (R$ 3.000 OFF) é MUITO SUPERIOR ao bônus máximo da promo (R$ 2.000 OFF)
         darkIconHTML = SVG_CHECK_ICON;
-        darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
-        darkTextHTML = `Cupom <span class="text-emerald-400 font-bold">${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF)</span> aplicado em OOH`;
+        darkIconColor = 'text-[#66AE66] shrink-0 mt-0.5';
+        darkTextHTML = `Cupom <span class="text-[#66AE66] font-bold">${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF)</span> aplicado em OOH`;
 
-        softTextHTML = `Cupom <span class="font-bold text-slate-900">${summary.activeCoupon.code}</span> (<span class="font-bold text-[#15803D]">${formatBRLShort(summary.activeCoupon.amount)} OFF</span>) aplicado em OOH`;
+        softTextHTML = `Cupom <span class="font-bold text-[#1A1E24]">${summary.activeCoupon.code}</span> (<span class="font-bold text-[#007800]">${formatBRLShort(summary.activeCoupon.amount)} OFF</span>) aplicado em OOH`;
       } else if (summary.appliedType === 'coupon' && summary.activeCoupon) {
         darkIconHTML = SVG_CHECK_ICON;
-        darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
-        darkTextHTML = `Cupom <span class="text-emerald-400 font-bold">${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF)</span> ativo · Adicione OOH para ganhar bônus de até R$ 2 mil OFF`;
+        darkIconColor = 'text-[#66AE66] shrink-0 mt-0.5';
+        darkTextHTML = `Cupom <span class="text-[#66AE66] font-bold">${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF)</span> ativo · Adicione OOH para ganhar bônus de até R$ 2 mil OFF`;
 
-        softTextHTML = `Cupom <span class="font-bold text-slate-900">${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF)</span> ativo em OOH`;
+        softTextHTML = `Cupom <span class="font-bold text-[#1A1E24]">${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF)</span> ativo em OOH`;
       } else if (!summary.currentTier) {
         const needed = summary.oohSum === 0 ? 200 : summary.missingForNext;
         darkIconHTML = SVG_TAG_ICON;
-        darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
-        darkTextHTML = `Faltam <span class="text-emerald-400 font-bold">${formatBRLShort(needed)}</span> em OOH para ganhar <span class="text-emerald-400 font-bold">bônus de R$ 100 OFF</span>`;
+        darkIconColor = 'text-[#66AE66] shrink-0 mt-0.5';
+        darkTextHTML = `Faltam <span class="text-[#66AE66] font-bold">${formatBRLShort(needed)}</span> em OOH para ganhar <span class="text-[#66AE66] font-bold">bônus de R$ 100 OFF</span>`;
 
-        softTextHTML = `Faltam <span class="font-bold text-[#15803D]">${formatBRLShort(needed)}</span> em OOH para ganhar <span class="font-bold text-[#15803D]">bônus de R$ 100 OFF</span>`;
+        softTextHTML = `Faltam <span class="font-bold text-[#007800]">${formatBRLShort(needed)}</span> em OOH para ganhar <span class="font-bold text-[#007800]">bônus de R$ 100 OFF</span>`;
       } else if (summary.nextTier) {
         darkIconHTML = SVG_CHECK_ICON;
-        darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
-        darkTextHTML = `Faltam <span class="text-emerald-400 font-bold">${formatBRLShort(summary.missingForNext)}</span> em OOH para ganhar <span class="text-emerald-400 font-bold">bônus de ${formatBRLShort(summary.nextTier.discount)} OFF</span>`;
+        darkIconColor = 'text-[#66AE66] shrink-0 mt-0.5';
+        darkTextHTML = `Faltam <span class="text-[#66AE66] font-bold">${formatBRLShort(summary.missingForNext)}</span> em OOH para ganhar <span class="text-[#66AE66] font-bold">bônus de ${formatBRLShort(summary.nextTier.discount)} OFF</span>`;
 
-        softTextHTML = `Faltam <span class="font-bold text-[#15803D]">${formatBRLShort(summary.missingForNext)}</span> em OOH para ganhar <span class="font-bold text-[#15803D]">bônus de ${formatBRLShort(summary.nextTier.discount)} OFF</span>`;
+        softTextHTML = `Faltam <span class="font-bold text-[#007800]">${formatBRLShort(summary.missingForNext)}</span> em OOH para ganhar <span class="font-bold text-[#007800]">bônus de ${formatBRLShort(summary.nextTier.discount)} OFF</span>`;
       } else {
         darkIconHTML = SVG_CHECK_ICON;
-        darkIconColor = 'text-emerald-400 shrink-0 mt-0.5';
-        darkTextHTML = `Bônus máximo de <span class="text-emerald-400 font-bold">R$ 2 mil OFF</span> aplicado em OOH`;
+        darkIconColor = 'text-[#66AE66] shrink-0 mt-0.5';
+        darkTextHTML = `Bônus máximo de <span class="text-[#66AE66] font-bold">R$ 2 mil OFF</span> aplicado em OOH`;
 
-        softTextHTML = `Bônus máximo de <span class="font-bold text-[#15803D]">R$ 2 mil OFF</span> aplicado em OOH`;
+        softTextHTML = `Bônus máximo de <span class="font-bold text-[#007800]">R$ 2 mil OFF</span> aplicado em OOH`;
       }
 
       // Mensagem ou trilha de progressão dependendo se o cupom é superior ao valor máximo da promo
@@ -954,21 +1029,21 @@
 
       if (isSuperiorCoupon) {
         darkBodyHTML = `
-          <div class="rounded-lg bg-zinc-800/90 border border-zinc-700 px-3 py-2 text-[12px] text-zinc-200 leading-snug">
-            O desconto do seu cupom (<strong class="text-emerald-400">${formatBRLShort(summary.activeCoupon.amount)} OFF</strong>) é superior ao bônus máximo da promo (<strong class="text-white">${formatBRLShort(MAX_PROMO_DISCOUNT)} OFF</strong>). Mantivemos o seu cupom para garantir o maior desconto em OOH.
+          <div class="rounded-lg bg-[#2A313A] border border-[#38414E] px-3 py-2 text-[12px] text-[#E8EAEE] leading-snug">
+            O desconto do seu cupom (<strong class="text-[#66AE66]">${formatBRLShort(summary.activeCoupon.amount)} OFF</strong>) é superior ao bônus máximo da promo (<strong class="text-white">${formatBRLShort(MAX_PROMO_DISCOUNT)} OFF</strong>). Mantivemos o seu cupom para garantir o maior desconto em OOH.
           </div>
         `;
         softBodyHTML = `
-          <div class="rounded-lg bg-white border border-slate-200 px-3 py-2.5 text-[12px] text-slate-700 leading-snug">
-            O desconto do seu cupom (<strong class="text-[#15803D]">${formatBRLShort(summary.activeCoupon.amount)} OFF</strong>) é superior ao bônus máximo da promo (<strong class="text-slate-900">${formatBRLShort(MAX_PROMO_DISCOUNT)} OFF</strong>). Mantivemos o seu cupom para garantir o maior desconto em OOH.
+          <div class="rounded-lg bg-white border border-[#E8EAEE] px-3 py-2.5 text-[12px] text-[#38414E] leading-snug">
+            O desconto do seu cupom (<strong class="text-[#007800]">${formatBRLShort(summary.activeCoupon.amount)} OFF</strong>) é superior ao bônus máximo da promo (<strong class="text-[#1A1E24]">${formatBRLShort(MAX_PROMO_DISCOUNT)} OFF</strong>). Mantivemos o seu cupom para garantir o maior desconto em OOH.
           </div>
         `;
       } else {
         const extraConflictDark = isSmallerCouponOverridden
-          ? `<div class="mt-2 text-[11px] text-zinc-300 leading-snug">Seu bônus da promo (<strong class="text-emerald-400">${formatBRLShort(summary.progressiveDiscount)} OFF</strong>) supera o cupom ${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF). Aplicamos o maior bônus.</div>`
+          ? `<div class="mt-2 text-[11px] text-[#B3BBC7] leading-snug">Seu bônus da promo (<strong class="text-[#66AE66]">${formatBRLShort(summary.progressiveDiscount)} OFF</strong>) supera o cupom ${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF). Aplicamos o maior bônus.</div>`
           : '';
         const extraConflictSoft = isSmallerCouponOverridden
-          ? `<div class="mt-2.5 rounded-lg bg-white border border-slate-200 px-2.5 py-1.5 text-[11px] text-slate-700 leading-snug">Seu bônus da promo (<strong class="text-[#15803D]">${formatBRLShort(summary.progressiveDiscount)} OFF</strong>) supera o cupom <strong>${summary.activeCoupon.code}</strong> (${formatBRLShort(summary.activeCoupon.amount)} OFF). Mantivemos o maior bônus.</div>`
+          ? `<div class="mt-2.5 rounded-lg bg-white border border-[#E8EAEE] px-2.5 py-1.5 text-[11px] text-[#38414E] leading-snug">Seu bônus da promo (<strong class="text-[#007800]">${formatBRLShort(summary.progressiveDiscount)} OFF</strong>) supera o cupom <strong>${summary.activeCoupon.code}</strong> (${formatBRLShort(summary.activeCoupon.amount)} OFF). Mantivemos o maior bônus.</div>`
           : '';
 
         darkBodyHTML = buildConnectedStepperHTML(summary, 'dark') + extraConflictDark;
@@ -1012,15 +1087,15 @@
         // Título conciso único quando recolhido no Mobile (estimulando o "Ver faixas", zero truncamento)
         let collapsedTitleHTML = '';
         if (isSuperiorCoupon) {
-          collapsedTitleHTML = `Cupom <span class="text-emerald-400 font-bold">${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF)</span> ativo`;
+          collapsedTitleHTML = `Cupom <span class="text-[#66AE66] font-bold">${summary.activeCoupon.code} (${formatBRLShort(summary.activeCoupon.amount)} OFF)</span> ativo`;
         } else if (summary.appliedType === 'coupon' && summary.activeCoupon) {
-          collapsedTitleHTML = `Bônus de <span class="text-emerald-400 font-bold">${formatBRLShort(summary.appliedDiscount)} OFF</span> · Até R$ 2 mil`;
+          collapsedTitleHTML = `Bônus de <span class="text-[#66AE66] font-bold">${formatBRLShort(summary.appliedDiscount)} OFF</span> · Até R$ 2 mil`;
         } else if (!summary.currentTier) {
-          collapsedTitleHTML = `Ganhe <span class="text-emerald-400 font-bold">bônus de até R$ 2 mil OFF</span>`;
+          collapsedTitleHTML = `Ganhe <span class="text-[#66AE66] font-bold">bônus de até R$ 2 mil OFF</span>`;
         } else if (summary.nextTier) {
-          collapsedTitleHTML = `Bônus de <span class="text-emerald-400 font-bold">${formatBRLShort(summary.currentTier.discount)} OFF</span> · Até R$ 2 mil`;
+          collapsedTitleHTML = `Bônus de <span class="text-[#66AE66] font-bold">${formatBRLShort(summary.currentTier.discount)} OFF</span> · Até R$ 2 mil`;
         } else {
-          collapsedTitleHTML = `Bônus de <span class="text-emerald-400 font-bold">R$ 2 mil OFF</span> em OOH`;
+          collapsedTitleHTML = `Bônus de <span class="text-[#66AE66] font-bold">R$ 2 mil OFF</span> em OOH`;
         }
         if (collapsedHint) collapsedHint.innerHTML = collapsedTitleHTML;
 
@@ -1071,11 +1146,11 @@
         footerOldTotal.textContent = formatBRL(summary.subtotal);
         footerOldTotal.classList.remove('hidden');
         footerFinalTotal.textContent = formatBRL(summary.finalTotal);
-        footerFinalTotal.className = 'text-base font-extrabold text-[#15803D]';
+        footerFinalTotal.className = 'text-base font-extrabold text-[#007800]';
       } else {
         footerOldTotal.classList.add('hidden');
         footerFinalTotal.textContent = formatBRL(summary.subtotal);
-        footerFinalTotal.className = 'text-base font-extrabold text-slate-900';
+        footerFinalTotal.className = 'text-base font-extrabold text-[#1A1E24]';
       }
 
       // =====================================================================
@@ -1131,7 +1206,7 @@
         planoOohOldVal.textContent = formatBRL(summary.oohSum);
         planoOohOldVal.classList.remove('hidden');
         planoOohVal.textContent = formatBRL(summary.netOOH);
-        planoOohVal.className = 'font-semibold text-[#15803D]';
+        planoOohVal.className = 'font-semibold text-[#007800]';
 
         planoTotalOldVal.textContent = formatBRL(summary.subtotal);
         planoTotalOldVal.classList.remove('hidden');
@@ -1140,7 +1215,7 @@
         planoOohOldVal.classList.add('hidden');
         planoTotalOldVal.classList.add('hidden');
         planoOohVal.textContent = formatBRL(summary.oohSum);
-        planoOohVal.className = 'font-medium text-slate-800';
+        planoOohVal.className = 'font-medium text-[#2A313A]';
       }
     }
 
@@ -1150,8 +1225,8 @@
         const btn = document.getElementById(`coupon-btn-${key}`);
         if (btn) {
           btn.className = key === scenario
-            ? 'px-2 py-1 rounded-md bg-[#F05A22] text-white font-semibold transition'
-            : 'px-2 py-1 rounded-md bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition';
+            ? 'px-2 py-1 rounded-md bg-[#F15A22] text-white font-semibold transition'
+            : 'px-2 py-1 rounded-md bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition';
         }
       });
 
@@ -1203,11 +1278,11 @@
       const stickyFooter = document.getElementById('sticky-footer');
 
       document.getElementById('btn-mode-desktop').className = isMob
-        ? 'px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 text-slate-300 hover:text-white'
-        : 'px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 bg-[#F05A22] text-white';
+        ? 'px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 text-[#B3BBC7] hover:text-white'
+        : 'px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 bg-[#F15A22] text-white';
       document.getElementById('btn-mode-mobile').className = isMob
-        ? 'px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 bg-[#F05A22] text-white'
-        : 'px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 text-slate-300 hover:text-white';
+        ? 'px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 bg-[#F15A22] text-white'
+        : 'px-2.5 py-1 rounded-md font-semibold transition flex items-center gap-1.5 text-[#B3BBC7] hover:text-white';
 
       const summary = getCartSummary();
       const showFooter = (currentScreen === 'vitrine') || (currentScreen === 'globo' && !summary.isEmpty);
@@ -1220,7 +1295,7 @@
         shell.className = 'phone-frame';
         scrollArea.className = 'phone-scroll-area';
         stickyFooter.className = showFooter
-          ? 'w-full z-40 bg-white border-t border-slate-200 shadow-[0_-6px_20px_rgba(0,0,0,0.08)] shrink-0'
+          ? 'w-full z-40 bg-white border-t border-[#E8EAEE] shadow-[0_-6px_20px_rgba(0,0,0,0.08)] shrink-0'
           : 'hidden';
         if (footerPromoInner) footerPromoInner.className = 'px-3.5 py-3 flex flex-col gap-4';
         if (footerPromoHeader) footerPromoHeader.className = 'w-full';
@@ -1229,25 +1304,25 @@
         shell.className = showFooter ? 'w-full flex-1 flex flex-col pb-32' : 'w-full flex-1 flex flex-col pb-12';
         scrollArea.className = 'w-full flex-1 flex flex-col';
         stickyFooter.className = showFooter
-          ? 'fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.08)]'
+          ? 'fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#E8EAEE] shadow-[0_-8px_30px_rgba(0,0,0,0.08)]'
           : 'hidden';
         if (footerPromoInner) footerPromoInner.className = 'max-w-[1600px] mx-auto px-4 lg:px-8 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-8';
-        if (footerPromoHeader) footerPromoHeader.className = 'shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-zinc-800 md:pr-6';
+        if (footerPromoHeader) footerPromoHeader.className = 'shrink-0 md:w-[330px] lg:w-[370px] md:border-r md:border-[#2A313A] md:pr-6';
       }
 
       document.getElementById('header-channel-tabs-desktop').className = isMob || currentScreen === 'plano'
         ? 'hidden'
         : 'hidden md:flex items-center gap-6';
       document.getElementById('header-channel-tabs-mobile').className = isMob && currentScreen !== 'plano'
-        ? 'border-t border-slate-100 px-3.5 py-2 overflow-x-auto no-scrollbar flex items-center justify-between bg-slate-50/70'
+        ? 'border-t border-[#E8EAEE] px-3.5 py-2 overflow-x-auto no-scrollbar flex items-center justify-between bg-[#F7F8FC]'
         : 'hidden';
       document.getElementById('header-ai-label').className = isMob ? 'hidden' : 'hidden sm:inline';
-      document.getElementById('header-user-name').className = isMob ? 'hidden' : 'text-xs font-medium text-slate-700';
+      document.getElementById('header-user-name').className = isMob ? 'hidden' : 'text-xs font-medium text-[#38414E]';
 
       document.getElementById('search-bar-desktop').classList.toggle('hidden', isMob);
       document.getElementById('search-bar-mobile').classList.toggle('hidden', !isMob);
       document.getElementById('mobile-map-toggle-btn').className = isMob
-        ? 'px-3 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-semibold shrink-0 flex items-center gap-1.5 shadow-sm'
+        ? 'px-3 py-1.5 rounded-lg bg-[#1A1E24] text-white text-xs font-semibold shrink-0 flex items-center gap-1.5 shadow-sm'
         : 'hidden';
 
       const vitrineGrid = document.getElementById('vitrine-split-grid');
@@ -1259,12 +1334,12 @@
         vitrineGrid.className = 'grid grid-cols-1 gap-3.5 items-start';
         cardsContainer.className = showMobileMap ? 'hidden' : 'grid grid-cols-1 gap-3.5';
         mapWrapper.className = showMobileMap ? 'w-full' : 'hidden';
-        mapBox.className = 'w-full h-[400px] rounded-2xl map-bg border border-slate-200 relative overflow-hidden';
+        mapBox.className = 'w-full h-[400px] rounded-2xl map-bg border border-[#E8EAEE] relative overflow-hidden';
       } else {
         vitrineGrid.className = 'grid grid-cols-1 lg:grid-cols-12 gap-5 items-start';
         cardsContainer.className = 'lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4';
         mapWrapper.className = 'lg:col-span-5 sticky top-20';
-        mapBox.className = 'w-full h-[560px] rounded-2xl map-bg border border-slate-200 shadow-inner relative overflow-hidden select-none';
+        mapBox.className = 'w-full h-[560px] rounded-2xl map-bg border border-[#E8EAEE] shadow-inner relative overflow-hidden select-none';
       }
 
       const planoGrid = document.getElementById('plano-split-grid');
@@ -1296,46 +1371,46 @@
         const isSelected = item.selected;
         return `
           <div class="rounded-2xl border transition-all duration-200 overflow-hidden flex flex-col justify-between ${
-            isSelected ? 'bg-[#F0FDF4] border-[#16A34A] shadow-sm' : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'
+            isSelected ? 'bg-[#F5FAF5] border-[#339333] shadow-sm' : 'bg-white border-[#E8EAEE] hover:border-[#B3BBC7] shadow-sm'
           }">
             <div>
-              <div class="relative h-32 w-full bg-slate-200 overflow-hidden">
+              <div class="relative h-32 w-full bg-[#E8EAEE] overflow-hidden">
                 <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover" />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/20"></div>
                 <div class="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between gap-1">
                   <div class="flex items-center gap-1 flex-wrap">
-                    <span class="px-2 py-0.5 rounded-md bg-white/95 text-slate-800 font-semibold text-[10px] shadow-sm">${item.typeBadge}</span>
-                    <span class="px-2 py-0.5 rounded-md bg-[#4F46E5] text-white font-semibold text-[10px] shadow-sm">digital</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/95 text-[#2A313A] font-semibold text-[10px] shadow-sm">${item.typeBadge}</span>
+                    <span class="px-2 py-0.5 rounded-md bg-[#694DB5] text-white font-semibold text-[10px] shadow-sm">digital</span>
                   </div>
-                  <span class="px-2 py-0.5 rounded-md bg-slate-900/75 text-white font-medium text-[10px] shrink-0">${item.distance}</span>
+                  <span class="px-2 py-0.5 rounded-md bg-[#1A1E24]/80 text-white font-medium text-[10px] shrink-0">${item.distance}</span>
                 </div>
               </div>
               <div class="p-3.5">
-                <h3 class="font-bold text-sm text-slate-900 leading-snug truncate">${item.name}</h3>
-                <p class="text-[11px] text-slate-400 mt-0.5 truncate">${item.address}</p>
-                <div class="grid grid-cols-3 gap-1.5 mt-3 pt-2.5 border-t border-slate-100 text-xs">
-                  <div><div class="text-slate-400 text-[10px]">exibições</div><div class="font-bold text-slate-800 whitespace-nowrap">${item.views}</div></div>
-                  <div><div class="text-slate-400 text-[10px]">alcance</div><div class="font-bold text-slate-800 whitespace-nowrap">${item.reach}</div></div>
-                  <div><div class="text-slate-400 text-[10px]">frequência</div><div class="font-bold text-slate-800 whitespace-nowrap">${item.freq}</div></div>
+                <h3 class="font-bold text-sm text-[#1A1E24] leading-snug truncate">${item.name}</h3>
+                <p class="text-[11px] text-[#818EA1] mt-0.5 truncate">${item.address}</p>
+                <div class="grid grid-cols-3 gap-1.5 mt-3 pt-2.5 border-t border-[#E8EAEE] text-xs">
+                  <div><div class="text-[#818EA1] text-[10px]">exibições</div><div class="font-bold text-[#2A313A] whitespace-nowrap">${item.views}</div></div>
+                  <div><div class="text-[#818EA1] text-[10px]">alcance</div><div class="font-bold text-[#2A313A] whitespace-nowrap">${item.reach}</div></div>
+                  <div><div class="text-[#818EA1] text-[10px]">frequência</div><div class="font-bold text-[#2A313A] whitespace-nowrap">${item.freq}</div></div>
                 </div>
-                <div class="text-[10px] text-slate-400 mt-2">Telas: ${item.screens}</div>
+                <div class="text-[10px] text-[#818EA1] mt-2">Telas: ${item.screens}</div>
               </div>
             </div>
             <div class="px-3.5 pb-3.5 pt-0.5">
               <div class="flex items-baseline gap-1 mb-2.5">
-                <span class="text-base font-extrabold text-slate-900">${formatBRL(item.price)}</span>
-                <span class="text-[11px] text-slate-400">/ 4 semanas</span>
+                <span class="text-base font-extrabold text-[#1A1E24]">${formatBRL(item.price)}</span>
+                <span class="text-[11px] text-[#818EA1]">/ 4 semanas</span>
               </div>
               <div class="flex items-center gap-2">
                 <button onclick="togglePointSelection('${item.id}')" class="flex-1 h-9 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 ${
                   isSelected
-                    ? 'bg-white border border-slate-300 text-slate-800 hover:bg-slate-100'
-                    : 'bg-white border border-[#16A34A] text-[#15803D] hover:bg-emerald-50'
+                    ? 'bg-white border border-[#B3BBC7] text-[#2A313A] hover:bg-[#F7F8FC]'
+                    : 'bg-white border border-[#339333] text-[#007800] hover:bg-[#F5FAF5]'
                 }">
                   <span>${isSelected ? 'remover ponto' : 'adicionar ponto'}</span>
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                 </button>
-                <button class="w-8 h-9 flex items-center justify-center text-slate-300 hover:text-rose-500 transition shrink-0" title="Favoritar">
+                <button class="w-8 h-9 flex items-center justify-center text-[#B3BBC7] hover:text-[#E83C39] transition shrink-0" title="Favoritar">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
                 </button>
               </div>
@@ -1351,17 +1426,17 @@
         <div class="py-3 flex flex-col gap-2 ${d.selected ? '' : 'opacity-50'}">
           <div class="flex items-start justify-between gap-2">
             <div class="flex items-center gap-2">
-              <input type="checkbox" ${d.selected ? 'checked' : ''} onchange="toggleDigitalSelection('${d.id}')" class="w-4 h-4 rounded border-slate-300 text-[#F05A22] cursor-pointer shrink-0" />
-              <div class="font-bold text-xs text-slate-800">${d.name}</div>
+              <input type="checkbox" ${d.selected ? 'checked' : ''} onchange="toggleDigitalSelection('${d.id}')" class="w-4 h-4 rounded border-[#B3BBC7] text-[#F15A22] cursor-pointer shrink-0" />
+              <div class="font-bold text-xs text-[#2A313A]">${d.name}</div>
             </div>
             <div class="flex items-center gap-1 shrink-0">
               ${d.badges.map(b => `<span class="px-1.5 py-0.5 rounded text-[9px] font-semibold ${b.style}">${b.text}</span>`).join('')}
             </div>
           </div>
           <div class="pl-6 grid grid-cols-3 gap-2 text-xs">
-            <div><span class="text-slate-400 block text-[10px]">impressões</span><strong class="text-slate-700">${d.impressions}</strong></div>
-            <div><span class="text-slate-400 block text-[10px]">CPM</span><strong class="text-slate-700">${d.cpm}</strong></div>
-            <div><span class="text-slate-400 block text-[10px]">investimento</span><strong class="text-slate-900">${formatBRL(d.price)}</strong></div>
+            <div><span class="text-[#818EA1] block text-[10px]">impressões</span><strong class="text-[#38414E]">${d.impressions}</strong></div>
+            <div><span class="text-[#818EA1] block text-[10px]">CPM</span><strong class="text-[#38414E]">${d.cpm}</strong></div>
+            <div><span class="text-[#818EA1] block text-[10px]">investimento</span><strong class="text-[#1A1E24]">${formatBRL(d.price)}</strong></div>
           </div>
         </div>
       `).join('');
@@ -1371,18 +1446,18 @@
         <div class="py-3 ${item.selected ? '' : 'opacity-50'}">
           <div class="flex items-center justify-between gap-2 mb-1.5">
             <div class="flex items-center gap-2">
-              <input type="checkbox" ${item.selected ? 'checked' : ''} onchange="togglePointSelection('${item.id}')" class="w-4 h-4 rounded border-slate-300 text-[#F05A22] cursor-pointer shrink-0" />
-              <span class="font-bold text-xs text-slate-800">${item.name}</span>
+              <input type="checkbox" ${item.selected ? 'checked' : ''} onchange="togglePointSelection('${item.id}')" class="w-4 h-4 rounded border-[#B3BBC7] text-[#F15A22] cursor-pointer shrink-0" />
+              <span class="font-bold text-xs text-[#2A313A]">${item.name}</span>
             </div>
             <div class="flex items-center gap-1 shrink-0">
-              <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 text-[9px] font-medium">${item.shortType}</span>
-              <span class="px-1.5 py-0.5 rounded bg-[#4F46E5] text-white text-[9px] font-semibold">digital</span>
+              <span class="px-1.5 py-0.5 rounded bg-[#E8EAEE] text-[#465161] text-[9px] font-medium">${item.shortType}</span>
+              <span class="px-1.5 py-0.5 rounded bg-[#694DB5] text-white text-[9px] font-semibold">digital</span>
             </div>
           </div>
           <div class="pl-6 flex items-baseline justify-between gap-2 text-xs">
-            <span class="text-[11px] text-slate-500">${item.address}</span>
+            <span class="text-[11px] text-[#6B7481]">${item.address}</span>
             <div class="shrink-0 whitespace-nowrap">
-              <strong class="text-xs font-extrabold text-slate-900">${formatBRL(item.price)}</strong>
+              <strong class="text-xs font-extrabold text-[#1A1E24]">${formatBRL(item.price)}</strong>
             </div>
           </div>
         </div>
@@ -1407,11 +1482,11 @@
       const btnExpanded = document.getElementById('btn-mob-expanded');
       if (btnCollapsed && btnExpanded) {
         btnCollapsed.className = collapsed
-          ? 'px-2 py-0.5 rounded bg-[#F05A22] text-white border border-orange-500 font-semibold transition'
-          : 'px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition';
+          ? 'px-2 py-0.5 rounded bg-[#F15A22] text-white border border-[#F37445] font-semibold transition'
+          : 'px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition';
         btnExpanded.className = !collapsed
-          ? 'px-2 py-0.5 rounded bg-[#F05A22] text-white border border-orange-500 font-semibold transition'
-          : 'px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 font-medium transition';
+          ? 'px-2 py-0.5 rounded bg-[#F15A22] text-white border border-[#F37445] font-semibold transition'
+          : 'px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition';
       }
       if (viewportMode !== 'mobile') {
         setViewportMode('mobile');
@@ -1434,8 +1509,8 @@
         const btn = document.getElementById(`tab-screen-${s}`);
         if (btn) {
           btn.className = s === screen
-            ? 'px-2.5 py-1 rounded-md font-semibold transition-all bg-[#F05A22] text-white'
-            : 'px-2.5 py-1 rounded-md font-semibold transition-all text-slate-300 hover:text-white';
+            ? 'px-2.5 py-1 rounded-md font-semibold transition-all bg-[#F15A22] text-white'
+            : 'px-2.5 py-1 rounded-md font-semibold transition-all text-[#B3BBC7] hover:text-white';
         }
       });
 
