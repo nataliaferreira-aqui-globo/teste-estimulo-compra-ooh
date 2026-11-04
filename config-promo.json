@@ -8,7 +8,7 @@
   "showSpendThresholdBelowTrack": false,
   "webCollapseDynamics": {
     "openOnFirstVisit": true,
-    "autoCollapseAfterSeconds": 10,
+    "autoCollapseAfterSeconds": 5,
     "autoCollapseAfterMouseScrolls": 3,
     "reopenOnPointAdditionOrNextTier": true
   },

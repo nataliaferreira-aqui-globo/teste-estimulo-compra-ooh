@@ -218,7 +218,7 @@
 
         <div class="flex items-center gap-1.5 flex-wrap">
           <span id="auto-collapse-telemetry" class="px-2 py-0.5 rounded bg-[#232931] border border-[#38414E] text-[#A2CEA2] font-semibold text-[10px]">
-            1ª Visita: 10s · Scrolls: 0/3
+            1ª Visita: 5s · Scrolls: 0/3
           </span>
           <button id="btn-mob-expanded" onclick="setMobilePromoCollapsed(false, 'manual')" class="px-2 py-0.5 rounded bg-[#F15A22] text-white border border-[#F37445] font-semibold transition">
             Aberta
@@ -226,7 +226,7 @@
           <button id="btn-mob-collapsed" onclick="setMobilePromoCollapsed(true, 'manual')" class="px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#38414E] text-[#E8EAEE] font-medium transition">
             Colapsada (Ver faixas)
           </button>
-          <button onclick="resetFirstVisitSimulation()" class="px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#66AE66]/50 text-[#66AE66] font-semibold transition" title="Reiniciar contagem de 10s e 0/3 scrolls">
+          <button onclick="resetFirstVisitSimulation()" class="px-2 py-0.5 rounded bg-[#2A313A] hover:bg-[#38414E] border border-[#66AE66]/50 text-[#66AE66] font-semibold transition" title="Reiniciar contagem de 5s e 0/3 scrolls">
             Reiniciar 1ª Visita
           </button>
         </div>
@@ -675,7 +675,7 @@
     ];
 
     const MAX_PROMO_DISCOUNT = 2000;
-    const AUTO_COLLAPSE_SECONDS = 10;
+    const AUTO_COLLAPSE_SECONDS = 5;
     const AUTO_COLLAPSE_SCROLLS = 3;
 
     const COUPON_SCENARIOS = {
@@ -1452,7 +1452,7 @@
         if (lastCollapseReason === 'scroll-3') {
           badge.textContent = `Colapsada (3º scroll · abre ao subir faixa)`;
         } else if (lastCollapseReason === 'timer-10s') {
-          badge.textContent = `Colapsada (10s · abre ao subir faixa)`;
+          badge.textContent = `Colapsada (5s · abre ao subir faixa)`;
         } else {
           badge.textContent = `Colapsada (abre ao subir faixa)`;
         }
